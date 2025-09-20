@@ -1,182 +1,288 @@
 "use client";
-
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
-import { AlignJustify, XIcon } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 
-const menuItem = [
-  {
-    id: 1,
-    label: "Features",
-    href: "/features",
-  },
-  {
-    id: 2,
-    label: "Pricing",
-    href: "#",
-  },
-  {
-    id: 3,
-    label: "Careers",
-    href: "#",
-  },
-  {
-    id: 4,
-    label: "Contact Us",
-    href: "#",
-  },
-];
+import React, { useRef, useState } from "react";
 
-export function SiteHeader() {
-  const mobilenavbarVariant = {
-    initial: {
-      opacity: 0,
-      scale: 1,
-    },
-    animate: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.2,
-        ease: "easeOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 0.2,
-        delay: 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
 
-  const mobileLinkVar = {
-    initial: {
-      y: "-20px",
-      opacity: 0,
-    },
-    open: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
+interface NavbarProps {
+  children: React.ReactNode;
+  className?: string;
+}
 
-  const containerVariants = {
-    open: {
-      transition: {
-        staggerChildren: 0.06,
-      },
-    },
-  };
+interface NavBodyProps {
+  children: React.ReactNode;
+  className?: string;
+  visible?: boolean;
+}
 
-  const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
+interface NavItemsProps {
+  items: {
+    name: string;
+    link: string;
+  }[];
+  className?: string;
+  onItemClick?: () => void;
+}
 
-  useEffect(() => {
-    const html = document.querySelector("html");
-    if (html) html.classList.toggle("overflow-hidden", hamburgerMenuIsOpen);
-  }, [hamburgerMenuIsOpen]);
+interface MobileNavProps {
+  children: React.ReactNode;
+  className?: string;
+  visible?: boolean;
+}
 
-  useEffect(() => {
-    const closeHamburgerNavigation = () => setHamburgerMenuIsOpen(false);
-    window.addEventListener("orientationchange", closeHamburgerNavigation);
-    window.addEventListener("resize", closeHamburgerNavigation);
+interface MobileNavHeaderProps {
+  children: React.ReactNode;
+  className?: string;
+}
 
-    return () => {
-      window.removeEventListener("orientationchange", closeHamburgerNavigation);
-      window.removeEventListener("resize", closeHamburgerNavigation);
-    };
-  }, [setHamburgerMenuIsOpen]);
+interface MobileNavMenuProps {
+  children: React.ReactNode;
+  className?: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const Navbar = ({ children, className }: NavbarProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 100) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
 
   return (
-    <>
-      <header className="fixed left-0 top-0 z-50 w-full translate-y-[-1rem] animate-fade-in border-b opacity-0 backdrop-blur-[12px] [--animation-delay:600ms]">
-        <div className="container flex h-[3.5rem] items-center justify-between">
-          <Link className="text-md flex items-center" href="/">
-            Magic UI
-          </Link>
+    <motion.div
+      ref={ref}
+      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
+      className={cn("sticky inset-x-0 top-20 z-40 w-full", className)}
+    >
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(
+            child as React.ReactElement<{ visible?: boolean }>,
+            { visible },
+          )
+          : child,
+      )}
+    </motion.div>
+  );
+};
 
-          <div className="ml-auto flex h-full items-center">
-            <Link className="mr-6 text-sm" href="/signin">
-              Log in
-            </Link>
-            <Link
-              className={cn(
-                buttonVariants({ variant: "secondary" }),
-                "mr-6 text-sm"
-              )}
-              href="/signup"
-            >
-              Sign up
-            </Link>
-          </div>
-          <button
-            className="ml-6 md:hidden"
-            onClick={() => setHamburgerMenuIsOpen((open) => !open)}
-          >
-            <span className="sr-only">Toggle menu</span>
-            {hamburgerMenuIsOpen ? <XIcon /> : <AlignJustify />}
-          </button>
-        </div>
-      </header>
-      <AnimatePresence>
-        <motion.nav
-          initial="initial"
-          exit="exit"
-          variants={mobilenavbarVariant}
-          animate={hamburgerMenuIsOpen ? "animate" : "exit"}
+export const NavBody = ({ children, className, visible }: NavBodyProps) => {
+  return (
+    <motion.div
+      animate={{
+        backdropFilter: visible ? "blur(10px)" : "none",
+        boxShadow: visible
+          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          : "none",
+        width: visible ? "40%" : "100%",
+        y: visible ? 20 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 50,
+      }}
+      style={{
+        minWidth: "800px",
+      }}
+      className={cn(
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        visible && "bg-white/80 dark:bg-neutral-950/80",
+        className,
+      )}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  return (
+    <motion.div
+      onMouseLeave={() => setHovered(null)}
+      className={cn(
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        className,
+      )}
+    >
+      {items.map((item, idx) => (
+        <a
+          onMouseEnter={() => setHovered(idx)}
+          onClick={onItemClick}
+          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+          key={`link-${idx}`}
+          href={item.link}
+        >
+          {hovered === idx && (
+            <motion.div
+              layoutId="hovered"
+              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+            />
+          )}
+          <span className="relative z-20">{item.name}</span>
+        </a>
+      ))}
+    </motion.div>
+  );
+};
+
+export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+  return (
+    <motion.div
+      animate={{
+        backdropFilter: visible ? "blur(10px)" : "none",
+        boxShadow: visible
+          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          : "none",
+        width: visible ? "90%" : "100%",
+        paddingRight: visible ? "12px" : "0px",
+        paddingLeft: visible ? "12px" : "0px",
+        borderRadius: visible ? "4px" : "2rem",
+        y: visible ? 20 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 50,
+      }}
+      className={cn(
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
+        visible && "bg-white/80 dark:bg-neutral-950/80",
+        className,
+      )}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const MobileNavHeader = ({
+  children,
+  className,
+}: MobileNavHeaderProps) => {
+  return (
+    <div
+      className={cn(
+        "flex w-full flex-row items-center justify-between",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const MobileNavMenu = ({
+  children,
+  className,
+  isOpen,
+  onClose,
+}: MobileNavMenuProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           className={cn(
-            `fixed left-0 top-0 z-50 h-screen w-full overflow-auto bg-background/70 backdrop-blur-[12px] `,
-            {
-              "pointer-events-none": !hamburgerMenuIsOpen,
-            }
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            className,
           )}
         >
-          <div className="container flex h-[3.5rem] items-center justify-between">
-            <Link className="text-md flex items-center" href="/">
-              Magic UI
-            </Link>
-
-            <button
-              className="ml-6 md:hidden"
-              onClick={() => setHamburgerMenuIsOpen((open) => !open)}
-            >
-              <span className="sr-only">Toggle menu</span>
-              {hamburgerMenuIsOpen ? <XIcon /> : <AlignJustify />}
-            </button>
-          </div>
-          <motion.ul
-            className={`flex flex-col md:flex-row md:items-center uppercase md:normal-case ease-in`}
-            variants={containerVariants}
-            initial="initial"
-            animate={hamburgerMenuIsOpen ? "open" : "exit"}
-          >
-            {menuItem.map((item) => (
-              <motion.li
-                variants={mobileLinkVar}
-                key={item.id}
-                className="border-grey-dark pl-6 py-0.5 border-b md:border-none"
-              >
-                <Link
-                  className={`hover:text-grey flex h-[var(--navigation-height)] w-full items-center text-xl transition-[color,transform] duration-300 md:translate-y-0 md:text-sm md:transition-colors ${
-                    hamburgerMenuIsOpen ? "[&_a]:translate-y-0" : ""
-                  }`}
-                  href={item.href}
-                >
-                  {item.label}
-                </Link>
-              </motion.li>
-            ))}
-          </motion.ul>
-        </motion.nav>
-      </AnimatePresence>
-    </>
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
-}
+};
+
+export const MobileNavToggle = ({
+  isOpen,
+  onClick,
+}: {
+  isOpen: boolean;
+  onClick: () => void;
+}) => {
+  return isOpen ? (
+    <IconX className="text-black dark:text-white" onClick={onClick} />
+  ) : (
+    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+  );
+};
+
+export const NavbarLogo = () => {
+  return (
+    <a
+      href="#"
+      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
+    >
+      <img
+        src="https://assets.aceternity.com/logo-dark.png"
+        alt="logo"
+        width={30}
+        height={30}
+      />
+      <span className="font-medium text-black dark:text-white">Startup</span>
+    </a>
+  );
+};
+
+export const NavbarButton = ({
+  href,
+  as: Tag = "a",
+  children,
+  className,
+  variant = "primary",
+  ...props
+}: {
+  href?: string;
+  as?: React.ElementType;
+  children: React.ReactNode;
+  className?: string;
+  variant?: "primary" | "secondary" | "dark" | "gradient";
+} & (
+    | React.ComponentPropsWithoutRef<"a">
+    | React.ComponentPropsWithoutRef<"button">
+  )) => {
+  const baseStyles =
+    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+
+  const variantStyles = {
+    primary:
+      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+    secondary: "bg-transparent shadow-none dark:text-white",
+    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+    gradient:
+      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+  };
+
+  return (
+    <Tag
+      href={href || undefined}
+      className={cn(baseStyles, variantStyles[variant], className)}
+      {...props}
+    >
+      {children}
+    </Tag>
+  );
+};

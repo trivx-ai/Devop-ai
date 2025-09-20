@@ -1,5 +1,6 @@
 import ClientSection from "@/components/landing/client-section";
 import CallToActionSection from "@/components/landing/cta-section";
+import { FeaturesSectionDemo } from "@/components/landing/features";
 import HeroSection from "@/components/landing/hero-section";
 import PricingSection from "@/components/landing/pricing-section";
 import Particles from "@/components/magicui/particles";
@@ -9,6 +10,7 @@ export default async function Page() {
   return (
     <>
       <HeroSection />
+      <FeaturesSectionDemo />
       <ClientSection />
       <SphereMask />
       <PricingSection />
