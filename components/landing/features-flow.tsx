@@ -110,16 +110,22 @@ export function FeaturesFlow({ className }: { className?: string }) {
         </div>
 
         {/* Center Right - DevOpAI */}
+        {/* Center Left - GitHub */}
         <div className="flex flex-col items-center">
           <Circle
-            ref={devopaiRef}
-            className="size-24 bg-gradient-to-br from-[var(--color-one)]/20 to-[var(--color-two)]/20 border-[var(--color-one)]/40 shadow-xl hover:shadow-2xl"
+            ref={githubRef}
+            className="size-20 bg-gray-900/10 border-gray-600/30 hover:border-gray-600/50"
             label="Trivx"
           >
-            <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-[var(--color-one)] to-[var(--color-two)] rounded-xl">
-              <Zap className="h-12 w-12 text-white" />
-            </div>
+            <Image
+              src={trivxLogo}
+              alt="Trivx"
+              className="h-13 w-13 text-gray-700 dark:text-gray-300"
+            />
           </Circle>
+          <div className="mt-2 px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 text-xs rounded-full border border-orange-300 dark:border-orange-700">
+            Active
+          </div>
         </div>
 
         {/* Right Side - Services */}
