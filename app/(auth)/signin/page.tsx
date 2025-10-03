@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
+import { Grid } from "@/components/ui/grid";
 import { UserAuthForm } from "@/components/user-auth-form";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
@@ -6,8 +7,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Login | Magic UI",
-  description: "Login to your account",
+  title: "Sign In | Trivx",
+  description: "Sign in to your Trivx account",
 };
 
 export default function LoginPage() {

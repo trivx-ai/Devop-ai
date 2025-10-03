@@ -7,42 +7,43 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import {
   BarChart,
   ChevronRight,
-  File,
-  Globe,
-  HeartHandshake,
-  Rss,
-  Shield,
+  Cloud,
+  Container,
+  GitBranch,
+  Rocket,
+  Server,
+  Settings,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 const tiles = [
   {
-    icon: <HeartHandshake className="size-full" />,
+    icon: <Rocket className="size-full" />,
     bg: (
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-orange-600 via-rose-600 to-violet-600 opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
-    icon: <Globe className="size-full" />,
+    icon: <Cloud className="size-full" />,
     bg: (
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
-    icon: <File className="size-full" />,
+    icon: <GitBranch className="size-full" />,
     bg: (
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-green-500 via-teal-500 to-emerald-600 opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
-    icon: <Shield className="size-full" />,
+    icon: <Server className="size-full" />,
     bg: (
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
-    icon: <Rss className="size-full" />,
+    icon: <Container className="size-full" />,
     bg: (
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-orange-600 via-rose-600 to-violet-600 opacity-70 blur-[20px] filter"></div>
     ),
@@ -172,17 +173,18 @@ export default function CallToActionSection() {
             </Marquee>
             <div className="absolute z-10">
               <div className="mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32">
-                <HeartHandshake className="mx-auto size-16 text-black dark:text-white lg:size-24" />
+                <Settings className="mx-auto size-16 text-black dark:text-white lg:size-24" />
               </div>
               <div className="z-10 mt-4 flex flex-col items-center text-center text-primary">
                 <h1 className="text-3xl font-bold lg:text-4xl">
-                  Stop wasting time on design.
+                  Stop managing infrastructure manually.
                 </h1>
                 <p className="mt-2">
-                  Start your 7-day free trial. No credit card required.
+                  Start your Trivx automation journey. Free trial - no credit
+                  card required.
                 </p>
                 <Link
-                  href="#"
+                  href="/signup"
                   className={cn(
                     buttonVariants({
                       size: "lg",
@@ -191,7 +193,7 @@ export default function CallToActionSection() {
                     "group mt-4 rounded-[2rem] px-6"
                   )}
                 >
-                  Get Started
+                  Start with Trivx
                   <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
                 </Link>
               </div>

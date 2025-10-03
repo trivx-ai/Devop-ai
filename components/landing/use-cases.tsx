@@ -9,8 +9,10 @@ import {
   IconRouteAltLeft,
   IconTerminal2,
 } from "@tabler/icons-react";
+import TextShimmer from "@/components/magicui/text-shimmer";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 
-export function FeaturesSectionDemo() {
+export function UseCases() {
   const features = [
     {
       title: "Built for developers",
@@ -58,16 +60,43 @@ export function FeaturesSectionDemo() {
       icon: <IconHeart />,
     },
   ];
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto">
-      {features.map((feature, index) => (
-        <Feature key={feature.title} {...feature} index={index} />
-      ))}
-    </div>
+    <section className="py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header and Description */}
+        <div className="text-center mb-16">
+          <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
+            <TextShimmer className="inline-flex items-center justify-center">
+              <span>🚀 Real-World DevOps Solutions</span>{" "}
+              <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+            </TextShimmer>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
+            Real-World 
+            <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
+              {" "}
+              Use Cases
+            </span> for Trivx
+          </h2>
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
+            Discover how Trivx is transforming DevOps for teams of all sizes
+            across various industries.
+          </p>
+        </div>
+        
+        {/* Use Cases Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10">
+          {features.map((feature, index) => (
+            <UseCase key={feature.title} {...feature} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
-const Feature = ({
+const UseCase = ({
   title,
   description,
   icon,

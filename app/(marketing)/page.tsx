@@ -1,17 +1,21 @@
 import ClientSection from "@/components/landing/client-section";
 import CallToActionSection from "@/components/landing/cta-section";
-import { FeaturesSectionDemo } from "@/components/landing/features";
+import FeaturesSection from "@/components/landing/features-section";
+import { UseCases } from "@/components/landing/use-cases";
 import HeroSection from "@/components/landing/hero-section";
 import PricingSection from "@/components/landing/pricing-section";
 import Particles from "@/components/magicui/particles";
 import { SphereMask } from "@/components/magicui/sphere-mask";
+import WorkflowSection from "@/components/landing/workflow-section";
 
 export default async function Page() {
   return (
     <>
       <HeroSection />
-      <FeaturesSectionDemo />
       <ClientSection />
+      <FeaturesSection />
+      <WorkflowSection />
+      <UseCases />
       <SphereMask />
       <PricingSection />
       <CallToActionSection />

@@ -7,73 +7,77 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
 import { useState } from "react";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import TextShimmer from "@/components/magicui/text-shimmer";
 
 type Interval = "month" | "year";
 
 export const toHumanPrice = (price: number, decimals: number = 2) => {
   return Number(price / 100).toFixed(decimals);
 };
+
 const demoPrices = [
   {
     id: "price_1",
-    name: "Basic",
-    description: "A basic plan for startups and individual users",
+    name: "Free",
+    description: "Get started with basic DevOps automation features at no cost",
     features: [
-      "AI-powered analytics",
-      "Basic support",
-      "5 projects limit",
-      "Access to basic AI tools",
+      "Basic CI/CD pipelines",
+      "Community support",
+      "Shared infrastructure",
+      "Limited automation workflows",
+      "Access to core integrations",
     ],
-    monthlyPrice: 1000,
-    yearlyPrice: 10000,
+    monthlyPrice: 0,
+    yearlyPrice: 0,
     isMostPopular: false,
   },
   {
     id: "price_2",
-    name: "Premium",
-    description: "A premium plan for growing businesses",
+    name: "Starter",
+    description: "Perfect for individual developers and small projects",
     features: [
-      "Advanced AI insights",
-      "Priority support",
-      "Unlimited projects",
-      "Access to all AI tools",
-      "Custom integrations",
+      "Up to 5 CI/CD pipelines",
+      "Basic deployment automation",
+      "GitHub/GitLab integration",
+      "Community support",
+      "Standard monitoring dashboard",
     ],
-    monthlyPrice: 2000,
-    yearlyPrice: 20000,
-    isMostPopular: true,
-  },
-  {
-    id: "price_5",
-    name: "Enterprise",
-    description:
-      "An enterprise plan with advanced features for large organizations",
-    features: [
-      "Custom AI solutions",
-      "24/7 dedicated support",
-      "Unlimited projects",
-      "Access to all AI tools",
-      "Custom integrations",
-      "Data security and compliance",
-    ],
-    monthlyPrice: 5000,
-    yearlyPrice: 50000,
+    monthlyPrice: 1900,
+    yearlyPrice: 19000,
     isMostPopular: false,
   },
   {
-    id: "price_6",
-    name: "Ultimate",
-    description: "The ultimate plan with all features for industry leaders",
+    id: "price_3",
+    name: "Professional",
+    description: "Ideal for growing teams and production workloads",
     features: [
-      "Bespoke AI development",
-      "White-glove support",
-      "Unlimited projects",
-      "Priority access to new AI tools",
-      "Custom integrations",
-      "Highest data security and compliance",
+      "Unlimited CI/CD pipelines",
+      "Multi-cloud deployment (AWS, Azure, GCP)",
+      "Advanced monitoring & alerts",
+      "Database automation (MongoDB, PostgreSQL)",
+      "Kubernetes orchestration",
+      "Priority support",
     ],
-    monthlyPrice: 8000,
-    yearlyPrice: 80000,
+    monthlyPrice: 4900,
+    yearlyPrice: 49000,
+    isMostPopular: true,
+  },
+  {
+    id: "price_4",
+    name: "Enterprise",
+    description: "Advanced DevOps automation for large organizations",
+    features: [
+      "Everything in Professional",
+      "Custom pipeline templates",
+      "Advanced security scanning",
+      "Compliance automation (SOC 2, GDPR)",
+      "Dedicated DevOps consultant",
+      "24/7 priority support",
+      "Custom integrations",
+    ],
+    monthlyPrice: 9900,
+    yearlyPrice: 99000,
     isMostPopular: false,
   },
 ];
@@ -94,18 +98,24 @@ export default function PricingSection() {
     <section id="pricing">
       <div className="mx-auto flex max-w-screen-xl flex-col gap-8 px-4 py-14 md:px-8">
         <div className="mx-auto max-w-5xl text-center">
-          <h4 className="text-xl font-bold tracking-tight text-black dark:text-white">
-            Pricing
-          </h4>
-
-          <h2 className="text-5xl font-bold tracking-tight text-black dark:text-white sm:text-6xl">
-            Simple pricing for everyone.
+          <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
+            <TextShimmer className="inline-flex items-center justify-center">
+              <span>💰 Choose Your Plan</span>{" "}
+              <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+            </TextShimmer>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
+            Scale your 
+            <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
+              {" "}
+              DevOps
+            </span> journey.
           </h2>
 
           <p className="mt-6 text-xl leading-8 text-black/80 dark:text-white">
-            Choose an <strong>affordable plan</strong> that&apos;s packed with
-            the best features for engaging your audience, creating customer
-            loyalty, and driving sales.
+            Choose a <strong>powerful plan</strong> that grows with your team
+            and accelerates your deployment pipeline from development to
+            production.
           </p>
         </div>
 
@@ -185,10 +195,10 @@ export default function PricingSection() {
               >
                 <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96 dark:bg-black" />
                 {(!isLoading || (isLoading && id !== price.id)) && (
-                  <p>Subscribe</p>
+                  <p>Get Started</p>
                 )}
 
-                {isLoading && id === price.id && <p>Subscribing</p>}
+                {isLoading && id === price.id && <p>Setting up...</p>}
                 {isLoading && id === price.id && (
                   <Loader className="mr-2 h-4 w-4 animate-spin" />
                 )}

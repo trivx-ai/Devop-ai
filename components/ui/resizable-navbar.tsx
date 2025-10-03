@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import trivxLogo from "../../public/trivx.png";
 
 interface NavItem {
   name: string;
@@ -37,9 +39,7 @@ export function Navbar({ children, className }: NavbarProps) {
         className
       )}
     >
-      <div className="container mx-auto px-4">
-        {children}
-      </div>
+      <div className="container mx-auto px-4">{children}</div>
     </div>
   );
 }
@@ -89,18 +89,23 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ children, className }: MobileNavProps) {
-  return (
-    <div className={cn("md:hidden block", className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn("md:hidden block", className)}>{children}</div>;
 }
 
 export function NavbarLogo() {
   return (
     <div className="flex items-center">
-      <Link href="/" className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
-        DevOpAI
+      <Link
+        href="/"
+        className="text-xl font-bold text-neutral-900 dark:text-neutral-100"
+      >
+        <Image
+          src={trivxLogo}
+          alt="Trivx logo"
+          width={62}
+          height={62}
+          className=""
+        />
       </Link>
     </div>
   );
@@ -117,7 +122,7 @@ export function NavbarButton({
   children,
   variant = "primary",
   className,
-  onClick
+  onClick,
 }: NavbarButtonProps) {
   return (
     <Button
@@ -150,7 +155,11 @@ interface MobileNavToggleProps {
   className?: string;
 }
 
-export function MobileNavToggle({ isOpen, onClick, className }: MobileNavToggleProps) {
+export function MobileNavToggle({
+  isOpen,
+  onClick,
+  className,
+}: MobileNavToggleProps) {
   return (
     <button
       onClick={onClick}
@@ -175,7 +184,7 @@ interface MobileNavMenuProps {
 export function MobileNavMenu({
   children,
   isOpen,
-  className
+  className,
 }: MobileNavMenuProps) {
   useEffect(() => {
     if (isOpen) {
@@ -199,9 +208,7 @@ export function MobileNavMenu({
         className
       )}
     >
-      <div className="container mx-auto px-4 py-6 space-y-6">
-        {children}
-      </div>
+      <div className="container mx-auto px-4 py-6 space-y-6">{children}</div>
     </div>
   );
 }

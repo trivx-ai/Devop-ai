@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Navbar,
   NavBody,
@@ -14,12 +15,25 @@ import {
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   const navItems = [
     { name: "Features", link: "#features" },
     { name: "Pricing", link: "#pricing" },
     { name: "Contact", link: "#contact" },
   ];
+
+  const handleLogin = () => {
+    router.push("/signin");
+  };
+
+  const handleSignup = () => {
+    router.push("/signup");
+  };
+
+  const handleGetStarted = () => {
+    router.push("/signup");
+  };
 
   return (
     <Navbar>
@@ -31,10 +45,18 @@ export default function SiteHeader() {
           onItemClick={() => console.log('Desktop nav item clicked')}
         />
         <div className="flex items-center gap-4">
-          <NavbarButton variant="secondary" href="/login">
+          <NavbarButton
+            variant="secondary"
+            as="button"
+            onClick={handleLogin}
+          >
             Login
           </NavbarButton>
-          <NavbarButton variant="primary" href="/signup">
+          <NavbarButton
+            variant="primary"
+            as="button"
+            onClick={handleSignup}
+          >
             Sign Up
           </NavbarButton>
         </div>
@@ -64,9 +86,30 @@ export default function SiteHeader() {
               {item.name}
             </a>
           ))}
-          <NavbarButton variant="primary" className="w-full">
-            Get Started
-          </NavbarButton>
+          <div className="flex flex-col gap-2 w-full">
+            <NavbarButton
+              variant="secondary"
+              className="w-full"
+              as="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                handleLogin();
+              }}
+            >
+              Login
+            </NavbarButton>
+            <NavbarButton
+              variant="primary"
+              className="w-full"
+              as="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                handleGetStarted();
+              }}
+            >
+              Get Started
+            </NavbarButton>
+          </div>
         </MobileNavMenu>
       </MobileNav>
     </Navbar>
