@@ -29,17 +29,18 @@ export default function LoginPage() {
           </>
         </Link>
 
-        <div className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-6 p-8">
-          <div className="relative rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+        <div className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-4 sm:gap-6 p-4 sm:p-8 z-10">
+          <div className="relative rounded-xl border border-white/10 bg-black/5 p-4 sm:p-6 md:p-8 backdrop-blur-sm">
             <BorderBeam
               size={200}
               duration={12}
               delay={0}
               colorFrom="var(--color-one)"
               colorTo="var(--color-two)"
+              className="pointer-events-none"
             />
 
-            <div className="flex flex-col gap-6">
+            <div className="relative z-20 flex flex-col gap-6">
               <div className="flex flex-col gap-2 text-center">
                 {/* Logo */}
                 <div className="mx-auto mb-4 p-3 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
@@ -65,12 +66,12 @@ export default function LoginPage() {
                 </p>
               </div>
 
-              <UserAuthForm />
+              <UserAuthForm type="signin" />
 
-              <p className="text-center text-sm text-muted-foreground">
+              <p className="relative z-30 text-center text-sm text-muted-foreground">
                 <Link
                   href="/signup"
-                  className="hover:text-primary underline underline-offset-4 transition-colors"
+                  className="hover:text-primary underline underline-offset-4 transition-colors cursor-pointer"
                 >
                   Don&apos;t have an account? Sign Up
                 </Link>

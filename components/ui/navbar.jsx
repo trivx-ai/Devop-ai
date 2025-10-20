@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Navbar,
@@ -19,22 +19,79 @@ export default function SiteHeader() {
 
   const navItems = [
     { name: "Home", link: "/" },
+    { name: "Features", link: "#features" },
+    { name: "Workflow", link: "#workflow" },
     { name: "Pricing", link: "#pricing" },
-    { name: "Docs", link: "/docs" },
-    { name: "Blog", link: "/blog" },
     { name: "Contact", link: "/contact" },
   ];
 
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsMobileMenuOpen(false);
+    };
+
+    // Listen for route changes (this is a simple approach)
+    window.addEventListener("popstate", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, []);
+
+  const handleNavigation = (path) => {
+    setIsMobileMenuOpen(false);
+
+    if (path.startsWith("#")) {
+      // Handle anchor links with smooth scrolling
+      const element = document.querySelector(path);
+      if (element) {
+        const navHeight = 80; // Approximate navbar height
+        const elementPosition = element.offsetTop - navHeight;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: "smooth"
+        });
+      }
+    } else {
+      // Handle route navigation
+      router.push(path);
+    }
+  };
+
   const handleLogin = () => {
-    router.push("/signin");
+    setIsMobileMenuOpen(false);
+    router.push("/login");
   };
 
   const handleSignup = () => {
+    setIsMobileMenuOpen(false);
     router.push("/signup");
   };
 
-  const handleGetStarted = () => {
-    router.push("/signup");
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -42,15 +99,13 @@ export default function SiteHeader() {
       {/* Desktop Navigation */}
       <NavBody>
         <NavbarLogo />
-        <NavItems
-          items={navItems}
-          onItemClick={() => console.log('Desktop nav item clicked')}
-        />
-        <div className="flex items-center gap-4">
+        <NavItems items={navItems} />
+        <div className="flex items-center gap-3 lg:gap-4">
           <NavbarButton
             variant="secondary"
             as="button"
             onClick={handleLogin}
+            className="hidden sm:block"
           >
             Login
           </NavbarButton>
@@ -59,7 +114,7 @@ export default function SiteHeader() {
             as="button"
             onClick={handleSignup}
           >
-            Sign Up
+            Get Started
           </NavbarButton>
         </div>
       </NavBody>
@@ -70,49 +125,60 @@ export default function SiteHeader() {
           <NavbarLogo />
           <MobileNavToggle
             isOpen={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMobileMenu}
           />
         </MobileNavHeader>
 
-        <MobileNavMenu
-          isOpen={isMobileMenuOpen}
-          onClose={() => setIsMobileMenuOpen(false)}
-        >
-          {navItems.map((item, idx) => (
-            <a
-              key={`mobile-link-${idx}`}
-              href={item.link}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-neutral-600 dark:text-neutral-300"
-            >
-              {item.name}
-            </a>
-          ))}
-          <div className="flex flex-col gap-2 w-full">
-            <NavbarButton
-              variant="secondary"
-              className="w-full"
-              as="button"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleLogin();
-              }}
-            >
-              Login
-            </NavbarButton>
-            <NavbarButton
-              variant="primary"
-              className="w-full"
-              as="button"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleGetStarted();
-              }}
-            >
-              Get Started
-            </NavbarButton>
-          </div>
-        </MobileNavMenu>
+        {/* Custom Mobile Menu with backdrop handling */}
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              onClick={closeMobileMenu}
+            />
+
+            {/* Menu */}
+            <div className="absolute top-full left-0 right-0 bg-white/95 dark:bg-black/95 border-b border-border backdrop-blur-md shadow-lg z-50 animate-in slide-in-from-top-2 duration-200">
+              <div className="container mx-auto px-4 sm:px-6 py-6 space-y-6 max-h-[80vh] overflow-y-auto">
+                {/* Mobile Navigation Links */}
+                <div className="space-y-4">
+                  {navItems.map((item, idx) => (
+                    <button
+                      key={`mobile-link-${idx}`}
+                      onClick={() => handleNavigation(item.link)}
+                      className="block w-full text-left text-lg font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 py-3 px-4 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Mobile Action Buttons */}
+                <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
+                  <div className="space-y-3">
+                    <NavbarButton
+                      variant="secondary"
+                      as="button"
+                      onClick={handleLogin}
+                      className="w-full justify-center py-3 text-base"
+                    >
+                      Login
+                    </NavbarButton>
+                    <NavbarButton
+                      variant="primary"
+                      as="button"
+                      onClick={handleSignup}
+                      className="w-full justify-center py-3 text-base"
+                    >
+                      Get Started
+                    </NavbarButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </MobileNav>
     </Navbar>
   );
