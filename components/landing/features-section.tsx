@@ -118,78 +118,79 @@ export default function FeaturesSection() {
   return (
     <section
       id="features"
-      className="relative py-20 bg-background overflow-hidden"
+      className="relative py-10 sm:py-16 md:py-20 bg-background overflow-hidden"
       ref={ref}
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid bg-[size:50px_50px] opacity-20" />
+      <div className="absolute inset-0 bg-grid bg-[size:30px_30px] sm:bg-[size:40px_40px] md:bg-[size:50px_50px] opacity-20" />
 
-      <div className="relative mx-auto max-w-7xl px-6 md:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
           {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 md:mb-16">
+            <div className="backdrop-filter-[12px] inline-flex h-6 sm:h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-2 sm:px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
               <TextShimmer className="inline-flex items-center justify-center">
-                <span>⚡ AI-Powered Automation Features</span>{" "}
+                <span className="hidden sm:inline">⚡ AI-Powered Automation Features</span>
+                <span className="sm:hidden">⚡ AI Features</span>{" "}
                 <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
               </TextShimmer>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
+            <h2 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-4 sm:py-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-none tracking-tighter text-transparent text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
               Build for
               <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
                 {" "}
                 DevOps Intelligence
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl tracking-tight text-gray-400 text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms] max-w-3xl mx-auto px-4">
               Build, test and deploy AI agents with a powerful visual interface
               designed for technical teams
             </p>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
             {/* CI/CD Pipeline Generator */}
             <motion.div variants={itemVariants} className="group relative">
-              <div className="relative overflow-hidden rounded-3xl bg-card border border-border/50 transition-all duration-500 hover:border-border h-[1000px]">
-                <div className="p-8 h-full flex flex-col">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 h-[600px] sm:h-[800px] md:h-[900px] lg:h-[1000px]">
+                <div className="p-4 sm:p-6 md:p-8 h-full flex flex-col">
                   {/* Icon and Title */}
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="p-3 rounded-2xl bg-blue-500/10 text-blue-500">
-                      <GitBranch className="h-8 w-8" />
+                  <div className="flex items-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
+                    <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
+                      <GitBranch className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent leading-tight">
                       AI-Powered CI/CD Generator
                     </h3>
                   </div>
 
                   {/* Description */}
-                  <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
+                  <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
                     Watch AI analyze your GitHub repository and automatically
                     generate optimized CI/CD pipelines in real-time.
                   </p>
 
                   {/* Mock Pipeline Interface */}
-                  <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 flex-1">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900/80 border border-white/20 backdrop-blur-sm flex-1">
                     {/* Internal Toast Notification for Pipeline */}
                     {showPipelineToast && (
                       <motion.div
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
-                        className="absolute top-4 left-4 right-4 z-50 bg-green-600 text-white p-4 rounded-lg border border-green-500 shadow-lg"
+                        className="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-50 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white p-3 sm:p-4 rounded-lg border border-white/20 shadow-lg backdrop-blur-sm"
                       >
-                        <div className="flex items-center space-x-3">
-                          <CheckCircle className="w-6 h-6 text-green-200" />
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-white flex-shrink-0" />
                           <div>
-                            <div className="font-semibold">
+                            <div className="font-semibold text-sm sm:text-base">
                               🎉 CI/CD Pipeline Generated!
                             </div>
-                            <div className="text-sm text-green-100">
+                            <div className="text-xs sm:text-sm text-white/90">
                               Your pipeline is ready! Build, test, and deploy
                               workflows configured.
                             </div>
@@ -199,35 +200,35 @@ export default function FeaturesSection() {
                     )}
 
                     {/* Terminal Header */}
-                    <div className="flex items-center justify-between px-4 py-3 bg-slate-800 border-b border-slate-700">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-black border-b border-white/10 backdrop-blur-sm">
+                      <div className="flex items-center space-x-1.5 sm:space-x-2">
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
                       </div>
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-2 text-xs text-slate-400">
-                          <Github className="w-4 h-4" />
-                          <span>my-app</span>
-                          <span className="bg-slate-700 px-2 py-1 rounded">
+                      <div className="flex items-center space-x-2 sm:space-x-4">
+                        <div className="flex items-center space-x-1 sm:space-x-2 text-xs text-slate-400">
+                          <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="hidden sm:inline">my-app</span>
+                          <span className="bg-slate-700/70 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs">
                             main
                           </span>
                         </div>
-                        <div className="bg-green-600 text-white px-3 py-1 rounded text-xs flex items-center space-x-1">
-                          <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-                          <span>Connected</span>
+                        <div className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1">
+                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                          <span className="hidden sm:inline">Connected</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Pipeline Generation Content */}
-                    <div className="p-6 space-y-6">
+                    <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6">
                       {/* Repository Info */}
-                      <div className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700">
-                        <div className="flex items-center space-x-3">
-                          <Github className="w-5 h-5 text-slate-400" />
-                          <div>
-                            <div className="text-slate-200 font-medium">
+                      <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <Github className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 flex-shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-slate-200 font-medium text-sm sm:text-base truncate">
                               Trivx/my-react-app
                             </div>
                             <div className="text-xs text-slate-400">
@@ -235,14 +236,14 @@ export default function FeaturesSection() {
                             </div>
                           </div>
                         </div>
-                        <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
-                          Repository
+                        <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-2 py-1 rounded text-xs flex-shrink-0">
+                          Repo
                         </span>
                       </div>
 
                       {/* AI Pipeline Generation Steps */}
-                      <div className="space-y-4">
-                        <div className="text-slate-300 font-medium mb-3">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="text-slate-300 font-medium mb-2 sm:mb-3 text-sm sm:text-base">
                           AI Pipeline Generation
                         </div>
                         {pipelineSteps.map((step, index) => {
@@ -260,32 +261,29 @@ export default function FeaturesSection() {
                                 scale: isProcessing ? 1.02 : 1,
                               }}
                               transition={{ delay: index * 0.1 }}
-                              className={`flex items-center justify-between p-3 rounded-lg border transition-all duration-500 ${
-                                isActive
-                                  ? "bg-blue-500/10 border-blue-500/30"
-                                  : "bg-slate-800/30 border-slate-700"
-                              }`}
+                              className={`flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg border transition-all duration-500 ${isActive
+                                ? "bg-gradient-to-r from-[var(--color-one)]/10 to-[var(--color-two)]/10 border-[var(--color-one)]/30"
+                                : "bg-white/5 border-white/10"
+                                }`}
                             >
-                              <div className="flex items-center space-x-3">
+                              <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                                    isActive ? "bg-blue-500" : "bg-slate-700"
-                                  }`}
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]" : "bg-slate-700"
+                                    }`}
                                 >
                                   {isProcessing ? (
-                                    <Loader2 className="w-4 h-4 text-white animate-spin" />
+                                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white animate-spin" />
                                   ) : index < pipelineStep ? (
-                                    <CheckCircle className="w-4 h-4 text-white" />
+                                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                                   ) : (
-                                    <StepIcon className="w-4 h-4 text-slate-400" />
+                                    <StepIcon className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
                                   )}
                                 </div>
                                 <span
-                                  className={`transition-colors duration-500 ${
-                                    isActive
-                                      ? "text-blue-300"
-                                      : "text-slate-400"
-                                  }`}
+                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
+                                    ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent"
+                                    : "text-slate-400"
+                                    }`}
                                 >
                                   {step.label}
                                 </span>
@@ -296,19 +294,20 @@ export default function FeaturesSection() {
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-green-600 text-white px-2 py-1 rounded text-xs"
+                                  className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
                                 >
-                                  Complete
+                                  <span className="hidden sm:inline">Complete</span>
+                                  <span className="sm:hidden">✓</span>
                                 </motion.span>
                               )}
                               {isProcessing && (
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-blue-600 text-white px-2 py-1 rounded text-xs flex items-center space-x-1"
+                                  className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
                                 >
-                                  <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-                                  <span>Processing</span>
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                                  <span className="hidden sm:inline">Processing</span>
                                 </motion.span>
                               )}
                             </motion.div>
@@ -317,30 +316,30 @@ export default function FeaturesSection() {
                       </div>
 
                       {/* Pipeline Details */}
-                      <div className="mt-6 p-4 rounded-lg bg-slate-800/30 border border-slate-700">
-                        <div className="text-slate-300 font-medium mb-3">
+                      <div className="mt-3 sm:mt-4 md:mt-6 p-3 sm:p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                        <div className="text-slate-300 font-medium mb-2 sm:mb-3 text-sm sm:text-base">
                           Pipeline Configuration
                         </div>
-                        <div className="text-xs text-slate-400 space-y-1">
+                        <div className="text-xs sm:text-sm text-slate-400 space-y-1">
                           <div>• Build: npm install && npm run build</div>
                           <div>• Test: npm run test</div>
                           <div>• Deploy: Auto-deploy to staging</div>
-                          <div>• Notifications: Slack integration enabled</div>
+                          <div className="hidden sm:block">• Notifications: Slack integration enabled</div>
                         </div>
                       </div>
 
                       {/* Additional Pipeline Features */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700">
-                          <div className="text-slate-300 text-sm font-medium mb-1">
+                      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div className="p-2.5 sm:p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                          <div className="text-slate-300 text-xs sm:text-sm font-medium mb-1">
                             Build Time
                           </div>
                           <div className="text-slate-400 text-xs">
-                            ~2.5 minutes
+                            ~2.5 min
                           </div>
                         </div>
-                        <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700">
-                          <div className="text-slate-300 text-sm font-medium mb-1">
+                        <div className="p-2.5 sm:p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                          <div className="text-slate-300 text-xs sm:text-sm font-medium mb-1">
                             Success Rate
                           </div>
                           <div className="text-slate-400 text-xs">98.5%</div>
@@ -354,42 +353,42 @@ export default function FeaturesSection() {
 
             {/* Deployment Automation */}
             <motion.div variants={itemVariants} className="group relative">
-              <div className="relative overflow-hidden rounded-3xl bg-card border border-border/50 transition-all duration-500 hover:border-border h-[1000px]">
-                <div className="p-8 h-full flex flex-col">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 h-[600px] sm:h-[800px] md:h-[900px] lg:h-[1000px]">
+                <div className="p-4 sm:p-6 md:p-8 h-full flex flex-col">
                   {/* Icon and Title */}
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="p-3 rounded-2xl bg-purple-500/10 text-purple-500">
-                      <Rocket className="h-8 w-8" />
+                  <div className="flex items-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
+                    <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)]">
+                      <Rocket className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent leading-tight">
                       AI Deployment Automation
                     </h3>
                   </div>
 
                   {/* Description */}
-                  <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
+                  <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
                     Watch AI automatically deploy your application to cloud
                     providers with intelligent infrastructure provisioning and
                     scaling.
                   </p>
 
                   {/* Mock Deployment Interface */}
-                  <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 flex-1">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900/80 border border-white/20 backdrop-blur-sm flex-1">
                     {/* Internal Toast Notification for Deployment */}
                     {showDeploymentToast && (
                       <motion.div
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
-                        className="absolute top-4 left-4 right-4 z-50 bg-green-600 text-white p-4 rounded-lg border border-green-500 shadow-lg"
+                        className="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-50 bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white p-3 sm:p-4 rounded-lg border border-white/20 shadow-lg backdrop-blur-sm"
                       >
-                        <div className="flex items-center space-x-3">
-                          <Rocket className="w-6 h-6 text-green-200" />
-                          <div>
-                            <div className="font-semibold">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <Rocket className="w-4 h-4 sm:w-6 sm:h-6 text-white flex-shrink-0" />
+                          <div className="min-w-0">
+                            <div className="font-semibold text-sm sm:text-base">
                               🚀 Deployment Successful on {selectedProvider}!
                             </div>
-                            <div className="text-sm text-green-100">
+                            <div className="text-xs sm:text-sm text-white/90 break-all">
                               Application is live at{" "}
                               <a
                                 href={`https://my-app-${selectedProvider.toLowerCase()}.trivx.com`}
@@ -407,17 +406,17 @@ export default function FeaturesSection() {
                     )}
 
                     {/* Terminal Header */}
-                    <div className="flex items-center justify-between px-4 py-3 bg-slate-800 border-b border-slate-700">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-black border-b border-white/10 backdrop-blur-sm">
+                      <div className="flex items-center space-x-1.5 sm:space-x-2">
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
                       </div>
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-2 text-xs text-slate-400">
-                          <Cloud className="w-4 h-4" />
-                          <span>{selectedProvider}</span>
-                          <span className="bg-slate-700 px-2 py-1 rounded">
+                      <div className="flex items-center space-x-2 sm:space-x-4">
+                        <div className="flex items-center space-x-1 sm:space-x-2 text-xs text-slate-400">
+                          <Cloud className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span className="truncate max-w-[60px] sm:max-w-none">{selectedProvider}</span>
+                          <span className="bg-slate-700/70 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs truncate max-w-[80px] sm:max-w-none">
                             {
                               cloudProviders.find(
                                 (p) => p.name === selectedProvider
@@ -425,77 +424,77 @@ export default function FeaturesSection() {
                             }
                           </span>
                         </div>
-                        <div className="bg-green-600 text-white px-3 py-1 rounded text-xs flex items-center space-x-1">
-                          <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-                          <span>Connected</span>
+                        <div className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1">
+                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                          <span className="hidden sm:inline">Connected</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Deployment Content */}
-                    <div className="p-6 space-y-6">
+                    <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
                       {/* Application Info */}
-                      <div className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700">
-                        <div className="flex items-center space-x-3">
-                          <Rocket className="w-5 h-5 text-slate-400" />
-                          <div>
-                            <div className="text-slate-200 font-medium">
+                      <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                          <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 flex-shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-slate-200 font-medium text-sm sm:text-base truncate">
                               my-react-app v2.1.0
                             </div>
-                            <div className="text-xs text-slate-400">
+                            <div className="text-xs text-slate-400 hidden sm:block">
                               Production deployment • Auto-scaling enabled
+                            </div>
+                            <div className="text-xs text-slate-400 sm:hidden">
+                              Production
                             </div>
                           </div>
                         </div>
-                        <span className="bg-purple-600 text-white px-2 py-1 rounded text-xs">
+                        <span className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-2 py-1 rounded text-xs flex-shrink-0">
                           Deploying
                         </span>
                       </div>
 
                       {/* Interactive Cloud Provider Selection */}
-                      <div className="space-y-3">
-                        <div className="text-slate-300 font-medium text-sm">
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="text-slate-300 font-medium text-xs sm:text-sm">
                           Select Cloud Provider
                         </div>
-                        <div className="grid grid-cols-3 gap-2">
+                        <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                           {cloudProviders.map((provider) => (
                             <button
                               key={provider.name}
                               onClick={() =>
                                 handleProviderChange(provider.name)
                               }
-                              className={`p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${
-                                selectedProvider === provider.name
-                                  ? `bg-${provider.color}-500/20 border-${provider.color}-500/50`
-                                  : "bg-slate-800/30 border-slate-700 hover:bg-slate-700/50"
-                              }`}
+                              className={`p-2 sm:p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${selectedProvider === provider.name
+                                ? "bg-gradient-to-r from-[var(--color-one)]/20 to-[var(--color-two)]/20 border-[var(--color-one)]/50"
+                                : "bg-white/5 border-white/10 hover:bg-white/10"
+                                }`}
                             >
                               <Cloud
-                                className={`w-5 h-5 mx-auto mb-2 ${
-                                  selectedProvider === provider.name
-                                    ? `text-${provider.color}-400`
-                                    : "text-slate-400"
-                                }`}
+                                className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mx-auto mb-1 sm:mb-2 ${selectedProvider === provider.name
+                                  ? "text-[var(--color-one)]"
+                                  : "text-slate-400"
+                                  }`}
                               />
                               <div
-                                className={`text-xs font-medium ${
-                                  selectedProvider === provider.name
-                                    ? `text-${provider.color}-300`
-                                    : "text-slate-400"
-                                }`}
+                                className={`text-xs font-medium ${selectedProvider === provider.name
+                                  ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent"
+                                  : "text-slate-400"
+                                  }`}
                               >
                                 {provider.name}
                               </div>
-                              <div className="text-xs text-slate-500 mt-1">
+                              <div className="text-xs text-slate-500 mt-0.5 sm:mt-1 hidden sm:block">
                                 {provider.region}
                               </div>
                               {selectedProvider === provider.name && (
                                 <motion.div
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="mt-2"
+                                  className="mt-1 sm:mt-2"
                                 >
-                                  <div className="w-2 h-2 bg-green-400 rounded-full mx-auto animate-pulse"></div>
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] rounded-full mx-auto animate-pulse"></div>
                                 </motion.div>
                               )}
                             </button>
@@ -504,8 +503,8 @@ export default function FeaturesSection() {
                       </div>
 
                       {/* AI Deployment Steps */}
-                      <div className="space-y-3">
-                        <div className="text-slate-300 font-medium mb-3">
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="text-slate-300 font-medium mb-2 sm:mb-3 text-xs sm:text-sm">
                           AI Deployment Progress
                         </div>
                         {deploymentSteps.map((step, index) => {
@@ -523,32 +522,29 @@ export default function FeaturesSection() {
                                 scale: isProcessing ? 1.02 : 1,
                               }}
                               transition={{ delay: index * 0.1 }}
-                              className={`flex items-center justify-between p-3 rounded-lg border transition-all duration-500 ${
-                                isActive
-                                  ? "bg-purple-500/10 border-purple-500/30"
-                                  : "bg-slate-800/30 border-slate-700"
-                              }`}
+                              className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border transition-all duration-500 ${isActive
+                                ? "bg-gradient-to-r from-[var(--color-two)]/10 to-[var(--color-three)]/10 border-[var(--color-two)]/30"
+                                : "bg-white/5 border-white/10"
+                                }`}
                             >
-                              <div className="flex items-center space-x-3">
+                              <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                                    isActive ? "bg-purple-500" : "bg-slate-700"
-                                  }`}
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)]" : "bg-slate-700"
+                                    }`}
                                 >
                                   {isProcessing ? (
-                                    <Loader2 className="w-4 h-4 text-white animate-spin" />
+                                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white animate-spin" />
                                   ) : index < deploymentStep ? (
-                                    <CheckCircle className="w-4 h-4 text-white" />
+                                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                                   ) : (
-                                    <StepIcon className="w-4 h-4 text-slate-400" />
+                                    <StepIcon className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
                                   )}
                                 </div>
                                 <span
-                                  className={`text-sm transition-colors duration-500 ${
-                                    isActive
-                                      ? "text-purple-300"
-                                      : "text-slate-400"
-                                  }`}
+                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
+                                    ? "bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] bg-clip-text text-transparent"
+                                    : "text-slate-400"
+                                    }`}
                                 >
                                   {step.label}
                                   {index === 0 && ` (${selectedProvider})`}
@@ -560,19 +556,20 @@ export default function FeaturesSection() {
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-green-600 text-white px-2 py-1 rounded text-xs"
+                                  className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
                                 >
-                                  Complete
+                                  <span className="hidden sm:inline">Complete</span>
+                                  <span className="sm:hidden">✓</span>
                                 </motion.span>
                               )}
                               {isProcessing && (
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-purple-600 text-white px-2 py-1 rounded text-xs flex items-center space-x-1"
+                                  className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
                                 >
-                                  <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-                                  <span>Processing</span>
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                                  <span className="hidden sm:inline">Processing</span>
                                 </motion.span>
                               )}
                             </motion.div>

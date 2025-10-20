@@ -1,6 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
-import { Grid } from "@/components/ui/grid";
 import { UserAuthForm } from "@/components/user-auth-form";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import Particles from "@/components/magicui/particles";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
@@ -13,37 +14,80 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <Link
-        href="/"
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "absolute left-4 top-4 md:left-8 md:top-8"
-        )}
-      >
-        <>
-          <ChevronLeft className="mr-2 h-4 w-4" />
-          Back
-        </>
-      </Link>
-      <div className="mx-auto flex w-full flex-col justify-center gap-6 sm:w-[350px]">
-        <div className="flex flex-col gap-2 text-center">
-          {/* <Icons.logo className="mx-auto h-6 w-6" /> */}
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back
-          </h1>
-          <p className="text-sm text-muted-foreground">Login to your account</p>
+    <>
+      <div className="relative flex h-screen w-screen flex-col items-center justify-center bg-background">
+        <Link
+          href="/"
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "absolute left-4 top-4 md:left-8 md:top-8 z-50 border-white/20 hover:bg-white/10"
+          )}
+        >
+          <>
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Back
+          </>
+        </Link>
+
+        <div className="relative mx-auto flex w-full max-w-md flex-col justify-center gap-6 p-8">
+          <div className="relative rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+            <BorderBeam
+              size={200}
+              duration={12}
+              delay={0}
+              colorFrom="var(--color-one)"
+              colorTo="var(--color-two)"
+            />
+
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-2 text-center">
+                {/* Logo */}
+                <div className="mx-auto mb-4 p-3 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent">
+                  Welcome back
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  Sign in to your Trivx account to continue your DevOps journey
+                </p>
+              </div>
+
+              <UserAuthForm />
+
+              <p className="text-center text-sm text-muted-foreground">
+                <Link
+                  href="/signup"
+                  className="hover:text-primary underline underline-offset-4 transition-colors"
+                >
+                  Don&apos;t have an account? Sign Up
+                </Link>
+              </p>
+            </div>
+          </div>
         </div>
-        <UserAuthForm />
-        <p className="px-8 text-center text-sm text-muted-foreground">
-          <Link
-            href="/register"
-            className="hover:text-brand underline underline-offset-4"
-          >
-            Don&apos;t have an account? Sign Up
-          </Link>
-        </p>
+
+        <Particles
+          className="absolute inset-0 -z-10"
+          quantity={50}
+          ease={70}
+          size={0.05}
+          staticity={40}
+          color={"#ffffff"}
+        />
       </div>
-    </div>
+    </>
   );
 }

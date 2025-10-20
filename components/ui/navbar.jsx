@@ -18,9 +18,11 @@ export default function SiteHeader() {
   const router = useRouter();
 
   const navItems = [
-    { name: "Features", link: "#features" },
+    { name: "Home", link: "/" },
     { name: "Pricing", link: "#pricing" },
-    { name: "Contact", link: "#contact" },
+    { name: "Docs", link: "/docs" },
+    { name: "Blog", link: "/blog" },
+    { name: "Contact", link: "/contact" },
   ];
 
   const handleLogin = () => {

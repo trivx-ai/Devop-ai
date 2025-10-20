@@ -65,34 +65,31 @@ export default function WorkflowSection() {
   return (
     <section
       id="workflow"
-      className="relative py-20 bg-background overflow-hidden"
+      className="relative py-10 sm:py-16 md:py-20 lg:py-24 bg-background overflow-hidden"
       ref={ref}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid bg-[size:50px_50px] opacity-20" />
-
-      <div className="relative mx-auto max-w-7xl px-6 md:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
           {/* Workflow Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
+            <div className="backdrop-filter-[12px] inline-flex h-6 sm:h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-2 sm:px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
               <TextShimmer className="inline-flex items-center justify-center">
-                <span>🔄 AI Workflow Integration</span>{" "}
-                <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                <span className="text-xs sm:text-sm">🔄 AI Workflow Integration</span>{" "}
+                <ArrowRightIcon className="ml-1 size-2 sm:size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
               </TextShimmer>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 mt-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 mt-6 sm:mt-8 leading-tight">
               How Trivx
               <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
                 {" "}
                 Orchestrates Your Workflow
               </span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
               From DevOps components to multi-cloud deployment, see how Trivx
               creates an intelligent bridge between your development tools and
               cloud infrastructure.
