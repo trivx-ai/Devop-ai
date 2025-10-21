@@ -43,7 +43,7 @@ const demoPrices = [
       "Community support",
       "Standard monitoring dashboard",
     ],
-    monthlyPrice: 1900,
+    monthlyPrice: 9999,
     yearlyPrice: 19000,
     isMostPopular: false,
   },
@@ -59,8 +59,8 @@ const demoPrices = [
       "Kubernetes orchestration",
       "Priority support",
     ],
-    monthlyPrice: 4900,
-    yearlyPrice: 49000,
+    monthlyPrice: 49000,
+    yearlyPrice: 490000,
     isMostPopular: true,
   },
   {
@@ -76,8 +76,8 @@ const demoPrices = [
       "24/7 priority support",
       "Custom integrations",
     ],
-    monthlyPrice: 9900,
-    yearlyPrice: 99000,
+    monthlyPrice: 99000,
+    yearlyPrice: 990000,
     isMostPopular: false,
   },
 ];
@@ -177,7 +177,7 @@ export default function PricingSection() {
                 className="flex flex-row gap-1"
               >
                 <span className="text-4xl font-bold text-black dark:text-white">
-                  $
+                  ₹
                   {interval === "year"
                     ? toHumanPrice(price.yearlyPrice, 0)
                     : toHumanPrice(price.monthlyPrice, 0)}
@@ -207,7 +207,7 @@ export default function PricingSection() {
               <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-500/30 to-neutral-200/0" />
               {price.features && price.features.length > 0 && (
                 <ul className="flex flex-col gap-2 font-normal">
-                  {price.features.map((feature: any, idx: any) => (
+                  {price.features.map((feature: string, idx: number) => (
                     <li
                       key={idx}
                       className="flex items-center gap-3 text-xs font-medium text-black dark:text-white"
