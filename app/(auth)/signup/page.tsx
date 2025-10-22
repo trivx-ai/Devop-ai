@@ -39,7 +39,6 @@ export default function SignUpPage() {
               colorTo="var(--color-two)"
               className="pointer-events-none"
             />
-
             <div className="relative z-20 flex flex-col gap-6">
               <div className="flex flex-col gap-2 text-center">
                 <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent">
