@@ -42,22 +42,6 @@ export default function LoginPage() {
 
             <div className="relative z-20 flex flex-col gap-6">
               <div className="flex flex-col gap-2 text-center">
-                {/* Logo */}
-                <div className="mx-auto mb-4 p-3 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
-                  <svg
-                    className="h-8 w-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
                 <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent">
                   Welcome back
                 </h1>
