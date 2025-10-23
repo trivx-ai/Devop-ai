@@ -141,7 +141,7 @@ export default function FeaturesSection() {
             </div>
             <h2 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-4 sm:py-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-none tracking-tighter text-transparent text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
               Build for
-              <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
+              <span className="dark:text-white text-black font-bold">
                 {" "}
                 DevOps Intelligence
               </span>
@@ -160,8 +160,8 @@ export default function FeaturesSection() {
                 <div className="p-4 sm:p-6 md:p-8 h-full flex flex-col">
                   {/* Icon and Title */}
                   <div className="flex items-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
-                    <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
-                      <GitBranch className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
+                    <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-black dark:bg-white">
+                      <GitBranch className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white dark:text-black" />
                     </div>
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent leading-tight">
                       AI-Powered CI/CD Generator
@@ -175,22 +175,22 @@ export default function FeaturesSection() {
                   </p>
 
                   {/* Mock Pipeline Interface */}
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900/80 border border-white/20 backdrop-blur-sm flex-1">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-black/80 border border-white/20 backdrop-blur-sm flex-1">
                     {/* Internal Toast Notification for Pipeline */}
                     {showPipelineToast && (
                       <motion.div
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
-                        className="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-50 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white p-3 sm:p-4 rounded-lg border border-white/20 shadow-lg backdrop-blur-sm"
+                        className="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-50 bg-black/80  text-black dark:text-white p-3 sm:p-4 rounded-lg border border-white/20 shadow-lg backdrop-blur-sm"
                       >
                         <div className="flex items-center space-x-2 sm:space-x-3">
-                          <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-white flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 sm:w-6 sm:h-6 text-black dark:text-white flex-shrink-0" />
                           <div>
                             <div className="font-semibold text-sm sm:text-base">
                               🎉 CI/CD Pipeline Generated!
                             </div>
-                            <div className="text-xs sm:text-sm text-white/90">
+                            <div className="text-xs sm:text-sm text-white/90 dark:text-white/90">
                               Your pipeline is ready! Build, test, and deploy
                               workflows configured.
                             </div>
@@ -214,8 +214,8 @@ export default function FeaturesSection() {
                             main
                           </span>
                         </div>
-                        <div className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1">
-                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                        <div className="bg-black dark:bg-white text-white dark:text-black px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1">
+                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white dark:bg-black animate-pulse"></div>
                           <span className="hidden sm:inline">Connected</span>
                         </div>
                       </div>
@@ -224,7 +224,7 @@ export default function FeaturesSection() {
                     {/* Pipeline Generation Content */}
                     <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6">
                       {/* Repository Info */}
-                      <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                      <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-black border border-white/10 backdrop-blur-sm">
                         <div className="flex items-center space-x-2 sm:space-x-3">
                           <Github className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 flex-shrink-0" />
                           <div className="min-w-0">
@@ -236,7 +236,7 @@ export default function FeaturesSection() {
                             </div>
                           </div>
                         </div>
-                        <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-2 py-1 rounded text-xs flex-shrink-0">
+                        <span className="bg-black dark:bg-white text-white dark:text-black px-2 py-1 rounded text-xs flex-shrink-0">
                           Repo
                         </span>
                       </div>
@@ -262,26 +262,26 @@ export default function FeaturesSection() {
                               }}
                               transition={{ delay: index * 0.1 }}
                               className={`flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg border transition-all duration-500 ${isActive
-                                ? "bg-gradient-to-r from-[var(--color-one)]/10 to-[var(--color-two)]/10 border-[var(--color-one)]/30"
+                                ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
                                 : "bg-white/5 border-white/10"
                                 }`}
                             >
                               <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]" : "bg-slate-700"
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-black dark:bg-white" : "bg-slate-700"
                                     }`}
                                 >
                                   {isProcessing ? (
-                                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white animate-spin" />
+                                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black animate-spin" />
                                   ) : index < pipelineStep ? (
-                                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black" />
                                   ) : (
                                     <StepIcon className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
                                   )}
                                 </div>
                                 <span
                                   className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
-                                    ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent"
+                                    ? "text-black dark:text-white font-medium"
                                     : "text-slate-400"
                                     }`}
                                 >
@@ -294,7 +294,7 @@ export default function FeaturesSection() {
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
+                                  className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
                                 >
                                   <span className="hidden sm:inline">Complete</span>
                                   <span className="sm:hidden">✓</span>
@@ -304,9 +304,9 @@ export default function FeaturesSection() {
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
+                                  className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
                                 >
-                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white dark:bg-black animate-pulse"></div>
                                   <span className="hidden sm:inline">Processing</span>
                                 </motion.span>
                               )}
@@ -357,8 +357,8 @@ export default function FeaturesSection() {
                 <div className="p-4 sm:p-6 md:p-8 h-full flex flex-col">
                   {/* Icon and Title */}
                   <div className="flex items-center space-x-2 sm:space-x-4 mb-4 sm:mb-6">
-                    <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)]">
-                      <Rocket className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
+                    <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-black dark:bg-white">
+                      <Rocket className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white dark:text-black" />
                     </div>
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent leading-tight">
                       AI Deployment Automation
@@ -373,14 +373,14 @@ export default function FeaturesSection() {
                   </p>
 
                   {/* Mock Deployment Interface */}
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900/80 border border-white/20 backdrop-blur-sm flex-1">
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-black/80 border border-white/20 backdrop-blur-sm flex-1">
                     {/* Internal Toast Notification for Deployment */}
                     {showDeploymentToast && (
                       <motion.div
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
-                        className="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-50 bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white p-3 sm:p-4 rounded-lg border border-white/20 shadow-lg backdrop-blur-sm"
+                        className="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-50 bg-black/50  text-black dark:text-white p-3 sm:p-4 rounded-lg border border-white/20 shadow-lg backdrop-blur-sm"
                       >
                         <div className="flex items-center space-x-2 sm:space-x-3">
                           <Rocket className="w-4 h-4 sm:w-6 sm:h-6 text-white flex-shrink-0" />
@@ -424,8 +424,8 @@ export default function FeaturesSection() {
                             }
                           </span>
                         </div>
-                        <div className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1">
-                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                        <div className="bg-black dark:bg-white text-white dark:text-black px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1">
+                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white dark:bg-black animate-pulse"></div>
                           <span className="hidden sm:inline">Connected</span>
                         </div>
                       </div>
@@ -449,7 +449,7 @@ export default function FeaturesSection() {
                             </div>
                           </div>
                         </div>
-                        <span className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-2 py-1 rounded text-xs flex-shrink-0">
+                        <span className="bg-black dark:bg-white text-white dark:text-black px-2 py-1 rounded text-xs flex-shrink-0">
                           Deploying
                         </span>
                       </div>
@@ -467,19 +467,19 @@ export default function FeaturesSection() {
                                 handleProviderChange(provider.name)
                               }
                               className={`p-2 sm:p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${selectedProvider === provider.name
-                                ? "bg-gradient-to-r from-[var(--color-one)]/20 to-[var(--color-two)]/20 border-[var(--color-one)]/50"
+                                ? "bg-black/20 dark:bg-white/20 border-black/50 dark:border-white/50"
                                 : "bg-white/5 border-white/10 hover:bg-white/10"
                                 }`}
                             >
                               <Cloud
                                 className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mx-auto mb-1 sm:mb-2 ${selectedProvider === provider.name
-                                  ? "text-[var(--color-one)]"
+                                  ? "text-black dark:text-white"
                                   : "text-slate-400"
                                   }`}
                               />
                               <div
                                 className={`text-xs font-medium ${selectedProvider === provider.name
-                                  ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent"
+                                  ? "text-black dark:text-white"
                                   : "text-slate-400"
                                   }`}
                               >
@@ -494,7 +494,7 @@ export default function FeaturesSection() {
                                   animate={{ scale: 1 }}
                                   className="mt-1 sm:mt-2"
                                 >
-                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] rounded-full mx-auto animate-pulse"></div>
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black dark:bg-white rounded-full mx-auto animate-pulse"></div>
                                 </motion.div>
                               )}
                             </button>
@@ -523,26 +523,26 @@ export default function FeaturesSection() {
                               }}
                               transition={{ delay: index * 0.1 }}
                               className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border transition-all duration-500 ${isActive
-                                ? "bg-gradient-to-r from-[var(--color-two)]/10 to-[var(--color-three)]/10 border-[var(--color-two)]/30"
+                                ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
                                 : "bg-white/5 border-white/10"
                                 }`}
                             >
                               <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)]" : "bg-slate-700"
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-black dark:bg-white" : "bg-slate-700"
                                     }`}
                                 >
                                   {isProcessing ? (
-                                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white animate-spin" />
+                                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black animate-spin" />
                                   ) : index < deploymentStep ? (
-                                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black" />
                                   ) : (
                                     <StepIcon className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
                                   )}
                                 </div>
                                 <span
                                   className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
-                                    ? "bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] bg-clip-text text-transparent"
+                                    ? "text-black dark:text-white font-medium"
                                     : "text-slate-400"
                                     }`}
                                 >
@@ -556,7 +556,7 @@ export default function FeaturesSection() {
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
+                                  className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
                                 >
                                   <span className="hidden sm:inline">Complete</span>
                                   <span className="sm:hidden">✓</span>
@@ -566,9 +566,9 @@ export default function FeaturesSection() {
                                 <motion.span
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  className="bg-gradient-to-r from-[var(--color-two)] to-[var(--color-three)] text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
+                                  className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
                                 >
-                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse"></div>
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white dark:bg-black animate-pulse"></div>
                                   <span className="hidden sm:inline">Processing</span>
                                 </motion.span>
                               )}
