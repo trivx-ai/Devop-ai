@@ -26,10 +26,7 @@ export default function HeroSection() {
         <br className="hidden md:block" /> with AI-Driven DevOps
       </h1>
       <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-        A comprehensive DevOps platform leveraging AI to streamline workflows
-        using
-        <br className="hidden md:block" /> Infrastructure as Code, Continuous
-        Integration, and Continuous Delivery.
+        <span className="text-white">An AI DevOps & SRE platform where you can chat with an AI agent <br />to generate, deploy, monitor, and maintain software systems automatically.</span>
       </p>
       <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms]">
         <span>Get Started for free </span>
