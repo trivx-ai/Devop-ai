@@ -36,6 +36,10 @@
     --chart-5: oklch(0.769 0 0);
     --radius: 0.625rem;
     --navigation-height: 3.5rem;
+    
+    /* Font Variables - Matching client fonts */
+    --font-sans: 'Geist', 'Geist Fallback', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
   }
 
   .dark {
