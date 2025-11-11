@@ -5,41 +5,42 @@
 @layer base {
   :root {
     /* Centralized Theme Colors - Matching client theme */
-    --color-one: #F2613F;    /* Vibrant Orange-Red (Primary) */
-    --color-two: #481E14;    /* Dark Brown (Secondary) */
-    --color-three: #ffffff;  /* White (Tertiary) */
-    --color-bg: #0C0C0C;     /* Near Black (Background) */
-    
-    --background: oklch(0.047 0 0);
-    --foreground: oklch(1 0 0);
-    --card: oklch(0.047 0 0);
-    --card-foreground: oklch(1 0 0);
-    --popover: oklch(0.047 0 0);
-    --popover-foreground: oklch(1 0 0);
-    --primary: #F2613F;
+    --color-one: #f2613f; /* Vibrant Orange-Red (Primary) */
+    --color-two: #481e14; /* Dark Brown (Secondary) */
+    --color-three: #ffffff; /* White (Tertiary) */
+    --color-bg: #0c0c0c; /* Near Black (Background) */
+
+    /* Light mode colors */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.047 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.047 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.047 0 0);
+    --primary: #f2613f;
     --primary-foreground: oklch(1 0 0);
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
-    --accent: #481E14;
+    --accent: #481e14;
     --accent-foreground: oklch(1 0 0);
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
-    --ring: #F2613F;
-    --chart-1: #F2613F;
-    --chart-2: #481E14;
+    --ring: #f2613f;
+    --chart-1: #f2613f;
+    --chart-2: #481e14;
     --chart-3: #ffffff;
     --chart-4: oklch(0.828 0 0);
     --chart-5: oklch(0.769 0 0);
     --radius: 0.625rem;
     --navigation-height: 3.5rem;
-    
+
     /* Font Variables - Matching client fonts */
-    --font-sans: 'Geist', 'Geist Fallback', system-ui, -apple-system, sans-serif;
-    --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+    --font-sans: "Geist", "Geist Fallback", system-ui, -apple-system, sans-serif;
+    --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
   }
 
   .dark {
@@ -49,21 +50,21 @@
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.047 0 0);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: #F2613F;
+    --primary: #f2613f;
     --primary-foreground: oklch(1 0 0);
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);
-    --accent: #481E14;
+    --accent: #481e14;
     --accent-foreground: oklch(1 0 0);
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(0.269 0 0);
     --input: oklch(0.269 0 0);
-    --ring: #F2613F;
-    --chart-1: #F2613F;
-    --chart-2: #481E14;
+    --ring: #f2613f;
+    --chart-1: #f2613f;
+    --chart-2: #481e14;
     --chart-3: #ffffff;
     --chart-4: oklch(0.627 0 0);
     --chart-5: oklch(0.645 0 0);
@@ -78,8 +79,6 @@
     @apply bg-background text-foreground;
   }
 }
-
-
 
 @layer base {
   * {

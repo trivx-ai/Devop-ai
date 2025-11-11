@@ -12,6 +12,7 @@ import {
   NavbarLogo,
   NavbarButton,
 } from "@/components/ui/resizable-navbar";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -67,7 +68,7 @@ export default function SiteHeader() {
         const elementPosition = element.offsetTop - navHeight;
         window.scrollTo({
           top: elementPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     } else {
@@ -101,11 +102,8 @@ export default function SiteHeader() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-3 lg:gap-4">
-          <NavbarButton
-            variant="primary"
-            as="button"
-            onClick={handleSignup}
-          >
+          <ThemeToggle />
+          <NavbarButton variant="primary" as="button" onClick={handleSignup}>
             Get Started
           </NavbarButton>
         </div>
@@ -149,6 +147,12 @@ export default function SiteHeader() {
                 {/* Mobile Action Buttons */}
                 <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
                   <div className="space-y-3">
+                    <div className="flex items-center justify-between px-4 py-3">
+                      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                        Theme
+                      </span>
+                      <ThemeToggle />
+                    </div>
                     <NavbarButton
                       variant="secondary"
                       as="button"

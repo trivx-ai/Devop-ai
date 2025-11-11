@@ -20,7 +20,8 @@ const demoPrices = [
   {
     id: "price_1",
     name: "Free",
-    description: "Perfect for individual developers exploring AI DevOps automation",
+    description:
+      "Perfect for individual developers exploring AI DevOps automation",
     features: [
       "1 GitHub repository connection",
       "Basic AI pipeline generation",
@@ -98,10 +99,10 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing">
+    <section id="pricing" className="bg-background">
       <div className="mx-auto flex max-w-screen-xl flex-col gap-8 px-4 py-14 md:px-8">
         <div className="mx-auto max-w-5xl text-center">
-          <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
+          <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
             <TextShimmer className="inline-flex items-center justify-center">
               <span>💰 Choose Your Plan</span>{" "}
               <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
@@ -109,18 +110,18 @@ export default function PricingSection() {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
             Simple, Transparent
-            <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
-              {" "}
-              Pricing
-            </span>
+            <span className="text-[var(--color-one)]"> Pricing</span>
           </h2>
 
-          <p className="mt-6 text-xl leading-8 text-black/80 dark:text-white">
-            Choose a <strong>plan that scales</strong> with your team. From startups to enterprises, Trivx AI delivers intelligent DevOps automation at every stage.
+          <p className="mt-6 text-xl leading-8 text-muted-foreground">
+            Choose a{" "}
+            <strong className="text-foreground">plan that scales</strong> with
+            your team. From startups to enterprises, Trivx AI delivers
+            intelligent DevOps automation at every stage.
           </p>
         </div>
 
-        <div className="flex w-full items-center justify-center space-x-2">
+        <div className="flex w-full items-center justify-center space-x-2 text-foreground">
           <Switch
             id="interval"
             onCheckedChange={(checked) => {
@@ -128,23 +129,29 @@ export default function PricingSection() {
             }}
           />
           <span>Annual</span>
-          <span className="inline-block whitespace-nowrap rounded-full bg-black px-2.5 py-1 text-[11px] font-semibold uppercase leading-5 tracking-wide text-white dark:bg-white dark:text-black">
+          <span className="inline-block whitespace-nowrap rounded-full bg-[var(--color-one)] px-2.5 py-1 text-[11px] font-semibold uppercase leading-5 tracking-wide text-white">
             2 MONTHS FREE ✨
           </span>
         </div>
 
         <div className="mx-auto grid w-full justify-center sm:grid-cols-2 lg:grid-cols-4 flex-col gap-4 relative">
           {/* Blur overlay with lock */}
-          <div className="absolute inset-0 z-10 backdrop-blur-md bg-white/30 dark:bg-black/30 rounded-2xl flex items-center justify-center">
+          <div className="absolute inset-0 z-10 backdrop-blur-md bg-background/80 rounded-2xl flex items-center justify-center">
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] blur-xl opacity-50"></div>
-                <Lock className="relative w-16 h-16 text-foreground" strokeWidth={1.5} />
+                <Lock
+                  className="relative w-16 h-16 text-foreground"
+                  strokeWidth={1.5}
+                />
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-foreground">Pricing Coming Soon</h3>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Pricing Coming Soon
+                </h3>
                 <p className="text-muted-foreground max-w-md">
-                  We're finalizing our pricing plans. Stay tuned for updates!
+                  We&apos;re finalizing our pricing plans. Stay tuned for
+                  updates!
                 </p>
               </div>
             </div>
@@ -154,10 +161,9 @@ export default function PricingSection() {
             <div
               key={price.id}
               className={cn(
-                "relative flex max-w-[400px] flex-col gap-8 rounded-2xl border p-4 text-black dark:text-white overflow-hidden",
+                "relative flex max-w-[400px] flex-col gap-8 rounded-2xl border border-border p-4 text-foreground overflow-hidden bg-card",
                 {
-                  "border-2 border-[var(--color-one)] dark:border-[var(--color-one)]":
-                    price.isMostPopular,
+                  "border-2 border-[var(--color-one)]": price.isMostPopular,
                 }
               )}
             >
@@ -166,7 +172,7 @@ export default function PricingSection() {
                   <h2 className="text-base font-semibold leading-7">
                     {price.name}
                   </h2>
-                  <p className="h-12 text-sm leading-5 text-black/70 dark:text-white">
+                  <p className="h-12 text-sm leading-5 text-muted-foreground">
                     {price.description}
                   </p>
                 </div>
@@ -193,7 +199,7 @@ export default function PricingSection() {
                 }}
                 className="flex flex-row gap-1"
               >
-                <span className="text-4xl font-bold text-black dark:text-white">
+                <span className="text-4xl font-bold text-foreground">
                   ₹
                   {interval === "year"
                     ? toHumanPrice(price.yearlyPrice, 0)
@@ -210,7 +216,7 @@ export default function PricingSection() {
                 disabled={isLoading}
                 onClick={() => void onSubscribeClick(price.id)}
               >
-                <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96 dark:bg-black" />
+                <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white dark:bg-black opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96" />
                 {(!isLoading || (isLoading && id !== price.id)) && (
                   <p>Get Started</p>
                 )}
@@ -221,15 +227,15 @@ export default function PricingSection() {
                 )}
               </Button>
 
-              <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-neutral-200/0 via-neutral-500/30 to-neutral-200/0" />
+              <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-border/0 via-border to-border/0" />
               {price.features && price.features.length > 0 && (
                 <ul className="flex flex-col gap-2 font-normal">
                   {price.features.map((feature: string, idx: number) => (
                     <li
                       key={idx}
-                      className="flex items-center gap-3 text-xs font-medium text-black dark:text-white"
+                      className="flex items-center gap-3 text-xs font-medium text-foreground"
                     >
-                      <CheckIcon className="h-5 w-5 shrink-0 rounded-full bg-green-400 p-[2px] text-black dark:text-white" />
+                      <CheckIcon className="h-5 w-5 shrink-0 rounded-full bg-green-400 p-[2px] text-white dark:text-black" />
                       <span className="flex">{feature}</span>
                     </li>
                   ))}

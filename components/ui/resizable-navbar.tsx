@@ -1,166 +1,40 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
-import trivxLogo from "../../public/trivx.png";
-
-interface NavItem {
-  name: string;
-  link: string;
-}
+import React, { useRef, useState } from "react";
 
 interface NavbarProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export function Navbar({ children, className }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <nav
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent",
-        className
-      )}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
-    </nav>
-  );
-}
-
 interface NavBodyProps {
   children: React.ReactNode;
   className?: string;
-}
-
-export function NavBody({ children, className }: NavBodyProps) {
-  return (
-    <div
-      className={cn(
-        "hidden lg:flex items-center justify-between py-3 sm:py-4",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+  visible?: boolean;
 }
 
 interface NavItemsProps {
-  items: NavItem[];
+  items: {
+    name: string;
+    link: string;
+  }[];
   className?: string;
-}
-
-export function NavItems({ items, className }: NavItemsProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  return (
-    <div className={cn("flex items-center space-x-6 lg:space-x-8", className)}>
-      {items.map((item, index) => (
-        <Link
-          key={index}
-          href={item.link}
-          className="relative text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 py-2 px-1"
-          onMouseEnter={() => setHoveredIndex(index)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          {item.name}
-          {hoveredIndex === index && (
-            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] rounded-full" />
-          )}
-        </Link>
-      ))}
-    </div>
-  );
+  onItemClick?: () => void;
 }
 
 interface MobileNavProps {
   children: React.ReactNode;
   className?: string;
-}
-
-export function MobileNav({ children, className }: MobileNavProps) {
-  return <div className={cn("lg:hidden block", className)}>{children}</div>;
-}
-
-export function NavbarLogo() {
-  return (
-    <div className="flex items-center">
-      <Link
-        href="/"
-        className="flex items-center space-x-2 text-xl font-bold text-neutral-900 dark:text-neutral-100 hover:opacity-80 transition-opacity"
-      >
-        <div className="relative w-16 h-16 sm:w-14 sm:h-14 overflow-hidden">
-          <Image
-            src={trivxLogo}
-            alt="Trivx logo"
-            fill
-            className="object-contain"
-            sizes="(max-width: 640px) 56px, 64px"
-          />
-        </div>
-
-      </Link>
-    </div>
-  );
-}
-
-interface NavbarButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  className?: string;
-  onClick?: () => void;
-  href?: string;
-  as?: "button" | "link";
-}
-
-export function NavbarButton({
-  children,
-  variant = "primary",
-  className,
-  onClick,
-  href,
-  as: Component = "button",
-}: NavbarButtonProps) {
-  const baseClassName = cn(
-    "text-sm font-medium px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 inline-flex items-center justify-center",
-    variant === "primary"
-      ? "bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:shadow-lg hover:shadow-[var(--color-one)]/25"
-      : "border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/80 dark:bg-black/80 backdrop-blur-sm",
-    className
-  );
-
-  if (Component === "link" && href) {
-    return (
-      <Link href={href} className={baseClassName}>
-        {children}
-      </Link>
-    );
-  }
-
-  return (
-    <button
-      className={baseClassName}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
+  visible?: boolean;
 }
 
 interface MobileNavHeaderProps {
@@ -168,98 +42,238 @@ interface MobileNavHeaderProps {
   className?: string;
 }
 
-export function MobileNavHeader({ children, className }: MobileNavHeaderProps) {
+interface MobileNavMenuProps {
+  children: React.ReactNode;
+  className?: string;
+  isOpen: boolean;
+}
+
+export const Navbar = ({ children, className }: NavbarProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 100) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
+
   return (
-    <div className={cn("flex items-center justify-between py-3 sm:py-4", className)}>
+    <motion.div
+      ref={ref}
+      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
+      className={cn("sticky inset-x-0 top-4 z-40 w-full", className)}
+    >
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(
+              child as React.ReactElement<{ visible?: boolean }>,
+              { visible }
+            )
+          : child
+      )}
+    </motion.div>
+  );
+};
+
+export const NavBody = ({ children, className, visible }: NavBodyProps) => {
+  return (
+    <motion.div
+      animate={{
+        backdropFilter: visible ? "blur(10px)" : "none",
+        boxShadow: visible
+          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          : "none",
+        width: visible ? "40%" : "100%",
+        y: visible ? 20 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 50,
+      }}
+      style={{
+        minWidth: "800px",
+      }}
+      className={cn(
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        visible && "bg-white/80 dark:bg-neutral-950/80",
+        className
+      )}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  return (
+    <motion.div
+      onMouseLeave={() => setHovered(null)}
+      className={cn(
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        className
+      )}
+    >
+      {items.map((item, idx) => (
+        <a
+          onMouseEnter={() => setHovered(idx)}
+          onClick={onItemClick}
+          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+          key={`link-${idx}`}
+          href={item.link}
+        >
+          {hovered === idx && (
+            <motion.div
+              layoutId="hovered"
+              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+            />
+          )}
+          <span className="relative z-20">{item.name}</span>
+        </a>
+      ))}
+    </motion.div>
+  );
+};
+
+export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+  return (
+    <motion.div
+      animate={{
+        backdropFilter: visible ? "blur(10px)" : "none",
+        boxShadow: visible
+          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          : "none",
+        width: visible ? "90%" : "100%",
+        paddingRight: visible ? "12px" : "0px",
+        paddingLeft: visible ? "12px" : "0px",
+        borderRadius: visible ? "4px" : "2rem",
+        y: visible ? 20 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 50,
+      }}
+      className={cn(
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
+        visible && "bg-white/80 dark:bg-neutral-950/80",
+        className
+      )}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const MobileNavHeader = ({
+  children,
+  className,
+}: MobileNavHeaderProps) => {
+  return (
+    <div
+      className={cn(
+        "flex w-full flex-row items-center justify-between",
+        className
+      )}
+    >
       {children}
     </div>
   );
-}
+};
 
-interface MobileNavToggleProps {
-  isOpen: boolean;
-  onClick: () => void;
-  className?: string;
-}
+export const MobileNavMenu = ({
+  children,
+  className,
+  isOpen,
+}: MobileNavMenuProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className={cn(
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            className
+          )}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
-export function MobileNavToggle({
+export const MobileNavToggle = ({
   isOpen,
   onClick,
-  className,
-}: MobileNavToggleProps) {
-  return (
-    <button
-      onClick={onClick}
-      className={cn(
-        "p-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all duration-200",
-        className
-      )}
-      aria-label="Toggle mobile menu"
-    >
-      {isOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <Menu size={20} className="sm:w-6 sm:h-6" />}
-    </button>
-  );
-}
-
-interface MobileNavMenuProps {
-  children: React.ReactNode;
+}: {
   isOpen: boolean;
-  onClose?: () => void;
-  className?: string;
-}
+  onClick: () => void;
+}) => {
+  return isOpen ? (
+    <IconX className="text-black dark:text-white" onClick={onClick} />
+  ) : (
+    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+  );
+};
 
-export function MobileNavMenu({
+export const NavbarLogo = () => {
+  return (
+    <Link
+      href="/"
+      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+    >
+      <Image src="/trivx.png" alt="Trivx AI Logo" width={40} height={40}  />
+    </Link>
+  );
+};
+
+export const NavbarButton = ({
+  href,
+  as: Tag = "a",
   children,
-  isOpen,
   className,
-}: MobileNavMenuProps) {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+  variant = "primary",
+  ...props
+}: {
+  href?: string;
+  as?: React.ElementType;
+  children: React.ReactNode;
+  className?: string;
+  variant?: "primary" | "secondary" | "dark" | "gradient";
+} & (
+  | React.ComponentPropsWithoutRef<"a">
+  | React.ComponentPropsWithoutRef<"button">
+)) => {
+  const baseStyles =
+    "px-4 py-2 rounded-md text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        // This would need to be passed from parent component
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+  const variantStyles = {
+    primary: "bg-[var(--color-one)] hover:bg-[#d94f2f] text-white shadow-lg",
+    secondary:
+      "bg-transparent shadow-none text-white border border-white/20 hover:bg-white/10",
+    dark: "bg-black text-white shadow-lg border border-white/20",
+    gradient: "bg-[var(--color-one)] hover:bg-[#d94f2f] text-white shadow-lg",
+  };
 
   return (
-    <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-        onClick={() => {
-          // This would need to be passed from parent component to close menu
-        }}
-      />
-
-      {/* Menu */}
-      <div
-        className={cn(
-          "absolute top-full left-0 right-0 bg-white/95 dark:bg-black/95 border-b border-border backdrop-blur-md shadow-lg z-50",
-          "animate-in slide-in-from-top-2 duration-200",
-          className
-        )}
-      >
-        <div className="container mx-auto px-4 sm:px-6 py-6 space-y-6 max-h-[80vh] overflow-y-auto">
-          {children}
-        </div>
-      </div>
-    </>
+    <Tag
+      href={href || undefined}
+      className={cn(baseStyles, variantStyles[variant], className)}
+      {...props}
+    >
+      {children}
+    </Tag>
   );
-}
+};

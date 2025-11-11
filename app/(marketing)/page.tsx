@@ -1,4 +1,3 @@
-import CallToActionSection from "@/components/landing/cta-section";
 import FeaturesSection from "@/components/landing/features-section";
 import { UseCases } from "@/components/landing/use-cases";
 import HeroSection from "@/components/landing/hero-section";
@@ -16,7 +15,6 @@ export default async function Page() {
       <UseCases />
       <SphereMask />
       <PricingSection />
-      <CallToActionSection />
       <Particles
         className="absolute inset-0 -z-10"
         quantity={50}

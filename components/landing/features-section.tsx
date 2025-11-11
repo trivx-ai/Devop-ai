@@ -122,7 +122,7 @@ export default function FeaturesSection() {
       ref={ref}
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid bg-[size:30px_30px] sm:bg-[size:40px_40px] md:bg-[size:50px_50px] opacity-20" />
+      <div className="absolute inset-0 bg-grid bg-[size:30px_30px] sm:bg-[size:40px_40px] md:bg-[size:50px_50px] opacity-10 dark:opacity-10" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
         <motion.div
@@ -131,23 +131,30 @@ export default function FeaturesSection() {
           variants={containerVariants}
         >
           {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 md:mb-16">
-            <div className="backdrop-filter-[12px] inline-flex h-6 sm:h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-2 sm:px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
+          <motion.div
+            variants={itemVariants}
+            className="text-center mb-8 sm:mb-12 md:mb-16"
+          >
+            <div className="backdrop-filter-[12px] inline-flex h-6 sm:h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-2 sm:px-3 text-xs text-white dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
               <TextShimmer className="inline-flex items-center justify-center">
-                <span className="hidden sm:inline">⚡ AI-Powered Automation Features</span>
+                <span className="hidden sm:inline">
+                  ⚡ AI-Powered Automation Features
+                </span>
                 <span className="sm:hidden">⚡ AI Features</span>{" "}
                 <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
               </TextShimmer>
             </div>
-            <h2 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-4 sm:py-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-none tracking-tighter text-transparent text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
+            <h2 className="text-foreground py-4 sm:py-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-none tracking-tighter text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
               Automate. Optimize.
-              <span className="dark:text-white text-black font-bold">
+              <span className="text-[var(--color-one)] font-bold">
                 {" "}
                 Evolve.
               </span>
             </h2>
-            <p className="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl tracking-tight text-gray-400 text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms] max-w-3xl mx-auto px-4">
-              Trivx AI combines Vercel-like deployment ease, GitHub Actions CI/CD, Terraform automation, and SRE self-healing into one seamless AI-driven ecosystem.
+            <p className="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl tracking-tight text-muted-foreground text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms] max-w-3xl mx-auto px-4">
+              Trivx AI combines Vercel-like deployment ease, GitHub Actions
+              CI/CD, Terraform automation, and SRE self-healing into one
+              seamless AI-driven ecosystem.
             </p>
           </motion.div>
 
@@ -169,7 +176,9 @@ export default function FeaturesSection() {
 
                   {/* Description */}
                   <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
-                    Connect your GitHub repository and let AI analyze your codebase to automatically generate optimized CI/CD pipelines with zero manual configuration.
+                    Connect your GitHub repository and let AI analyze your
+                    codebase to automatically generate optimized CI/CD pipelines
+                    with zero manual configuration.
                   </p>
 
                   {/* Mock Pipeline Interface */}
@@ -259,15 +268,19 @@ export default function FeaturesSection() {
                                 scale: isProcessing ? 1.02 : 1,
                               }}
                               transition={{ delay: index * 0.1 }}
-                              className={`flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg border transition-all duration-500 ${isActive
-                                ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
-                                : "bg-white/5 border-white/10"
-                                }`}
+                              className={`flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg border transition-all duration-500 ${
+                                isActive
+                                  ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
+                                  : "bg-white/5 border-white/10"
+                              }`}
                             >
                               <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-black dark:bg-white" : "bg-slate-700"
-                                    }`}
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
+                                    isActive
+                                      ? "bg-black dark:bg-white"
+                                      : "bg-slate-700"
+                                  }`}
                                 >
                                   {isProcessing ? (
                                     <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black animate-spin" />
@@ -278,10 +291,11 @@ export default function FeaturesSection() {
                                   )}
                                 </div>
                                 <span
-                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
-                                    ? "text-black dark:text-white font-medium"
-                                    : "text-slate-400"
-                                    }`}
+                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${
+                                    isActive
+                                      ? "text-black dark:text-white font-medium"
+                                      : "text-slate-400"
+                                  }`}
                                 >
                                   {step.label}
                                 </span>
@@ -294,7 +308,9 @@ export default function FeaturesSection() {
                                   animate={{ scale: 1 }}
                                   className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
                                 >
-                                  <span className="hidden sm:inline">Complete</span>
+                                  <span className="hidden sm:inline">
+                                    Complete
+                                  </span>
                                   <span className="sm:hidden">✓</span>
                                 </motion.span>
                               )}
@@ -305,7 +321,9 @@ export default function FeaturesSection() {
                                   className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
                                 >
                                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white dark:bg-black animate-pulse"></div>
-                                  <span className="hidden sm:inline">Processing</span>
+                                  <span className="hidden sm:inline">
+                                    Processing
+                                  </span>
                                 </motion.span>
                               )}
                             </motion.div>
@@ -322,7 +340,9 @@ export default function FeaturesSection() {
                           <div>• Build: npm install && npm run build</div>
                           <div>• Test: npm run test</div>
                           <div>• Deploy: Auto-deploy to staging</div>
-                          <div className="hidden sm:block">• Notifications: Slack integration enabled</div>
+                          <div className="hidden sm:block">
+                            • Notifications: Slack integration enabled
+                          </div>
                         </div>
                       </div>
 
@@ -332,9 +352,7 @@ export default function FeaturesSection() {
                           <div className="text-slate-300 text-xs sm:text-sm font-medium mb-1">
                             Build Time
                           </div>
-                          <div className="text-slate-400 text-xs">
-                            ~2.5 min
-                          </div>
+                          <div className="text-slate-400 text-xs">~2.5 min</div>
                         </div>
                         <div className="p-2.5 sm:p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
                           <div className="text-slate-300 text-xs sm:text-sm font-medium mb-1">
@@ -365,7 +383,9 @@ export default function FeaturesSection() {
 
                   {/* Description */}
                   <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
-                    Deploy to AWS, Azure, GCP, or Trivx-managed servers with one click or natural language commands. AI provisions infrastructure, manages databases, and scales automatically.
+                    Deploy to AWS, Azure, GCP, or Trivx-managed servers with one
+                    click or natural language commands. AI provisions
+                    infrastructure, manages databases, and scales automatically.
                   </p>
 
                   {/* Mock Deployment Interface */}
@@ -411,7 +431,9 @@ export default function FeaturesSection() {
                       <div className="flex items-center space-x-2 sm:space-x-4">
                         <div className="flex items-center space-x-1 sm:space-x-2 text-xs text-slate-400">
                           <Cloud className="w-3 h-3 sm:w-4 sm:h-4" />
-                          <span className="truncate max-w-[60px] sm:max-w-none">{selectedProvider}</span>
+                          <span className="truncate max-w-[60px] sm:max-w-none">
+                            {selectedProvider}
+                          </span>
                           <span className="bg-slate-700/70 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs truncate max-w-[80px] sm:max-w-none">
                             {
                               cloudProviders.find(
@@ -462,22 +484,25 @@ export default function FeaturesSection() {
                               onClick={() =>
                                 handleProviderChange(provider.name)
                               }
-                              className={`p-2 sm:p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${selectedProvider === provider.name
-                                ? "bg-black/20 dark:bg-white/20 border-black/50 dark:border-white/50"
-                                : "bg-white/5 border-white/10 hover:bg-white/10"
-                                }`}
+                              className={`p-2 sm:p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${
+                                selectedProvider === provider.name
+                                  ? "bg-black/20 dark:bg-white/20 border-black/50 dark:border-white/50"
+                                  : "bg-white/5 border-white/10 hover:bg-white/10"
+                              }`}
                             >
                               <Cloud
-                                className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mx-auto mb-1 sm:mb-2 ${selectedProvider === provider.name
-                                  ? "text-black dark:text-white"
-                                  : "text-slate-400"
-                                  }`}
+                                className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mx-auto mb-1 sm:mb-2 ${
+                                  selectedProvider === provider.name
+                                    ? "text-black dark:text-white"
+                                    : "text-slate-400"
+                                }`}
                               />
                               <div
-                                className={`text-xs font-medium ${selectedProvider === provider.name
-                                  ? "text-black dark:text-white"
-                                  : "text-slate-400"
-                                  }`}
+                                className={`text-xs font-medium ${
+                                  selectedProvider === provider.name
+                                    ? "text-black dark:text-white"
+                                    : "text-slate-400"
+                                }`}
                               >
                                 {provider.name}
                               </div>
@@ -518,15 +543,19 @@ export default function FeaturesSection() {
                                 scale: isProcessing ? 1.02 : 1,
                               }}
                               transition={{ delay: index * 0.1 }}
-                              className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border transition-all duration-500 ${isActive
-                                ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
-                                : "bg-white/5 border-white/10"
-                                }`}
+                              className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border transition-all duration-500 ${
+                                isActive
+                                  ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
+                                  : "bg-white/5 border-white/10"
+                              }`}
                             >
                               <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive ? "bg-black dark:bg-white" : "bg-slate-700"
-                                    }`}
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
+                                    isActive
+                                      ? "bg-black dark:bg-white"
+                                      : "bg-slate-700"
+                                  }`}
                                 >
                                   {isProcessing ? (
                                     <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black animate-spin" />
@@ -537,10 +566,11 @@ export default function FeaturesSection() {
                                   )}
                                 </div>
                                 <span
-                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
-                                    ? "text-black dark:text-white font-medium"
-                                    : "text-slate-400"
-                                    }`}
+                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${
+                                    isActive
+                                      ? "text-black dark:text-white font-medium"
+                                      : "text-slate-400"
+                                  }`}
                                 >
                                   {step.label}
                                   {index === 0 && ` (${selectedProvider})`}
@@ -554,7 +584,9 @@ export default function FeaturesSection() {
                                   animate={{ scale: 1 }}
                                   className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex-shrink-0"
                                 >
-                                  <span className="hidden sm:inline">Complete</span>
+                                  <span className="hidden sm:inline">
+                                    Complete
+                                  </span>
                                   <span className="sm:hidden">✓</span>
                                 </motion.span>
                               )}
@@ -565,7 +597,9 @@ export default function FeaturesSection() {
                                   className="bg-black dark:bg-white text-white dark:text-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs flex items-center space-x-1 flex-shrink-0"
                                 >
                                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white dark:bg-black animate-pulse"></div>
-                                  <span className="hidden sm:inline">Processing</span>
+                                  <span className="hidden sm:inline">
+                                    Processing
+                                  </span>
                                 </motion.span>
                               )}
                             </motion.div>

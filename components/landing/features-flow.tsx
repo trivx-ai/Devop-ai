@@ -18,12 +18,17 @@ import {
 
 const Circle = forwardRef<
   HTMLDivElement,
-  { className?: string; children?: React.ReactNode; label?: string; size?: 'sm' | 'md' | 'lg' }
->(({ className, children, label, size = 'md' }, ref) => {
+  {
+    className?: string;
+    children?: React.ReactNode;
+    label?: string;
+    size?: "sm" | "md" | "lg";
+  }
+>(({ className, children, label, size = "md" }, ref) => {
   const sizeClasses = {
     sm: "size-10 sm:size-12 md:size-14",
     md: "size-12 sm:size-14 md:size-16",
-    lg: "size-16 sm:size-18 md:size-20"
+    lg: "size-16 sm:size-18 md:size-20",
   };
 
   return (
@@ -72,13 +77,13 @@ export function FeaturesFlow({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative flex h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full items-center justify-center overflow-hidden p-4 sm:p-6 md:p-8 lg:p-10 bg-gradient-to-br from-background via-card/30 to-background rounded-2xl sm:rounded-3xl border border-border/50",
+        "relative flex h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full items-center justify-center overflow-hidden p-4 sm:p-6 md:p-8 lg:p-10 bg-black/40 rounded-2xl sm:rounded-3xl border border-white/10",
         className
       )}
       ref={containerRef}
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid bg-[size:20px_20px] sm:bg-[size:25px_25px] md:bg-[size:30px_30px] opacity-5" />
+      <div className="absolute inset-0 bg-grid bg-[size:20px_20px] sm:bg-[size:25px_25px] md:bg-[size:30px_30px] opacity-10" />
 
       {/* Workflow Layout */}
       <div className="flex w-full max-w-6xl items-center justify-between gap-4 sm:gap-8 md:gap-12 lg:gap-16">
