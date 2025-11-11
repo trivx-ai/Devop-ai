@@ -177,11 +177,10 @@ export default function CallToActionSection() {
               </div>
               <div className="z-10 mt-4 flex flex-col items-center text-center text-primary">
                 <h1 className="text-3xl font-bold lg:text-4xl">
-                  Stop managing infrastructure manually.
+                  Ready to Transform Your DevOps?
                 </h1>
                 <p className="mt-2">
-                  Start your Trivx automation journey. Free trial - no credit
-                  card required.
+                  Join developers who automate deployments with AI. Start building with Trivx AI today — free trial, no credit card required.
                 </p>
                 <Link
                   href="/signup"
@@ -193,7 +192,7 @@ export default function CallToActionSection() {
                     "group mt-4 rounded-[2rem] px-6"
                   )}
                 >
-                  Start with Trivx
+                  Start Free Trial
                   <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
                 </Link>
               </div>

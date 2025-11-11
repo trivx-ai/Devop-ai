@@ -20,13 +20,13 @@ const demoPrices = [
   {
     id: "price_1",
     name: "Free",
-    description: "Get started with basic DevOps automation features at no cost",
+    description: "Perfect for individual developers exploring AI DevOps automation",
     features: [
-      "Basic CI/CD pipelines",
+      "1 GitHub repository connection",
+      "Basic AI pipeline generation",
       "Community support",
+      "5 deployments per month",
       "Shared infrastructure",
-      "Limited automation workflows",
-      "Access to core integrations",
     ],
     monthlyPrice: 0,
     yearlyPrice: 0,
@@ -35,29 +35,31 @@ const demoPrices = [
   {
     id: "price_2",
     name: "Starter",
-    description: "Perfect for individual developers and small projects",
+    description: "Ideal for small teams building production applications",
     features: [
-      "Up to 5 CI/CD pipelines",
-      "Basic deployment automation",
-      "GitHub/GitLab integration",
-      "Community support",
-      "Standard monitoring dashboard",
+      "5 GitHub repositories",
+      "AI-powered CI/CD automation",
+      "Multi-cloud deployment support",
+      "Email support",
+      "50 deployments per month",
+      "Basic monitoring dashboard",
     ],
     monthlyPrice: 9999,
-    yearlyPrice: 19000,
+    yearlyPrice: 99990,
     isMostPopular: false,
   },
   {
     id: "price_3",
     name: "Professional",
-    description: "Ideal for growing teams and production workloads",
+    description: "Advanced automation for growing teams and startups",
     features: [
-      "Unlimited CI/CD pipelines",
-      "Multi-cloud deployment (AWS, Azure, GCP)",
-      "Advanced monitoring & alerts",
-      "Database automation (MongoDB, PostgreSQL)",
-      "Kubernetes orchestration",
+      "Unlimited repositories",
+      "AI self-healing pipelines",
+      "AWS, Azure, GCP deployment",
+      "Natural language DevOps commands",
       "Priority support",
+      "Advanced monitoring & alerts",
+      "Cost optimization insights",
     ],
     monthlyPrice: 49000,
     yearlyPrice: 490000,
@@ -66,15 +68,16 @@ const demoPrices = [
   {
     id: "price_4",
     name: "Enterprise",
-    description: "Advanced DevOps automation for large organizations",
+    description: "Full AI DevOps automation for large organizations",
     features: [
       "Everything in Professional",
-      "Custom pipeline templates",
-      "Advanced security scanning",
-      "Compliance automation (SOC 2, GDPR)",
-      "Dedicated DevOps consultant",
+      "Dedicated AI DevOps consultant",
+      "Custom integrations & workflows",
+      "SOC 2, GDPR compliance automation",
+      "99.99% uptime SLA",
       "24/7 priority support",
-      "Custom integrations",
+      "Strategic intelligence dashboard",
+      "White-label options",
     ],
     monthlyPrice: 99000,
     yearlyPrice: 990000,
@@ -105,17 +108,15 @@ export default function PricingSection() {
             </TextShimmer>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-            Scale your
+            Simple, Transparent
             <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
               {" "}
-              DevOps
-            </span> journey.
+              Pricing
+            </span>
           </h2>
 
           <p className="mt-6 text-xl leading-8 text-black/80 dark:text-white">
-            Choose a <strong>powerful plan</strong> that grows with your team
-            and accelerates your deployment pipeline from development to
-            production.
+            Choose a <strong>plan that scales</strong> with your team. From startups to enterprises, Trivx AI delivers intelligent DevOps automation at every stage.
           </p>
         </div>
 

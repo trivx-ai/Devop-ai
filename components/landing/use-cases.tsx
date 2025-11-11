@@ -15,48 +15,48 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 export function UseCases() {
   const features = [
     {
-      title: "Built for developers",
+      title: "Adaptive Self-Healing",
       description:
-        "Built for engineers, developers, dreamers, thinkers and doers.",
-      icon: <IconTerminal2 />,
-    },
-    {
-      title: "Ease of use",
-      description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
-      icon: <IconEaseInOut />,
-    },
-    {
-      title: "Pricing like no other",
-      description:
-        "Our prices are best in the market. No cap, no lock, no credit card required.",
-      icon: <IconCurrencyDollar />,
-    },
-    {
-      title: "100% Uptime guarantee",
-      description: "We just cannot be taken down by anyone.",
-      icon: <IconCloud />,
-    },
-    {
-      title: "Multi-tenant Architecture",
-      description: "You can simply share passwords instead of buying new seats",
-      icon: <IconRouteAltLeft />,
-    },
-    {
-      title: "24/7 Customer Support",
-      description:
-        "We are available a 100% of the time. Atleast our AI Agents are.",
-      icon: <IconHelp />,
-    },
-    {
-      title: "Money back guarantee",
-      description:
-        "If you donot like EveryAI, we will convince you to like us.",
+        "AI monitors pipelines, predicts failures, and auto-fixes infrastructure or deployment issues in real time.",
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
+      title: "Natural Language DevOps",
+      description:
+        "Operate DevOps with simple commands like 'Deploy my app to production' or 'Rollback the last deployment'.",
+      icon: <IconTerminal2 />,
+    },
+    {
+      title: "Strategic Intelligence Dashboard",
+      description:
+        "AI-driven analytics showing cost-saving simulations, deployment efficiency, and what-if forecasts.",
+      icon: <IconCurrencyDollar />,
+    },
+    {
+      title: "Multi-Cloud Deployment",
+      description: "Seamlessly deploy to AWS, Azure, GCP, or Trivx-managed infrastructure with zero vendor lock-in.",
+      icon: <IconCloud />,
+    },
+    {
+      title: "Developer Co-Pilot",
+      description: "A proactive assistant that suggests pipelines, infrastructure, and tests during coding, not after.",
+      icon: <IconRouteAltLeft />,
+    },
+    {
+      title: "24/7 AI Monitoring",
+      description:
+        "Our AI agents monitor your deployments 24/7, ensuring 100% uptime and instant issue resolution.",
+      icon: <IconHelp />,
+    },
+    {
+      title: "Vibe-Based Experience",
+      description:
+        "Futuristic UI with minimal friction — DevOps that feels natural, fun, and modern for developers.",
+      icon: <IconEaseInOut />,
+    },
+    {
+      title: "Enterprise-Grade Security",
+      description: "Built with compliance and security in mind — SOC 2, GDPR ready with advanced security scanning.",
       icon: <IconHeart />,
     },
   ];
@@ -68,23 +68,22 @@ export function UseCases() {
         <div className="text-center mb-16">
           <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-black transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
             <TextShimmer className="inline-flex items-center justify-center">
-              <span>🚀 Real-World DevOps Solutions</span>{" "}
+              <span>🚀 Unique Innovations & USPs</span>{" "}
               <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
             </TextShimmer>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-            Real-World 
+            Why Choose
             <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
               {" "}
-              Use Cases
-            </span> for Trivx
+              Trivx AI?
+            </span>
           </h2>
           <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-            Discover how Trivx is transforming DevOps for teams of all sizes
-            across various industries.
+            Discover the unique innovations that make Trivx AI the most intelligent DevOps automation platform for modern development teams.
           </p>
         </div>
-        
+
         {/* Use Cases Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10">
           {features.map((feature, index) => (

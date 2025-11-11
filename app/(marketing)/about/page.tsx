@@ -7,7 +7,7 @@ import { Globe, Rocket, Users, Zap, Target } from "lucide-react";
 
 const stats = [
   { number: "10K+", label: "Deployments" },
-  { number: "500+", label: "Companies" },
+  { number: "500+", label: "Developers" },
   { number: "99.9%", label: "Uptime" },
   { number: "50+", label: "Integrations" }
 ];
@@ -16,45 +16,45 @@ const values = [
   {
     icon: <Rocket className="h-8 w-8" />,
     title: "Innovation First",
-    description: "We constantly push the boundaries of what&apos;s possible in DevOps automation."
+    description: "We constantly push the boundaries of AI-powered DevOps automation to make deployment effortless."
   },
   {
     icon: <Users className="h-8 w-8" />,
     title: "Developer Focus",
-    description: "Built by developers, for developers. We understand your challenges."
+    description: "Built by developers for developers in Noida. We understand your challenges and build solutions that work."
   },
   {
     icon: <Globe className="h-8 w-8" />,
     title: "Global Scale",
-    description: "Supporting teams worldwide with enterprise-grade reliability."
+    description: "From India to the world — supporting teams globally with enterprise-grade reliability and AI intelligence."
   },
   {
     icon: <Zap className="h-8 w-8" />,
     title: "Speed & Efficiency",
-    description: "Reduce deployment times from hours to minutes with intelligent automation."
+    description: "Transform deployments from hours to minutes with intelligent AI automation and self-healing pipelines."
   }
 ];
 
 const timeline = [
   {
-    year: "2023",
+    year: "2024",
     title: "Founded",
-    description: "Trivx was founded with the vision to revolutionize DevOps automation using AI."
+    description: "Trivx AI was founded in Noida by Yash Rana and Aditya with the vision to make DevOps accessible through AI automation."
   },
   {
     year: "2024",
-    title: "First Release",
-    description: "Launched our MVP with core CI/CD features and gained first 100 customers."
+    title: "First Platform Release",
+    description: "Launched MVP with AI-powered CI/CD generation, GitHub integration, and multi-cloud deployment support."
   },
   {
-    year: "2024",
-    title: "AI Integration",
-    description: "Introduced AI-powered pipeline optimization and intelligent deployment strategies."
+    year: "2025",
+    title: "AI Self-Healing",
+    description: "Introduced adaptive self-healing workflows and natural language DevOps commands for effortless automation."
   },
   {
     year: "2025",
     title: "Enterprise Ready",
-    description: "Scaled to support enterprise customers with advanced security and compliance features."
+    description: "Scaled to support enterprise customers with Strategic Intelligence Dashboard and compliance automation."
   }
 ];
 
@@ -71,13 +71,13 @@ export default function AboutPage() {
           </div>
 
           <h1 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-6 text-4xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-            Revolutionizing
-            <br className="hidden md:block" /> DevOps Automation
+            Where Dev Meets Ops
+            <br className="hidden md:block" /> and AI Takes Over
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            We&apos;re building the future of DevOps with AI-powered automation that helps teams
-            <br className="hidden md:block" /> deploy faster, scale efficiently, and focus on what matters most.
+            Founded in Noida, India by developers passionate about simplifying DevOps through AI.
+            <br className="hidden md:block" /> We&apos;re building the autonomous DevOps platform that handles everything — from code to cloud.
           </p>
 
           <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">
@@ -112,13 +112,14 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                At Trivx, we believe that DevOps should be accessible, intelligent, and effortless.
-                Our mission is to democratize advanced deployment technologies and make them available
-                to development teams of all sizes.
+                At Trivx AI, we believe DevOps should be accessible, intelligent, and effortless for every developer.
+                Our mission is to democratize advanced DevOps technologies through automation, intelligence, and simplicity —
+                enabling development teams of all sizes to deploy code to the cloud with one command or natural language.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
-                We&apos;re not just building tools; we&apos;re crafting experiences that empower developers
-                to focus on creating amazing products while we handle the complexity of modern infrastructure.
+                We&apos;re not just building tools; we&apos;re crafting an AI-native experience that transforms complex DevOps
+                into an intelligent, vibe-based platform — so developers can focus purely on building great products while AI
+                handles deployment, monitoring, and infrastructure.
               </p>
               <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
                 Learn More
@@ -137,8 +138,8 @@ export default function AboutPage() {
                 <Target className="h-16 w-16 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-semibold mb-4 text-center">Vision 2030</h3>
                 <p className="text-center text-muted-foreground">
-                  To become the world&apos;s most trusted AI-powered DevOps platform,
-                  enabling millions of developers to ship software with unprecedented speed and reliability.
+                  To become the Autonomous DevOps Cloud — a platform that handles everything from code analysis
+                  to production scaling, incident resolution, and cost optimization — fully managed by AI agents.
                 </p>
               </div>
             </div>
@@ -179,7 +180,7 @@ export default function AboutPage() {
 
         {/* Timeline Section */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent ">
             Our Journey
           </h2>
           <div className="relative">
@@ -187,7 +188,7 @@ export default function AboutPage() {
             <div className="space-y-12">
               {timeline.map((event, index) => (
                 <div
-                  key={event.year}
+                  key={index}
                   className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                     } flex-col md:flex-row gap-8`}
                 >
@@ -208,15 +209,16 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8 pb-24">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
-              Join Our Team
+              Join the Team
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We&apos;re always looking for passionate individuals who want to shape the future of DevOps.
-              Explore our open positions and become part of the Trivx family.
+              We&apos;re a small but passionate team based in Noida, India, looking for talented individuals who
+              want to shape the future of AI-powered DevOps. If you&apos;re excited about automation, intelligence,
+              and building developer-first products, we&apos;d love to hear from you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="outline" className="border-white/20 hover:bg-white/10">
@@ -228,7 +230,7 @@ export default function AboutPage() {
               </Button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <Particles
           className="absolute inset-0 -z-10"

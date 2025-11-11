@@ -8,56 +8,56 @@ import { Code, Database, Globe, Monitor, Package, Settings, Zap } from "lucide-r
 const integrations = [
   {
     name: "GitHub",
-    description: "Connect your repositories for seamless CI/CD workflows",
+    description: "AI-powered repository analysis and automated CI/CD generation",
     icon: <GitHubLogoIcon className="h-8 w-8" />,
     category: "Version Control",
     status: "Available"
   },
   {
     name: "Docker",
-    description: "Container management and deployment automation",
+    description: "Intelligent container management and deployment automation",
     icon: <Package className="h-8 w-8" />,
     category: "Containers",
     status: "Available"
   },
   {
     name: "Kubernetes",
-    description: "Orchestrate and scale your containerized applications",
+    description: "AI orchestration and auto-scaling for containerized apps",
     icon: <Settings className="h-8 w-8" />,
     category: "Orchestration",
     status: "Available"
   },
   {
     name: "AWS",
-    description: "Deploy and manage resources on Amazon Web Services",
+    description: "Deploy and manage resources on AWS with AI optimization",
     icon: <Globe className="h-8 w-8" />,
     category: "Cloud Provider",
     status: "Available"
   },
   {
     name: "Azure",
-    description: "Microsoft Azure cloud integration and deployment",
+    description: "Microsoft Azure integration with intelligent deployment",
     icon: <Monitor className="h-8 w-8" />,
     category: "Cloud Provider",
     status: "Available"
   },
   {
-    name: "PostgreSQL",
-    description: "Database management and automated backups",
+    name: "GCP",
+    description: "Google Cloud Platform with AI infrastructure provisioning",
     icon: <Database className="h-8 w-8" />,
-    category: "Database",
+    category: "Cloud Provider",
     status: "Available"
   },
   {
-    name: "Jenkins",
-    description: "Legacy CI/CD pipeline integration",
+    name: "Slack",
+    description: "Real-time deployment notifications and AI alerts",
     icon: <Code className="h-8 w-8" />,
-    category: "CI/CD",
-    status: "Coming Soon"
+    category: "Communication",
+    status: "Available"
   },
   {
     name: "Terraform",
-    description: "Infrastructure as Code provisioning and management",
+    description: "Infrastructure as Code with AI-powered optimization",
     icon: <Zap className="h-8 w-8" />,
     category: "Infrastructure",
     status: "Available"
@@ -82,8 +82,8 @@ export default function IntegrationsPage() {
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Connect your favorite tools and services to Trivx for a unified DevOps experience.
-            <br className="hidden md:block" /> From version control to cloud providers, we&apos;ve got you covered.
+            Connect your favorite tools and services to Trivx AI for a unified, AI-powered DevOps experience.
+            <br className="hidden md:block" /> From version control to multi-cloud providers, intelligent automation everywhere.
           </p>
 
           <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">

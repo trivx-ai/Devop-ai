@@ -9,88 +9,88 @@ import Link from "next/link";
 const docSections = [
   {
     title: "Getting Started",
-    description: "Quick start guides and basic concepts",
+    description: "Quick start guides and AI setup",
     icon: <RocketIcon className="h-8 w-8" />,
     articles: [
-      "Installation Guide",
-      "First Deployment",
-      "Dashboard Overview",
-      "Account Setup"
+      "Connect GitHub Repository",
+      "First AI Deployment",
+      "Natural Language Commands",
+      "Dashboard Overview"
     ]
   },
   {
     title: "API Reference",
-    description: "Complete API documentation and examples",
+    description: "Complete API documentation",
     icon: <CodeIcon className="h-8 w-8" />,
     articles: [
       "Authentication",
-      "Deployments API",
-      "Pipelines API",
+      "AI Pipeline API",
+      "Deployment API",
       "Webhooks"
     ]
   },
   {
     title: "Tutorials",
-    description: "Step-by-step guides for common workflows",
+    description: "Step-by-step AI DevOps guides",
     icon: <Play className="h-8 w-8" />,
     articles: [
-      "Setting up CI/CD",
-      "Docker Deployment",
-      "Environment Management",
-      "Monitoring Setup"
+      "AI CI/CD Pipeline Setup",
+      "Multi-Cloud Deployment",
+      "Self-Healing Configuration",
+      "Cost Optimization Tips"
     ]
   },
   {
     title: "Best Practices",
-    description: "Expert tips and recommended workflows",
+    description: "AI automation recommendations",
     icon: <Lightbulb className="h-8 w-8" />,
     articles: [
       "Security Guidelines",
       "Performance Optimization",
-      "Team Collaboration",
-      "Disaster Recovery"
+      "Natural Language Tips",
+      "Strategic Intelligence"
     ]
   },
   {
     title: "Integrations",
-    description: "Connect with your favorite tools",
+    description: "Connect with your tools",
     icon: <Users className="h-8 w-8" />,
     articles: [
       "GitHub Integration",
       "Slack Notifications",
-      "AWS Connection",
-      "Docker Registry"
+      "AWS/Azure/GCP",
+      "Database Connections"
     ]
   },
   {
     title: "Troubleshooting",
-    description: "Common issues and solutions",
+    description: "AI assistance and solutions",
     icon: <Search className="h-8 w-8" />,
     articles: [
       "Deployment Failures",
-      "Connection Issues",
+      "AI Pipeline Issues",
       "Performance Problems",
-      "Error Codes"
+      "Error Resolution"
     ]
   }
 ];
 
 const featuredGuides = [
   {
-    title: "Complete DevOps Setup Guide",
-    description: "Learn how to set up a complete CI/CD pipeline from scratch using Trivx",
+    title: "Complete AI DevOps Setup Guide",
+    description: "Learn how to set up AI-powered CI/CD with natural language commands from scratch",
     readTime: "15 min read",
     difficulty: "Beginner"
   },
   {
-    title: "Advanced Kubernetes Deployment",
-    description: "Deploy and scale applications on Kubernetes with automated rollouts",
+    title: "Advanced Multi-Cloud Deployment",
+    description: "Deploy to AWS, Azure, and GCP simultaneously with AI orchestration",
     readTime: "25 min read",
     difficulty: "Advanced"
   },
   {
-    title: "Multi-Environment Management",
-    description: "Manage development, staging, and production environments effectively",
+    title: "Self-Healing Pipeline Configuration",
+    description: "Set up adaptive self-healing workflows that predict and fix failures automatically",
     readTime: "20 min read",
     difficulty: "Intermediate"
   }
@@ -114,8 +114,8 @@ export default function DocsPage() {
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Everything you need to master Trivx DevOps automation.
-            <br className="hidden md:block" /> From quick starts to advanced configurations.
+            Everything you need to master Trivx AI's autonomous DevOps platform.
+            <br className="hidden md:block" /> From quick starts to AI-powered automation configurations.
           </p>
 
           {/* Search Bar */}
@@ -155,8 +155,8 @@ export default function DocsPage() {
 
                   <div className="flex items-center gap-2 mb-3">
                     <span className={`text-xs px-2 py-1 rounded-full ${guide.difficulty === 'Beginner' ? 'bg-green-500/20 text-green-400' :
-                        guide.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
-                          'bg-red-500/20 text-red-400'
+                      guide.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
+                        'bg-red-500/20 text-red-400'
                       }`}>
                       {guide.difficulty}
                     </span>

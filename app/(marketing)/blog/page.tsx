@@ -7,10 +7,10 @@ import { Calendar, Clock, User, Search } from "lucide-react";
 import Link from "next/link";
 
 const featuredPost = {
-  title: "The Future of DevOps: AI-Powered Automation in 2025",
-  excerpt: "Discover how artificial intelligence is revolutionizing DevOps practices and what it means for development teams worldwide.",
-  author: "Trivx Team",
-  date: "October 15, 2025",
+  title: "The Future of DevOps: How AI is Making Deployment Effortless",
+  excerpt: "Discover how Trivx AI is revolutionizing DevOps with natural language commands, self-healing pipelines, and intelligent automation.",
+  author: "Yash Rana",
+  date: "November 10, 2025",
   readTime: "8 min read",
   category: "AI & DevOps",
   image: "/blog-featured.jpg"
@@ -18,75 +18,75 @@ const featuredPost = {
 
 const blogPosts = [
   {
-    title: "10 Best Practices for CI/CD Pipeline Security",
-    excerpt: "Learn essential security measures to protect your continuous integration and deployment pipelines from common vulnerabilities.",
-    author: "Security Expert",
-    date: "October 12, 2025",
-    readTime: "6 min read",
-    category: "Security",
-    tags: ["Security", "CI/CD", "Best Practices"]
-  },
-  {
-    title: "Kubernetes vs Docker: Understanding Container Orchestration",
-    excerpt: "A comprehensive comparison between Kubernetes and Docker, helping you choose the right containerization solution.",
-    author: "DevOps Engineer",
-    date: "October 10, 2025",
+    title: "Building AI-Powered CI/CD Pipelines: A Complete Guide",
+    excerpt: "Learn how Trivx AI analyzes your codebase and automatically generates optimized CI/CD pipelines with zero manual configuration.",
+    author: "Trivx Team",
+    date: "November 8, 2025",
     readTime: "10 min read",
-    category: "Containers",
-    tags: ["Kubernetes", "Docker", "Containers"]
+    category: "CI/CD",
+    tags: ["AI", "CI/CD", "Automation"]
   },
   {
-    title: "Monitoring and Observability in Microservices Architecture",
-    excerpt: "Essential strategies for monitoring distributed systems and maintaining observability in complex microservices environments.",
-    author: "Platform Engineer",
-    date: "October 8, 2025",
-    readTime: "12 min read",
-    category: "Monitoring",
-    tags: ["Monitoring", "Microservices", "Observability"]
-  },
-  {
-    title: "Infrastructure as Code: Terraform vs AWS CloudFormation",
-    excerpt: "Compare two popular IaC tools and learn when to use each for your cloud infrastructure management needs.",
-    author: "Cloud Architect",
-    date: "October 5, 2025",
-    readTime: "9 min read",
-    category: "Infrastructure",
-    tags: ["Terraform", "AWS", "IaC"]
-  },
-  {
-    title: "GitOps: The Next Evolution of DevOps Workflows",
-    excerpt: "Explore GitOps principles and how they&apos;re transforming the way teams manage deployments and infrastructure.",
-    author: "GitOps Expert",
-    date: "October 3, 2025",
+    title: "Natural Language DevOps: Deploy with Simple Commands",
+    excerpt: "Explore how you can deploy applications using commands like 'Deploy my app to production' with Trivx AI's natural language interface.",
+    author: "Aditya",
+    date: "November 5, 2025",
     readTime: "7 min read",
-    category: "GitOps",
-    tags: ["GitOps", "Git", "Workflows"]
+    category: "Innovation",
+    tags: ["Natural Language", "AI", "DevOps"]
   },
   {
-    title: "Performance Testing in CI/CD: Tools and Strategies",
-    excerpt: "Integrate performance testing into your CI/CD pipeline with the right tools and methodologies for optimal results.",
-    author: "QA Engineer",
-    date: "October 1, 2025",
+    title: "Multi-Cloud Deployment Made Simple with AI Automation",
+    excerpt: "Deploy to AWS, Azure, or GCP seamlessly. Learn how Trivx AI handles infrastructure provisioning across multiple cloud providers.",
+    author: "Yash Rana",
+    date: "November 2, 2025",
+    readTime: "12 min read",
+    category: "Cloud",
+    tags: ["Multi-Cloud", "AWS", "Azure", "GCP"]
+  },
+  {
+    title: "Self-Healing Pipelines: The Future of Reliable Deployments",
+    excerpt: "Discover how AI predicts failures and auto-fixes infrastructure issues before they impact your deployments.",
+    author: "Trivx Team",
+    date: "October 30, 2025",
+    readTime: "9 min read",
+    category: "Reliability",
+    tags: ["Self-Healing", "AI", "Monitoring"]
+  },
+  {
+    title: "Strategic Intelligence Dashboard: Cost Optimization with AI",
+    excerpt: "Learn how Trivx AI's Strategic Intelligence Dashboard helps you simulate costs, optimize deployments, and make data-driven decisions.",
+    author: "Aditya",
+    date: "October 27, 2025",
+    readTime: "8 min read",
+    category: "Analytics",
+    tags: ["Cost Optimization", "Analytics", "Intelligence"]
+  },
+  {
+    title: "From Code to Cloud in Minutes: A Developer's Journey with Trivx",
+    excerpt: "Follow a real developer's experience deploying a full-stack application using Trivx AI's effortless automation platform.",
+    author: "Guest Author",
+    date: "October 24, 2025",
     readTime: "11 min read",
-    category: "Testing",
-    tags: ["Performance", "Testing", "CI/CD"]
+    category: "Case Study",
+    tags: ["Tutorial", "Deployment", "Developer Experience"]
   }
 ];
 
 const categories = [
   "All Posts",
   "AI & DevOps",
-  "Security",
-  "Containers",
-  "Monitoring",
-  "Infrastructure",
-  "GitOps",
-  "Testing"
+  "CI/CD",
+  "Innovation",
+  "Cloud",
+  "Reliability",
+  "Analytics",
+  "Case Study"
 ];
 
 const popularTags = [
-  "DevOps", "CI/CD", "Docker", "Kubernetes", "AWS", "Security",
-  "Monitoring", "Terraform", "Git", "Automation"
+  "AI", "DevOps", "Automation", "CI/CD", "Multi-Cloud", "AWS",
+  "Natural Language", "Self-Healing", "Cost Optimization", "Deployment"
 ];
 
 export default function BlogPage() {
@@ -102,13 +102,13 @@ export default function BlogPage() {
           </div>
 
           <h1 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-6 text-4xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-            DevOps Insights
-            <br className="hidden md:block" /> & Best Practices
+            Trivx AI Blog
+            <br className="hidden md:block" /> Insights & Tutorials
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Stay updated with the latest DevOps trends, best practices, and expert insights.
-            <br className="hidden md:block" /> Learn from industry leaders and level up your automation game.
+            Learn about AI-powered DevOps automation, deployment strategies, and developer productivity.
+            <br className="hidden md:block" /> Get expert insights from the team building the future of autonomous DevOps.
           </p>
 
           {/* Search Bar */}

@@ -43,28 +43,28 @@ const supportOptions = [
 
 const faqs = [
   {
-    question: "How do I get started with Trivx?",
-    answer: "Simply sign up for a free account, connect your repository, and follow our quick start guide to deploy your first application in minutes."
+    question: "How do I get started with Trivx AI?",
+    answer: "Simply sign up for a free account, connect your GitHub repository, and let AI analyze your code. Follow our AI-guided setup to deploy your first application in minutes with natural language commands."
   },
   {
-    question: "What platforms does Trivx support?",
-    answer: "Trivx supports all major cloud providers including AWS, Google Cloud, Azure, and Digital Ocean. We also support on-premises deployments."
+    question: "What platforms does Trivx AI support?",
+    answer: "Trivx AI supports all major cloud providers including AWS, Azure, GCP, and Trivx-managed servers. Our AI handles infrastructure provisioning across any platform seamlessly."
   },
   {
     question: "Is there a free trial available?",
-    answer: "Yes! We offer a 14-day free trial with full access to all features. No credit card required to get started."
+    answer: "Yes! We offer a free tier with basic AI features. No credit card required. Upgrade anytime to unlock advanced self-healing, strategic intelligence, and unlimited deployments."
   },
   {
     question: "How secure is my code and data?",
-    answer: "We implement enterprise-grade security with end-to-end encryption, SOC 2 compliance, and regular security audits. Your code never leaves your infrastructure."
+    answer: "We implement enterprise-grade security with end-to-end encryption, SOC 2 compliance readiness, and regular security audits. Your code and AI models are isolated and secure."
   },
   {
-    question: "Can I integrate Trivx with my existing tools?",
-    answer: "Absolutely! Trivx integrates with 50+ popular tools including GitHub, GitLab, Slack, Jira, and many monitoring solutions."
+    question: "Can I use natural language to deploy?",
+    answer: "Absolutely! Trivx AI's natural language interface lets you deploy with commands like 'Deploy my app to production' or 'Rollback the last deployment'. AI understands and executes your intent."
   },
   {
     question: "What kind of support do you offer?",
-    answer: "We offer 24/7 live chat support, comprehensive documentation, video tutorials, and dedicated account managers for enterprise customers."
+    answer: "We offer 24/7 AI-assisted support, live chat, comprehensive documentation, video tutorials, and dedicated account managers for enterprise customers based in Noida, India."
   }
 ];
 
@@ -119,8 +119,8 @@ export default function SupportPage() {
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Get the support you need to master DevOps automation with Trivx.
-            <br className="hidden md:block" /> Our expert team is ready to help you every step of the way.
+            Get the support you need to master AI-powered DevOps automation with Trivx AI.
+            <br className="hidden md:block" /> Our expert team in Noida is ready to help you every step of the way.
           </p>
 
           <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">

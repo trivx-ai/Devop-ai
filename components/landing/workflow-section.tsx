@@ -83,16 +83,14 @@ export default function WorkflowSection() {
               </TextShimmer>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 mt-6 sm:mt-8 leading-tight">
-              How Trivx
+              DevOps, Reimagined
               <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
                 {" "}
-                Orchestrates Your Workflow
+                by AI
               </span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              From DevOps components to multi-cloud deployment, see how Trivx
-              creates an intelligent bridge between your development tools and
-              cloud infrastructure.
+              From connecting your GitHub repository to multi-cloud deployment, Trivx AI creates an intelligent bridge between your development workflow and cloud infrastructure — all automated by AI.
             </p>
           </motion.div>
 

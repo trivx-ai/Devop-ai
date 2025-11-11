@@ -8,52 +8,52 @@ import { MapPin, Clock, Briefcase, Users, Heart, Coffee } from "lucide-react";
 
 const openPositions = [
   {
-    title: "Senior DevOps Engineer",
+    title: "Senior Full-Stack Engineer",
+    department: "Engineering",
+    location: "Noida, Uttar Pradesh, India",
+    type: "Full-time",
+    experience: "4+ years",
+    description: "Build the next generation of AI-powered DevOps platform with React, Node.js, and cloud technologies."
+  },
+  {
+    title: "AI/ML Engineer",
+    department: "Engineering",
+    location: "Noida, India / Remote",
+    type: "Full-time",
+    experience: "3+ years",
+    description: "Develop AI models for self-healing pipelines, natural language DevOps, and intelligent automation."
+  },
+  {
+    title: "DevOps Platform Engineer",
     department: "Engineering",
     location: "Noida, Uttar Pradesh, India",
     type: "Full-time",
     experience: "5+ years",
-    description: "Lead our DevOps initiatives and help scale our infrastructure to support millions of deployments."
+    description: "Design and implement multi-cloud infrastructure orchestration and deployment automation systems."
   },
   {
-    title: "Frontend Developer",
-    department: "Engineering",
+    title: "Product Designer (UI/UX)",
+    department: "Design",
     location: "Remote",
     type: "Full-time",
     experience: "3+ years",
-    description: "Build beautiful and intuitive user interfaces using React, TypeScript, and modern web technologies."
+    description: "Create the vibe-based developer experience with futuristic UI and intuitive workflows."
   },
   {
-    title: "Product Manager",
-    department: "Product",
-    location: "Noida, Uttar Pradesh, India",
-    type: "Full-time",
-    experience: "4+ years",
-    description: "Drive product strategy and roadmap for our AI-powered DevOps platform."
-  },
-  {
-    title: "Customer Success Manager",
-    department: "Customer Success",
+    title: "Developer Advocate",
+    department: "Developer Relations",
     location: "Remote",
     type: "Full-time",
     experience: "2+ years",
-    description: "Help our customers succeed with Trivx and drive adoption of our platform."
+    description: "Engage with developer communities, create content, and help developers succeed with Trivx AI."
   },
   {
-    title: "Backend Engineer",
-    department: "Engineering",
-    location: "Noida, Uttar Pradesh, India",
-    type: "Full-time",
-    experience: "3+ years",
-    description: "Build scalable backend systems and APIs that power our DevOps automation platform."
-  },
-  {
-    title: "Technical Writer",
-    department: "Developer Relations",
+    title: "Technical Content Writer",
+    department: "Marketing",
     location: "Remote",
     type: "Contract",
     experience: "2+ years",
-    description: "Create comprehensive documentation, tutorials, and guides for our developer community."
+    description: "Create comprehensive documentation, tutorials, blogs, and guides for AI-powered DevOps."
   }
 ];
 
@@ -83,19 +83,19 @@ const benefits = [
 const values = [
   {
     title: "Innovation First",
-    description: "We constantly push boundaries and embrace new technologies to solve complex problems."
+    description: "We constantly push boundaries with AI to solve complex DevOps problems. Experiment, learn, and innovate fearlessly."
   },
   {
-    title: "Customer Obsession",
-    description: "Our customers&apos; success drives everything we do. We build for their needs, not ours."
+    title: "Developer Obsession",
+    description: "Our customers are developers. We build for their needs with empathy, understanding their workflows and pain points."
   },
   {
-    title: "Transparency",
-    description: "Open communication, honest feedback, and transparent decision-making at every level."
+    title: "Transparency & Trust",
+    description: "Open communication, honest feedback, and transparent decision-making. Everyone has a voice at Trivx AI."
   },
   {
-    title: "Continuous Learning",
-    description: "We invest in our team&apos;s growth and encourage experimentation and learning from failures."
+    title: "Vibe-Based Culture",
+    description: "Work should be fun, modern, and fulfilling. We embrace a futuristic, developer-friendly vibe in everything we do."
   }
 ];
 
@@ -117,8 +117,8 @@ export default function CareersPage() {
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Join our passionate team of builders, creators, and innovators who are revolutionizing
-            <br className="hidden md:block" /> how developers deploy and scale their applications.
+            Join our team in Noida, India (or work remotely) and help us build the AI-powered DevOps platform
+            <br className="hidden md:block" /> that&apos;s transforming how developers deploy, monitor, and scale applications worldwide.
           </p>
 
           <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">
@@ -233,14 +233,14 @@ export default function CareersPage() {
                 Diversity & Inclusion
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                We believe that diverse teams build better products. At Trivx, we&apos;re committed to creating
-                an inclusive environment where everyone can do their best work, regardless of background,
-                identity, or experience level.
+                We believe diverse teams build better products. At Trivx AI, we&apos;re committed to creating an
+                inclusive environment where everyone can thrive, regardless of background, identity, or experience.
+                Based in India&apos;s tech hub (Noida), we welcome talent from all over the world.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
-                We&apos;re an equal opportunity employer and welcome applications from all qualified candidates.
-                We encourage applications from underrepresented groups and are happy to make reasonable
-                accommodations for candidates with disabilities.
+                We&apos;re an equal opportunity employer. We encourage applications from underrepresented groups
+                and are happy to make reasonable accommodations. Whether you&apos;re a recent graduate or seasoned
+                professional, if you&apos;re passionate about AI and DevOps, we want to hear from you.
               </p>
               <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
                 Learn About Our Culture
@@ -258,10 +258,10 @@ export default function CareersPage() {
                   colorTo="var(--color-two)"
                 />
                 <Users className="h-16 w-16 mx-auto mb-6 text-primary" />
-                <h3 className="text-xl font-semibold mb-4 text-center text-foreground">Remote-First Team</h3>
+                <h3 className="text-xl font-semibold mb-4 text-center text-foreground">Startup Culture</h3>
                 <p className="text-center text-muted-foreground">
-                  Our team spans across different time zones and continents, bringing diverse perspectives
-                  and experiences to solve complex DevOps challenges.
+                  We&apos;re a small, agile team based in Noida where every team member makes a real impact.
+                  Work directly with founders, shape product direction, and see your work used by developers globally.
                 </p>
               </div>
             </div>

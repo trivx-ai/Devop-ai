@@ -140,15 +140,14 @@ export default function FeaturesSection() {
               </TextShimmer>
             </div>
             <h2 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-4 sm:py-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-none tracking-tighter text-transparent text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-              Build for
+              Automate. Optimize.
               <span className="dark:text-white text-black font-bold">
                 {" "}
-                DevOps Intelligence
+                Evolve.
               </span>
             </h2>
             <p className="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl tracking-tight text-gray-400 text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms] max-w-3xl mx-auto px-4">
-              Build, test and deploy AI agents with a powerful visual interface
-              designed for technical teams
+              Trivx AI combines Vercel-like deployment ease, GitHub Actions CI/CD, Terraform automation, and SRE self-healing into one seamless AI-driven ecosystem.
             </p>
           </motion.div>
 
@@ -170,8 +169,7 @@ export default function FeaturesSection() {
 
                   {/* Description */}
                   <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
-                    Watch AI analyze your GitHub repository and automatically
-                    generate optimized CI/CD pipelines in real-time.
+                    Connect your GitHub repository and let AI analyze your codebase to automatically generate optimized CI/CD pipelines with zero manual configuration.
                   </p>
 
                   {/* Mock Pipeline Interface */}
@@ -367,9 +365,7 @@ export default function FeaturesSection() {
 
                   {/* Description */}
                   <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
-                    Watch AI automatically deploy your application to cloud
-                    providers with intelligent infrastructure provisioning and
-                    scaling.
+                    Deploy to AWS, Azure, GCP, or Trivx-managed servers with one click or natural language commands. AI provisions infrastructure, manages databases, and scales automatically.
                   </p>
 
                   {/* Mock Deployment Interface */}

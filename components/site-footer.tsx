@@ -17,11 +17,11 @@ const footerNavs = [
     items: [
       {
         href: "#features",
-        name: "CI/CD Pipelines",
+        name: "AI CI/CD Generator",
       },
       {
         href: "#features",
-        name: "Deployment Automation",
+        name: "Multi-Cloud Deployment",
       },
       {
         href: "#pricing",
@@ -33,92 +33,92 @@ const footerNavs = [
       },
     ],
   },
-  {
-    label: "Resources",
-    items: [
-      {
-        href: "/docs",
-        name: "Documentation",
-      },
-      {
-        href: "/api",
-        name: "API Reference",
-      },
-      {
-        href: "/tutorials",
-        name: "Tutorials",
-      },
-      {
-        href: "/blog",
-        name: "Blog",
-      },
-    ],
-  },
+  // {
+  //   label: "Resources",
+  //   items: [
+  //     {
+  //       href: "/docs",
+  //       name: "Documentation",
+  //     },
+  //     {
+  //       href: "/api",
+  //       name: "API Reference",
+  //     },
+  //     {
+  //       href: "/tutorials",
+  //       name: "Tutorials",
+  //     },
+  //     {
+  //       href: "/blog",
+  //       name: "Blog",
+  //     },
+  //   ],
+  // },
   {
     label: "Company",
     items: [
       {
         href: "/about",
-        name: "About Us",
+        name: "About Trivx AI",
       },
-      {
-        href: "/careers",
-        name: "Careers",
-      },
+      // {
+      //   href: "/careers",
+      //   name: "Careers",
+      // },
       {
         href: "/contact",
-        name: "Contact",
+        name: "Contact Us",
       },
-      {
-        href: "/support",
-        name: "Support",
-      },
+      // {
+      //   href: "/support",
+      //   name: "Support",
+      // },
     ],
   },
-  {
-    label: "Legal",
-    items: [
-      {
-        href: "/terms",
-        name: "Terms of Service",
-      },
-      {
-        href: "/privacy",
-        name: "Privacy Policy",
-      },
-      {
-        href: "/security",
-        name: "Security",
-      },
-      {
-        href: "/compliance",
-        name: "Compliance",
-      },
-    ],
-  },
+  // {
+  //   label: "Legal",
+  //   items: [
+  //     {
+  //       href: "/terms",
+  //       name: "Terms of Service",
+  //     },
+  //     {
+  //       href: "/privacy",
+  //       name: "Privacy Policy",
+  //     },
+  //     {
+  //       href: "/security",
+  //       name: "Security",
+  //     },
+  //     {
+  //       href: "/compliance",
+  //       name: "Compliance",
+  //     },
+  //   ],
+  // },
 ];
 
 const footerSocials = [
   {
-    href: "https://github.com/devopai",
+    href: "https://github.com/trivx-ai",
     name: "GitHub",
     icon: <GitHubLogoIcon className="h-5 w-5" />,
   },
   {
-    href: "https://twitter.com/devopai",
+    href: "https://twitter.com/trivxAi",
     name: "Twitter",
     icon: <TwitterLogoIcon className="h-5 w-5" />,
   },
   {
-    href: "https://linkedin.com/company/devopai",
+    href: "https://linkedin.com/company/trivxai",
     name: "LinkedIn",
     icon: <LinkedInLogoIcon className="h-5 w-5" />,
   },
-  {
-    href: "https://discord.gg/devopai",
-    name: "Discord",
-    icon: <DiscordLogoIcon className="h-5 w-5" />,
-  },
+  // {
+  //   href: "https://discord.gg/trivxai",
+  //   name: "Discord",
+  //   icon: <DiscordLogoIcon className="h-5 w-5" />,
+  // },
 ];
 
 export function SiteFooter() {
@@ -132,11 +132,10 @@ export function SiteFooter() {
         <div className="border-b border-border px-6 py-16 md:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Stay Updated with Trivx Insights
+              Stay Updated with Trivx AI
             </h3>
             <p className="text-muted-foreground mb-8">
-              Get the latest AI-powered DevOps automation tips, tutorials, and
-              platform updates delivered to your inbox.
+              Get the latest AI-powered DevOps insights, automation tips, and platform updates delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
@@ -171,9 +170,7 @@ export function SiteFooter() {
                 {/* <span className="text-xl font-bold text-foreground">Trivx</span> */}
               </Link>
               <p className="text-muted-foreground mb-6 max-w-sm">
-                The AI-powered DevOps platform that automates your entire
-                development pipeline from code to deployment with intelligent
-                automation.
+                Trivx AI is an AI-powered DevOps automation platform that transforms complex DevOps into an effortless, intelligent experience. From code to cloud — automated by AI.
               </p>
 
               {/* Contact Info */}
@@ -222,8 +219,8 @@ export function SiteFooter() {
         <div className="border-t border-border px-6 py-8 md:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Trivx. All rights reserved.
-              <span className="ml-2">Built with ❤️ for DevOps Engineers</span>
+              © {new Date().getFullYear()} Trivx AI. All rights reserved.
+              <span className="ml-2">Built with ❤️ in Noida, India</span>
             </div>
 
             {/* Social Links */}
