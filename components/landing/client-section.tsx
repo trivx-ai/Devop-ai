@@ -68,10 +68,10 @@ export default function ClientSection() {
           {/* Header */}
           <motion.div variants={itemVariants} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-              Trusted by the best companies
+              Deploy and Manage from Any Platform
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Trivx is the choice of all the fortune 500 companies.
+              Trivx is platform-independent, empowering teams to deploy seamlessly across any infrastructure.
             </p>
           </motion.div>
 

@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
-import { Loader } from "lucide-react";
+import { Loader, Lock } from "lucide-react";
 import { useState } from "react";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import TextShimmer from "@/components/magicui/text-shimmer";
@@ -105,7 +105,7 @@ export default function PricingSection() {
             </TextShimmer>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-            Scale your 
+            Scale your
             <span className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
               {" "}
               DevOps
@@ -132,7 +132,23 @@ export default function PricingSection() {
           </span>
         </div>
 
-        <div className="mx-auto grid w-full justify-center sm:grid-cols-2 lg:grid-cols-4 flex-col gap-4">
+        <div className="mx-auto grid w-full justify-center sm:grid-cols-2 lg:grid-cols-4 flex-col gap-4 relative">
+          {/* Blur overlay with lock */}
+          <div className="absolute inset-0 z-10 backdrop-blur-md bg-white/30 dark:bg-black/30 rounded-2xl flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4 text-center">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] blur-xl opacity-50"></div>
+                <Lock className="relative w-16 h-16 text-foreground" strokeWidth={1.5} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-foreground">Pricing Coming Soon</h3>
+                <p className="text-muted-foreground max-w-md">
+                  We're finalizing our pricing plans. Stay tuned for updates!
+                </p>
+              </div>
+            </div>
+          </div>
+
           {demoPrices.map((price, idx) => (
             <div
               key={price.id}

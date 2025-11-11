@@ -1,4 +1,3 @@
-import ClientSection from "@/components/landing/client-section";
 import CallToActionSection from "@/components/landing/cta-section";
 import FeaturesSection from "@/components/landing/features-section";
 import { UseCases } from "@/components/landing/use-cases";
@@ -12,7 +11,6 @@ export default async function Page() {
   return (
     <>
       <HeroSection />
-      <ClientSection />
       <FeaturesSection />
       <WorkflowSection />
       <UseCases />

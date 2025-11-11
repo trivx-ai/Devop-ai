@@ -105,18 +105,16 @@ export function NavbarLogo() {
         href="/"
         className="flex items-center space-x-2 text-xl font-bold text-neutral-900 dark:text-neutral-100 hover:opacity-80 transition-opacity"
       >
-        <div className="relative w-8 h-8 sm:w-10 sm:h-10">
+        <div className="relative w-16 h-16 sm:w-14 sm:h-14 overflow-hidden">
           <Image
             src={trivxLogo}
             alt="Trivx logo"
             fill
             className="object-contain"
-            sizes="(max-width: 640px) 32px, 40px"
+            sizes="(max-width: 640px) 56px, 64px"
           />
         </div>
-        <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
-          Trivx
-        </span>
+
       </Link>
     </div>
   );
