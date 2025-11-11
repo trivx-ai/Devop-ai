@@ -48,16 +48,20 @@ export default function HeroSection() {
             colorTo="var(--color-two)"
           />
 
-          <img
-            src="/hero-dark.png"
-            alt="Hero Image"
-            className="hidden relative w-full h-full rounded-[inherit] border object-contain dark:block"
-          />
-          <img
-            src="/hero-light.png"
-            alt="Hero Image"
-            className="block relative w-full h-full  rounded-[inherit]  dark:hidden"
-          />
+          <div className="relative w-full h-full rounded-[inherit]">
+            <img
+              src="/hero-dark.png"
+              alt="Hero Image"
+              className="hidden relative w-full h-full rounded-[inherit] object-contain dark:block"
+            />
+            <img
+              src="/hero-light.png"
+              alt="Hero Image"
+              className="block relative w-full h-full rounded-[inherit] dark:hidden"
+            />
+            {/* Black gradient from bottom to top */}
+            <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+          </div>
         </div>
       </div>
     </section>

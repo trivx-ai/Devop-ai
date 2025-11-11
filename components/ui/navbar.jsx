@@ -102,14 +102,6 @@ export default function SiteHeader() {
         <NavItems items={navItems} />
         <div className="flex items-center gap-3 lg:gap-4">
           <NavbarButton
-            variant="secondary"
-            as="button"
-            onClick={handleLogin}
-            className="hidden sm:block"
-          >
-            Login
-          </NavbarButton>
-          <NavbarButton
             variant="primary"
             as="button"
             onClick={handleSignup}

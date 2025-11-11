@@ -66,7 +66,12 @@ const config = {
 					'3': 'hsl(var(--chart-3))',
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
-				}
+				},
+				// Custom brand colors matching client theme
+				'color-one': 'var(--color-one)',
+				'color-two': 'var(--color-two)',
+				'color-three': 'var(--color-three)',
+				'color-bg': 'var(--color-bg)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
