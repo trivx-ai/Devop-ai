@@ -1,0 +1,55 @@
+{
+  "name": "Trivx AI - AI-Powered DevOps Automation Platform",
+  "short_name": "Trivx AI",
+  "description": "Automate CI/CD pipelines, deploy to multi-cloud, and enable self-healing infrastructure with AI-powered DevOps automation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#E84021",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/trivx.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/trivx.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "developer tools",
+    "productivity",
+    "utilities"
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Access your DevOps dashboard",
+      "url": "/dashboard",
+      "icons": [
+        {
+          "src": "/trivx.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Documentation",
+      "short_name": "Docs",
+      "description": "View platform documentation",
+      "url": "/docs",
+      "icons": [
+        {
+          "src": "/trivx.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

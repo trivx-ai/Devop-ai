@@ -145,16 +145,16 @@ export default function FeaturesSection() {
               </TextShimmer>
             </div>
             <h2 className="text-foreground py-4 sm:py-6 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-none tracking-tighter text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-              Automate. Optimize.
+              Automate CI/CD. Deploy Multi-Cloud.
               <span className="text-[var(--color-one)] font-bold">
                 {" "}
-                Evolve.
+                Self-Heal.
               </span>
             </h2>
             <p className="mb-8 sm:mb-12 text-base sm:text-lg md:text-xl tracking-tight text-muted-foreground text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms] max-w-3xl mx-auto px-4">
-              Trivx AI combines Vercel-like deployment ease, GitHub Actions
-              CI/CD, Terraform automation, and SRE self-healing into one
-              seamless AI-driven ecosystem.
+              Trivx AI automates your entire DevOps workflow — from GitHub repository analysis to production deployment.
+              Generate CI/CD pipelines instantly, provision cloud infrastructure, deploy to AWS/Azure/GCP,
+              and enable AI-powered self-healing for maximum uptime.
             </p>
           </motion.div>
 
@@ -176,9 +176,9 @@ export default function FeaturesSection() {
 
                   {/* Description */}
                   <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
-                    Connect your GitHub repository and let AI analyze your
-                    codebase to automatically generate optimized CI/CD pipelines
-                    with zero manual configuration.
+                    Connect your GitHub repository and let our AI analyze your codebase to automatically
+                    generate optimized CI/CD pipelines for automated testing, building, and deployment —
+                    with zero manual configuration required.
                   </p>
 
                   {/* Mock Pipeline Interface */}
@@ -268,19 +268,17 @@ export default function FeaturesSection() {
                                 scale: isProcessing ? 1.02 : 1,
                               }}
                               transition={{ delay: index * 0.1 }}
-                              className={`flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg border transition-all duration-500 ${
-                                isActive
+                              className={`flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg border transition-all duration-500 ${isActive
                                   ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
                                   : "bg-white/5 border-white/10"
-                              }`}
+                                }`}
                             >
                               <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
-                                    isActive
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive
                                       ? "bg-black dark:bg-white"
                                       : "bg-slate-700"
-                                  }`}
+                                    }`}
                                 >
                                   {isProcessing ? (
                                     <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black animate-spin" />
@@ -291,11 +289,10 @@ export default function FeaturesSection() {
                                   )}
                                 </div>
                                 <span
-                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${
-                                    isActive
+                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
                                       ? "text-black dark:text-white font-medium"
                                       : "text-slate-400"
-                                  }`}
+                                    }`}
                                 >
                                   {step.label}
                                 </span>
@@ -383,9 +380,9 @@ export default function FeaturesSection() {
 
                   {/* Description */}
                   <p className="text-muted-foreground mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
-                    Deploy to AWS, Azure, GCP, or Trivx-managed servers with one
-                    click or natural language commands. AI provisions
-                    infrastructure, manages databases, and scales automatically.
+                    Deploy applications to AWS, Azure, GCP, or custom servers with one click or natural language commands.
+                    AI provisions infrastructure automatically, manages databases, configures load balancers,
+                    and scales resources based on demand — ensuring optimal performance.
                   </p>
 
                   {/* Mock Deployment Interface */}
@@ -484,25 +481,22 @@ export default function FeaturesSection() {
                               onClick={() =>
                                 handleProviderChange(provider.name)
                               }
-                              className={`p-2 sm:p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${
-                                selectedProvider === provider.name
+                              className={`p-2 sm:p-3 rounded-lg border text-center transition-all duration-300 hover:scale-105 ${selectedProvider === provider.name
                                   ? "bg-black/20 dark:bg-white/20 border-black/50 dark:border-white/50"
                                   : "bg-white/5 border-white/10 hover:bg-white/10"
-                              }`}
+                                }`}
                             >
                               <Cloud
-                                className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mx-auto mb-1 sm:mb-2 ${
-                                  selectedProvider === provider.name
+                                className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mx-auto mb-1 sm:mb-2 ${selectedProvider === provider.name
                                     ? "text-black dark:text-white"
                                     : "text-slate-400"
-                                }`}
+                                  }`}
                               />
                               <div
-                                className={`text-xs font-medium ${
-                                  selectedProvider === provider.name
+                                className={`text-xs font-medium ${selectedProvider === provider.name
                                     ? "text-black dark:text-white"
                                     : "text-slate-400"
-                                }`}
+                                  }`}
                               >
                                 {provider.name}
                               </div>
@@ -543,19 +537,17 @@ export default function FeaturesSection() {
                                 scale: isProcessing ? 1.02 : 1,
                               }}
                               transition={{ delay: index * 0.1 }}
-                              className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border transition-all duration-500 ${
-                                isActive
+                              className={`flex items-center justify-between p-2.5 sm:p-3 rounded-lg border transition-all duration-500 ${isActive
                                   ? "bg-black/10 dark:bg-white/10 border-black/30 dark:border-white/30"
                                   : "bg-white/5 border-white/10"
-                              }`}
+                                }`}
                             >
                               <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
                                 <div
-                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
-                                    isActive
+                                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isActive
                                       ? "bg-black dark:bg-white"
                                       : "bg-slate-700"
-                                  }`}
+                                    }`}
                                 >
                                   {isProcessing ? (
                                     <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-black animate-spin" />
@@ -566,11 +558,10 @@ export default function FeaturesSection() {
                                   )}
                                 </div>
                                 <span
-                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${
-                                    isActive
+                                  className={`text-xs sm:text-sm transition-colors duration-500 truncate ${isActive
                                       ? "text-black dark:text-white font-medium"
                                       : "text-slate-400"
-                                  }`}
+                                    }`}
                                 >
                                   {step.label}
                                   {index === 0 && ` (${selectedProvider})`}

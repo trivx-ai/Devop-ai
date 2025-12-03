@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -34,7 +35,7 @@ export default function HeroSection() {
         </span>
       </p>
       <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg bg-[var(--color-one)] hover:bg-[#d94f2f] text-white opacity-0 ease-in-out [--animation-delay:600ms]">
-        <span>Get Started for free </span>
+        <span>Start Automating DevOps for Free</span>
         <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
       </Button>
       <div
@@ -42,9 +43,8 @@ export default function HeroSection() {
         className="relative mt-[8rem] animate-fade-up opacity-0 [--animation-delay:400ms] [perspective:2000px] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]"
       >
         <div
-          className={`rounded-xl border border-white/10 bg-white bg-opacity-[0.01] before:absolute before:bottom-1/2 before:left-0 before:top-0 before:h-full before:w-full before:opacity-0 before:[filter:blur(180px)] before:[background-image:linear-gradient(to_bottom,var(--color-one),var(--color-one),transparent_40%)] ${
-            inView ? "before:animate-image-glow" : ""
-          }`}
+          className={`rounded-xl border border-white/10 bg-white bg-opacity-[0.01] before:absolute before:bottom-1/2 before:left-0 before:top-0 before:h-full before:w-full before:opacity-0 before:[filter:blur(180px)] before:[background-image:linear-gradient(to_bottom,var(--color-one),var(--color-one),transparent_40%)] ${inView ? "before:animate-image-glow" : ""
+            }`}
         >
           <BorderBeam
             size={200}
@@ -55,15 +55,21 @@ export default function HeroSection() {
           />
 
           <div className="relative w-full h-full rounded-[inherit]">
-            <img
+            <Image
               src="/hero-dark.png"
-              alt="Hero Image"
+              alt="AI-powered DevOps automation platform dashboard showing CI/CD pipeline generation and multi-cloud deployment interface"
               className="hidden relative w-full h-full rounded-[inherit] object-contain dark:block"
+              width={1920}
+              height={1080}
+              priority
             />
-            <img
+            <Image
               src="/hero-light.png"
-              alt="Hero Image"
+              alt="Trivx AI DevOps automation platform interface with automated infrastructure provisioning and deployment workflows"
               className="block relative w-full h-full rounded-[inherit] dark:hidden"
+              width={1920}
+              height={1080}
+              priority
             />
             {/* Black gradient from bottom to top */}
             <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />

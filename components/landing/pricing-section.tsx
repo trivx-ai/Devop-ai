@@ -109,15 +109,15 @@ export default function PricingSection() {
             </TextShimmer>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-            Simple, Transparent
-            <span className="text-[var(--color-one)]"> Pricing</span>
+            Flexible Pricing for Every Team
+            <span className="text-[var(--color-one)]"> Size</span>
           </h2>
 
           <p className="mt-6 text-xl leading-8 text-muted-foreground">
-            Choose a{" "}
-            <strong className="text-foreground">plan that scales</strong> with
-            your team. From startups to enterprises, Trivx AI delivers
-            intelligent DevOps automation at every stage.
+            Choose an{" "}
+            <strong className="text-foreground">AI-powered DevOps automation plan</strong> that scales
+            with your team. From startups to enterprises, Trivx AI delivers
+            intelligent CI/CD pipelines, multi-cloud deployment, and self-healing infrastructure at every stage.
           </p>
         </div>
 

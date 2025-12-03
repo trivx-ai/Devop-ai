@@ -15,51 +15,51 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 export function UseCases() {
   const features = [
     {
-      title: "Adaptive Self-Healing",
+      title: "AI-Powered Self-Healing",
       description:
-        "AI monitors pipelines, predicts failures, and auto-fixes infrastructure or deployment issues in real time.",
+        "Our AI continuously monitors CI/CD pipelines, predicts infrastructure failures, and automatically fixes deployment issues in real-time — ensuring maximum uptime and reliability.",
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: "Natural Language DevOps",
+      title: "Natural Language DevOps Commands",
       description:
-        "Operate DevOps with simple commands like 'Deploy my app to production' or 'Rollback the last deployment'.",
+        "Control your entire DevOps workflow with simple commands like 'Deploy my app to production' or 'Rollback the last deployment' — no complex CLI needed.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Strategic Intelligence Dashboard",
+      title: "Intelligent Cost Optimization",
       description:
-        "AI-driven analytics showing cost-saving simulations, deployment efficiency, and what-if forecasts.",
+        "AI-driven analytics dashboard showing real-time cost-saving simulations, deployment efficiency metrics, and predictive what-if forecasts for infrastructure spending.",
       icon: <IconCurrencyDollar />,
     },
     {
-      title: "Multi-Cloud Deployment",
+      title: "Multi-Cloud Deployment Freedom",
       description:
-        "Seamlessly deploy to AWS, Azure, GCP, or Trivx-managed infrastructure with zero vendor lock-in.",
+        "Deploy seamlessly to AWS, Microsoft Azure, Google Cloud Platform, or custom infrastructure with zero vendor lock-in — Trivx AI handles all cloud providers intelligently.",
       icon: <IconCloud />,
     },
     {
-      title: "Developer Co-Pilot",
+      title: "Proactive AI DevOps Co-Pilot",
       description:
-        "A proactive assistant that suggests pipelines, infrastructure, and tests during coding, not after.",
+        "A smart assistant that suggests optimized CI/CD pipelines, infrastructure configurations, and automated tests during coding — not after deployment failures.",
       icon: <IconRouteAltLeft />,
     },
     {
-      title: "24/7 AI Monitoring",
+      title: "24/7 AI Infrastructure Monitoring",
       description:
-        "Our AI agents monitor your deployments 24/7, ensuring 100% uptime and instant issue resolution.",
+        "Our AI agents monitor your deployments around the clock, ensuring 99.9% uptime with instant automated issue resolution and smart alerting.",
       icon: <IconHelp />,
     },
     {
-      title: "Vibe-Based Experience",
+      title: "Developer-First Experience",
       description:
-        "Futuristic UI with minimal friction — DevOps that feels natural, fun, and modern for developers.",
+        "Modern, intuitive UI with minimal friction — DevOps automation that feels natural and enjoyable for developers, with real-time visual feedback.",
       icon: <IconEaseInOut />,
     },
     {
-      title: "Enterprise-Grade Security",
+      title: "Enterprise-Grade Security & Compliance",
       description:
-        "Built with compliance and security in mind — SOC 2, GDPR ready with advanced security scanning.",
+        "Built with SOC 2 Type II and GDPR compliance, featuring advanced security scanning, encrypted secrets management, and role-based access control (RBAC).",
       icon: <IconHeart />,
     },
   ];
@@ -76,12 +76,13 @@ export function UseCases() {
             </TextShimmer>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-            Why Choose
-            <span className="text-[var(--color-one)]"> Trivx AI?</span>
+            Why Developers Choose
+            <span className="text-[var(--color-one)]"> Trivx AI</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover the unique innovations that make Trivx AI the most
-            intelligent DevOps automation platform for modern development teams.
+            Discover powerful features that make Trivx AI the most intelligent
+            AI-powered DevOps automation platform for modern development teams.
+            From automated CI/CD pipelines to multi-cloud deployment and self-healing infrastructure.
           </p>
         </div>
 
