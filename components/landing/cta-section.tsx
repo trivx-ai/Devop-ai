@@ -185,7 +185,9 @@ export default function CallToActionSection() {
                   required.
                 </p>
                 <Link
-                  href="/signup"
+                  href="https://app.trivx.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({
                       size: "lg",

@@ -79,12 +79,12 @@ export default function SiteHeader() {
 
   const handleLogin = () => {
     setIsMobileMenuOpen(false);
-    router.push("/login");
+    window.open("https://app.trivx.in", "_blank");
   };
 
   const handleSignup = () => {
     setIsMobileMenuOpen(false);
-    router.push("/signup");
+    window.open("https://app.trivx.in", "_blank");
   };
 
   const closeMobileMenu = () => {

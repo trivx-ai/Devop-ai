@@ -140,8 +140,8 @@ export default function APIPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className={`px-2 py-1 rounded text-xs font-mono font-bold ${endpoint.method === 'GET'
-                      ? 'bg-blue-500/20 text-blue-400'
-                      : 'bg-green-500/20 text-green-400'
+                    ? 'bg-blue-500/20 text-blue-400'
+                    : 'bg-green-500/20 text-green-400'
                     }`}>
                     {endpoint.method}
                   </span>
@@ -247,10 +247,12 @@ export default function APIPage() {
               <Button variant="outline" className="border-white/20 hover:bg-white/10">
                 View Full Docs
               </Button>
-              <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
-                Get Started Free
-                <ArrowRightIcon className="ml-2 h-4 w-4" />
-              </Button>
+              <a href="https://app.trivx.in" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+                  Get Started Free
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
             </div>
           </div>
         </section>

@@ -214,7 +214,7 @@ export default function PricingSection() {
                   "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2"
                 )}
                 disabled={isLoading}
-                onClick={() => void onSubscribeClick(price.id)}
+                onClick={() => window.open("https://app.trivx.in", "_blank")}
               >
                 <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white dark:bg-black opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96" />
                 {(!isLoading || (isLoading && id !== price.id)) && (
