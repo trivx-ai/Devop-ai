@@ -15,35 +15,37 @@ const footerNavs = [
   {
     label: "Platform",
     items: [
-      {
-        href: "#features",
-        name: "AI CI/CD Generator",
-      },
-      {
-        href: "#features",
-        name: "Multi-Cloud Deployment",
-      },
-      {
-        href: "#pricing",
-        name: "Pricing",
-      },
-      {
-        href: "/integrations",
-        name: "Integrations",
-      },
+      { href: "#features", name: "AI CI/CD Generator" },
+      { href: "#features", name: "Multi-Cloud Deployment" },
+      { href: "/integrations", name: "Integrations" },
+      { href: "#pricing", name: "Pricing" },
+    ],
+  },
+  {
+    label: "Developers",
+    items: [
+      { href: "/docs", name: "Documentation" },
+      { href: "/api", name: "API Reference" },
+      { href: "/tutorials", name: "Tutorials" },
+      { href: "/blog", name: "Blog" },
     ],
   },
   {
     label: "Company",
     items: [
-      {
-        href: "/about",
-        name: "About Trivx AI",
-      },
-      {
-        href: "/contact",
-        name: "Contact Us",
-      },
+      { href: "/about", name: "About Trivx AI" },
+      { href: "/careers", name: "Careers" },
+      { href: "/contact", name: "Contact Us" },
+      { href: "/support", name: "Support" },
+    ],
+  },
+  {
+    label: "Legal",
+    items: [
+      { href: "/privacy", name: "Privacy Policy" },
+      { href: "/terms", name: "Terms of Service" },
+      { href: "/compliance", name: "Compliance" },
+      { href: "/security", name: "Security" },
     ],
   },
 ];
@@ -79,7 +81,7 @@ export function SiteFooter() {
         <div className="px-6 py-12 md:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-6">
             {/* Brand Section */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-2">
               <Link href="/" className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-lg flex items-center justify-center">
                   <Image
@@ -115,7 +117,7 @@ export function SiteFooter() {
             </div>
 
             {/* Navigation Links */}
-            <div className="lg:col-span-3 grid grid-cols-2 gap-8">
+            <div className="lg:col-span-4 grid grid-cols-2 sm:grid-cols-4 gap-8">
               {footerNavs.map((nav) => (
                 <div key={nav.label}>
                   <h3 className="mb-6 text-sm font-semibold tracking-wider text-foreground uppercase">
