@@ -76,7 +76,7 @@ export default function IntegrationsPage() {
             </TextShimmer>
           </div>
 
-          <h1 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-6 text-4xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
+          <h1 className="text-foreground py-6 text-4xl font-medium leading-none tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
             Seamless Integrations
             <br className="hidden md:block" /> for Modern DevOps
           </h1>
@@ -86,7 +86,7 @@ export default function IntegrationsPage() {
             <br className="hidden md:block" /> From version control to multi-cloud providers, intelligent automation everywhere.
           </p>
 
-          <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">
+          <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-primary-foreground opacity-0 ease-in-out [--animation-delay:600ms] bg-primary hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
             <span>Explore Integrations</span>
             <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
           </Button>
@@ -110,7 +110,7 @@ export default function IntegrationsPage() {
                 />
 
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
+                  <div className="p-2 rounded-lg bg-primary">
                     {integration.icon}
                   </div>
                   <div>
@@ -141,17 +141,17 @@ export default function IntegrationsPage() {
         {/* CTA Section */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8 pb-24">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-6 text-foreground">
               Don&apos;t see your integration?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               We&apos;re constantly adding new integrations. Request a custom integration or build your own using our API.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" className="border-white/20 hover:bg-white/10">
+              <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 Request Integration
               </Button>
-              <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+              <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 View API Docs
                 <ArrowRightIcon className="ml-2 h-4 w-4" />
               </Button>

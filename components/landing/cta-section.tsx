@@ -21,37 +21,37 @@ const tiles = [
   {
     icon: <Rocket className="size-full" />,
     bg: (
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-orange-600 via-rose-600 to-violet-600 opacity-70 blur-[20px] filter"></div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-primary opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
     icon: <Cloud className="size-full" />,
     bg: (
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 opacity-70 blur-[20px] filter"></div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-primary opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
     icon: <GitBranch className="size-full" />,
     bg: (
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-green-500 via-teal-500 to-emerald-600 opacity-70 blur-[20px] filter"></div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-primary opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
     icon: <Server className="size-full" />,
     bg: (
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 opacity-70 blur-[20px] filter"></div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-primary opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
     icon: <Container className="size-full" />,
     bg: (
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-orange-600 via-rose-600 to-violet-600 opacity-70 blur-[20px] filter"></div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-primary opacity-70 blur-[20px] filter"></div>
     ),
   },
   {
     icon: <BarChart className="size-full" />,
     bg: (
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-gradient-to-r from-gray-600 via-gray-500 to-gray-400 opacity-70 blur-[20px] filter"></div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible rounded-full bg-primary opacity-70 blur-[20px] filter"></div>
     ),
   },
 ];
@@ -193,7 +193,7 @@ export default function CallToActionSection() {
                       size: "lg",
                       variant: "outline",
                     }),
-                    "group mt-4 rounded-[2rem] px-6 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white border-none hover:opacity-90"
+                    "group mt-4 rounded-[2rem] px-6 bg-primary text-primary-foreground border-none hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out"
                   )}
                 >
                   Start Free Trial

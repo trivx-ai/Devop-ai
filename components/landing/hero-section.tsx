@@ -35,7 +35,7 @@ export default function HeroSection() {
         </span>
       </p>
       <a href="https://app.trivx.in" target="_blank" rel="noopener noreferrer">
-        <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg bg-[var(--color-one)] hover:bg-[#d94f2f] text-white opacity-0 ease-in-out [--animation-delay:600ms]">
+        <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg bg-primary text-primary-foreground opacity-0 ease-in-out [--animation-delay:600ms] hover:bg-white hover:text-[#f2613f] transition-all duration-300">
           <span>Start Automating DevOps for Free</span>
           <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
         </Button>

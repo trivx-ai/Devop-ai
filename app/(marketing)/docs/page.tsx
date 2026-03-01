@@ -108,7 +108,7 @@ export default function DocsPage() {
             </TextShimmer>
           </div>
 
-          <h1 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-6 text-4xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
+          <h1 className="text-foreground py-6 text-4xl font-medium leading-none tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
             Documentation
             <br className="hidden md:block" /> & Guides
           </h1>
@@ -131,7 +131,7 @@ export default function DocsPage() {
           </div>
 
           <a href="https://app.trivx.in" target="_blank" rel="noopener noreferrer">
-            <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:800ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">
+            <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-primary-foreground opacity-0 ease-in-out [--animation-delay:800ms] bg-primary hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
               <span>Get Started</span>
               <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
             </Button>
@@ -140,7 +140,7 @@ export default function DocsPage() {
 
         {/* Featured Guides */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8">
-          <h2 className="text-2xl font-bold mb-8 text-center bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold mb-8 text-center text-foreground">
             Featured Guides
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -182,7 +182,7 @@ export default function DocsPage() {
 
         {/* Documentation Sections */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8">
-          <h2 className="text-2xl font-bold mb-8 text-center bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold mb-8 text-center text-foreground">
             Documentation Sections
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -192,7 +192,7 @@ export default function DocsPage() {
                 className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
+                  <div className="p-2 rounded-lg bg-primary">
                     {section.icon}
                   </div>
                   <h3 className="font-semibold text-lg text-foreground">{section.title}</h3>
@@ -220,17 +220,17 @@ export default function DocsPage() {
         {/* Community Section */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8 pb-24">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-6 text-foreground">
               Need More Help?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Join our community or contact support for personalized assistance with your DevOps journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" className="border-white/20 hover:bg-white/10">
+              <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 Join Community
               </Button>
-              <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+              <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 Contact Support
                 <ArrowRightIcon className="ml-2 h-4 w-4" />
               </Button>

@@ -66,7 +66,7 @@ export default function ContactPage() {
             </TextShimmer>
           </div>
 
-          <h1 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-6 text-4xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
+          <h1 className="text-foreground py-6 text-4xl font-medium leading-none tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
             Contact Our
             <br className="hidden md:block" /> Expert Team
           </h1>
@@ -76,7 +76,7 @@ export default function ContactPage() {
             <br className="hidden md:block" /> accelerate your DevOps journey with AI-powered automation.
           </p>
 
-          <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">
+          <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-primary-foreground opacity-0 ease-in-out [--animation-delay:600ms] bg-primary hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
             <span>Schedule a Demo</span>
             <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
           </Button>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                 />
 
                 <div className="flex justify-center mb-4">
-                  <div className="p-3 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)]">
+                  <div className="p-3 rounded-lg bg-primary">
                     {method.icon}
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function ContactPage() {
                 <p className="text-sm text-muted-foreground mb-3">{method.description}</p>
                 <p className="text-sm font-medium text-foreground mb-4">{method.contact}</p>
 
-                <Button variant="outline" size="sm" className="border-white/20 hover:bg-white/10">
+                <Button size="sm" className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                   {method.action}
                 </Button>
               </div>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
 
-                <Button className="w-full bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                   Send Message
                   <Send className="ml-2 h-4 w-4" />
                 </Button>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                   className="relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] flex-shrink-0">
+                    <div className="p-3 rounded-lg bg-primary flex-shrink-0">
                       {option.icon}
                     </div>
                     <div>
@@ -226,7 +226,7 @@ export default function ContactPage() {
                 <p className="text-muted-foreground mb-4">
                   Check out our FAQ section for common questions and solutions.
                 </p>
-                <Button variant="outline" className="border-white/20 hover:bg-white/10">
+                <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                   View FAQ
                 </Button>
               </div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
               Office Hours: Monday - Friday, 9:00 AM - 6:00 PM IST
             </p>
 
-            <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+            <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
               Get Directions
               <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>

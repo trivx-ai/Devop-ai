@@ -14,13 +14,13 @@ export default function DashboardPage() {
       <div className="max-w-md w-full">
         <div className="text-center space-y-6">
           {/* Success Icon */}
-          <div className="mx-auto w-16 h-16 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] rounded-full flex items-center justify-center">
+          <div className="mx-auto w-16 h-16 bg-primary rounded-full flex items-center justify-center">
             <CheckCircle2 className="w-8 h-8 text-white" />
           </div>
 
           {/* Welcome Message */}
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-foreground">
               Welcome to Trivx!
             </h1>
             <p className="text-muted-foreground">
@@ -29,8 +29,8 @@ export default function DashboardPage() {
           </div>
 
           {/* Coming Soon Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[var(--color-one)]/10 to-[var(--color-two)]/10 border border-[var(--color-one)]/20">
-            <span className="text-sm font-medium bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] bg-clip-text text-transparent">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+            <span className="text-sm font-medium text-primary">
               Dashboard Coming Soon
             </span>
           </div>
@@ -61,7 +61,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Back to Home Button */}
-          <Button asChild className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:shadow-lg hover:shadow-[var(--color-one)]/25 transition-all duration-200">
+          <Button asChild className="bg-primary hover:shadow-lg hover:shadow-primary/25 transition-all duration-200">
             <Link href="/" className="inline-flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
               Back to Home

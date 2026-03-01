@@ -431,7 +431,7 @@ export function UserAuthForm({ className, type = "signin", ...props }: UserAuthF
               type="submit"
               className={cn(
                 buttonVariants(),
-                "relative z-30 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:shadow-lg hover:shadow-[var(--color-one)]/25 transition-all duration-200 transform hover:scale-105 active:scale-95 cursor-pointer"
+                "relative z-30 bg-primary hover:shadow-lg hover:shadow-primary/25 transition-all duration-200 transform hover:scale-105 active:scale-95 cursor-pointer"
               )}
               disabled={isLoading || isGitHubLoading || isGoogleLoading}
             >

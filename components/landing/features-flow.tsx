@@ -128,7 +128,7 @@ export function FeaturesFlow({ className }: { className?: string }) {
         <div className="flex flex-col items-center">
           <Circle
             ref={devopaiRef}
-            className="bg-gradient-to-br from-[var(--color-one)]/10 to-[var(--color-two)]/10 border-[var(--color-one)]/30 hover:border-[var(--color-one)]/50"
+            className="bg-primary/10 border-primary/30 hover:border-primary/50"
             label="Trivx AI"
             size="lg"
           >
@@ -140,7 +140,7 @@ export function FeaturesFlow({ className }: { className?: string }) {
               height={48}
             />
           </Circle>
-          <div className="mt-1 sm:mt-2 px-2 sm:px-3 py-0.5 sm:py-1 bg-gradient-to-r from-[var(--color-one)]/20 to-[var(--color-two)]/20 text-[var(--color-one)] dark:text-[var(--color-two)] text-xs rounded-full border border-[var(--color-one)]/30">
+          <div className="mt-1 sm:mt-2 px-2 sm:px-3 py-0.5 sm:py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30">
             <span className="hidden sm:inline">Active</span>
             <span className="sm:hidden">⚡</span>
           </div>

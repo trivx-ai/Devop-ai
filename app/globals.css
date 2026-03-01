@@ -39,7 +39,8 @@
     --navigation-height: 3.5rem;
 
     /* Font Variables - Matching client fonts */
-    --font-sans: "Geist", "Geist Fallback", system-ui, -apple-system, sans-serif;
+    --font-sans:
+      "Geist", "Geist Fallback", system-ui, -apple-system, sans-serif;
     --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
   }
 
@@ -73,7 +74,7 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    border-color: var(--border);
   }
   body {
     @apply bg-background text-foreground;

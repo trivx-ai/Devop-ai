@@ -157,7 +157,7 @@ export function SiteFooter() {
                 placeholder="Enter your email"
                 className="flex-1 bg-card border-border text-foreground placeholder:text-muted-foreground"
               />
-              <Button className="bg-[var(--color-one)] hover:bg-[#d94f2f] text-white border-none">
+              <Button className="bg-primary text-primary-foreground border-none hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 Subscribe
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

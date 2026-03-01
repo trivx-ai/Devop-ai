@@ -17,7 +17,7 @@ export default function CompliancePage() {
             </TextShimmer>
           </div>
 
-          <h1 className="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-6 text-4xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
+          <h1 className="text-foreground py-6 text-4xl font-medium leading-none tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
             Enterprise
             <br className="hidden md:block" /> Compliance
           </h1>
@@ -27,7 +27,7 @@ export default function CompliancePage() {
             <br className="hidden md:block" /> Built for enterprises with strict governance and audit requirements.
           </p>
 
-          <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-white dark:text-black opacity-0 ease-in-out [--animation-delay:600ms] bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] hover:opacity-90">
+          <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-primary-foreground opacity-0 ease-in-out [--animation-delay:600ms] bg-primary hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
             <span>Download Compliance Report</span>
             <FileText className="ml-1 size-4" />
           </Button>
@@ -35,7 +35,7 @@ export default function CompliancePage() {
 
         {/* Compliance Standards */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8">
-          <h2 className="text-2xl font-bold mb-12 text-center bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold mb-12 text-center text-foreground">
             Compliance Standards We Meet
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -92,12 +92,12 @@ export default function CompliancePage() {
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="font-semibold text-lg text-foreground">{standard.title}</h3>
                   <span className={`text-xs px-2 py-1 rounded-full ${standard.status === 'Certified' || standard.status === 'Compliant'
-                      ? 'bg-green-500/20 text-green-400'
-                      : standard.status === 'Ready'
-                        ? 'bg-blue-500/20 text-blue-400'
-                        : standard.status === 'In Progress'
-                          ? 'bg-yellow-500/20 text-yellow-400'
-                          : 'bg-gray-500/20 text-gray-400'
+                    ? 'bg-green-500/20 text-green-400'
+                    : standard.status === 'Ready'
+                      ? 'bg-blue-500/20 text-blue-400'
+                      : standard.status === 'In Progress'
+                        ? 'bg-yellow-500/20 text-yellow-400'
+                        : 'bg-gray-500/20 text-gray-400'
                     }`}>
                     {standard.status}
                   </span>
@@ -150,7 +150,7 @@ export default function CompliancePage() {
                     }
                   ].map((feature) => (
                     <div key={feature.title} className="flex items-start gap-4">
-                      <div className="p-2 rounded-lg bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] flex-shrink-0">
+                      <div className="p-2 rounded-lg bg-primary flex-shrink-0">
                         {feature.icon}
                       </div>
                       <div>
@@ -187,7 +187,7 @@ export default function CompliancePage() {
                   </div>
                 </div>
 
-                <Button className="w-full bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                   Schedule Compliance Consultation
                   <ArrowRightIcon className="ml-2 h-4 w-4" />
                 </Button>
@@ -198,7 +198,7 @@ export default function CompliancePage() {
 
         {/* Industry Specific */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8">
-          <h2 className="text-2xl font-bold mb-12 text-center bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold mb-12 text-center text-foreground">
             Industry-Specific Compliance
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -243,7 +243,7 @@ export default function CompliancePage() {
         {/* CTA Section */}
         <section className="relative mx-auto mt-24 max-w-[80rem] px-6 md:px-8 pb-24">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-6 text-foreground">
               Need Custom Compliance?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -251,10 +251,10 @@ export default function CompliancePage() {
               Trivx meets your organization&apos;s unique compliance needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" className="border-white/20 hover:bg-white/10">
+              <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 Download Compliance Guide
               </Button>
-              <Button className="bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] text-white hover:opacity-90">
+              <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 Talk to Compliance Expert
                 <ArrowRightIcon className="ml-2 h-4 w-4" />
               </Button>

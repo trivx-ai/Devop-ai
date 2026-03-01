@@ -197,7 +197,7 @@ export default function FAQSection() {
             {/* CTA */}
             <motion.div
               variants={itemVariants}
-              className="mt-12 text-center p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10"
+              className="mt-12 text-center p-8 rounded-2xl bg-white/5 border border-white/10"
             >
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">
                 Still have questions?
@@ -208,7 +208,7 @@ export default function FAQSection() {
               </p>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-one)] hover:bg-[#d94f2f] text-white rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-white hover:text-[#f2613f] text-white rounded-lg font-semibold transition-all duration-300 ease-in-out"
               >
                 Contact Us
                 <ArrowRightIcon className="w-4 h-4" />

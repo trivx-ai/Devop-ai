@@ -98,7 +98,7 @@ export default function ClientSection() {
                   </div>
 
                   {/* Hover effect overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 transition-opacity rounded-2xl" />
+                  <div className="absolute inset-0 bg-primary/10 opacity-0 transition-opacity rounded-2xl" />
                 </div>
               </motion.div>
             ))}

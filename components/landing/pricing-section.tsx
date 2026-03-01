@@ -139,7 +139,7 @@ export default function PricingSection() {
           <div className="absolute inset-0 z-10 backdrop-blur-md bg-background/80 rounded-2xl flex items-center justify-center">
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-one)] to-[var(--color-two)] blur-xl opacity-50"></div>
+                <div className="absolute inset-0 bg-primary blur-xl opacity-50"></div>
                 <Lock
                   className="relative w-16 h-16 text-foreground"
                   strokeWidth={1.5}

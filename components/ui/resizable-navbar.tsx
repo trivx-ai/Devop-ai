@@ -73,9 +73,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible }
-            )
+            child as React.ReactElement<{ visible?: boolean }>,
+            { visible }
+          )
           : child
       )}
     </motion.div>
@@ -234,7 +234,22 @@ export const NavbarLogo = () => {
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
     >
-      <Image src="/trivx.png" alt="Trivx AI Logo" width={40} height={40}  />
+      {/* light mode */}
+      <Image
+        src="/trivx.svg"
+        alt="Trivx AI Logo"
+        width={80}
+        height={80}
+        className="block dark:hidden"
+      />
+      {/* dark mode */}
+      <Image
+        src="/trivx-white.svg"
+        alt="Trivx AI Logo"
+        width={80}
+        height={80}
+        className="hidden dark:block"
+      />
     </Link>
   );
 };
@@ -253,18 +268,18 @@ export const NavbarButton = ({
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
 } & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+    | React.ComponentPropsWithoutRef<"a">
+    | React.ComponentPropsWithoutRef<"button">
+  )) => {
   const baseStyles =
     "px-4 py-2 rounded-md text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
   const variantStyles = {
-    primary: "bg-[var(--color-one)] hover:bg-[#d94f2f] text-white shadow-lg",
+    primary: "bg-[var(--color-one)] hover:bg-white hover:text-[#f2613f] text-white shadow-lg transition-all duration-300 ease-in-out",
     secondary:
-      "bg-transparent shadow-none text-white border border-white/20 hover:bg-white/10",
-    dark: "bg-black text-white shadow-lg border border-white/20",
-    gradient: "bg-[var(--color-one)] hover:bg-[#d94f2f] text-white shadow-lg",
+      "bg-[var(--color-one)] hover:bg-white hover:text-[#f2613f] text-white shadow-lg transition-all duration-300 ease-in-out",
+    dark: "bg-[var(--color-one)] hover:bg-white hover:text-[#f2613f] text-white shadow-lg transition-all duration-300 ease-in-out",
+    gradient: "bg-[var(--color-one)] hover:bg-white hover:text-[#f2613f] text-white shadow-lg transition-all duration-300 ease-in-out",
   };
 
   return (
