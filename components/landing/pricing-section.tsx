@@ -1,14 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@radix-ui/react-icons";
-import { motion } from "framer-motion";
-import { Loader, Lock } from "lucide-react";
-import { useState } from "react";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
-import TextShimmer from "@/components/magicui/text-shimmer";
+import { motion, useInView } from "framer-motion";
+import { Lock } from "lucide-react";
+import { useState, useRef } from "react";
 
 type Interval = "month" | "year";
 
@@ -20,13 +17,12 @@ const demoPrices = [
   {
     id: "price_1",
     name: "Free",
-    description:
-      "Perfect for individual developers exploring AI DevOps automation",
+    description: "Perfect for individual developers exploring AI DevOps",
     features: [
-      "1 GitHub repository connection",
+      "1 GitHub repository",
       "Basic AI pipeline generation",
       "Community support",
-      "5 deployments per month",
+      "5 deployments/month",
       "Shared infrastructure",
     ],
     monthlyPrice: 0,
@@ -36,14 +32,14 @@ const demoPrices = [
   {
     id: "price_2",
     name: "Starter",
-    description: "Ideal for small teams building production applications",
+    description: "Ideal for small teams building production apps",
     features: [
       "5 GitHub repositories",
       "AI-powered CI/CD automation",
-      "Multi-cloud deployment support",
+      "Multi-cloud deployment",
       "Email support",
-      "50 deployments per month",
-      "Basic monitoring dashboard",
+      "50 deployments/month",
+      "Basic monitoring",
     ],
     monthlyPrice: 9999,
     yearlyPrice: 99990,
@@ -52,15 +48,15 @@ const demoPrices = [
   {
     id: "price_3",
     name: "Professional",
-    description: "Advanced automation for growing teams and startups",
+    description: "Advanced automation for growing teams",
     features: [
       "Unlimited repositories",
       "AI self-healing pipelines",
-      "AWS, Azure, GCP deployment",
-      "Natural language DevOps commands",
+      "AWS, Azure, GCP deploy",
+      "NL DevOps commands",
       "Priority support",
-      "Advanced monitoring & alerts",
-      "Cost optimization insights",
+      "Advanced monitoring",
+      "Cost optimization",
     ],
     monthlyPrice: 49000,
     yearlyPrice: 490000,
@@ -69,15 +65,15 @@ const demoPrices = [
   {
     id: "price_4",
     name: "Enterprise",
-    description: "Full AI DevOps automation for large organizations",
+    description: "Full AI DevOps for large organizations",
     features: [
       "Everything in Professional",
-      "Dedicated AI DevOps consultant",
-      "Custom integrations & workflows",
-      "SOC 2, GDPR compliance automation",
+      "Dedicated AI consultant",
+      "Custom integrations",
+      "SOC 2 & GDPR compliance",
       "99.99% uptime SLA",
       "24/7 priority support",
-      "Strategic intelligence dashboard",
+      "Strategic dashboard",
       "White-label options",
     ],
     monthlyPrice: 99000,
@@ -88,160 +84,145 @@ const demoPrices = [
 
 export default function PricingSection() {
   const [interval, setInterval] = useState<Interval>("month");
-  const [isLoading, setIsLoading] = useState(false);
-  const [id, setId] = useState<string | null>(null);
-
-  const onSubscribeClick = async (priceId: string) => {
-    setIsLoading(true);
-    setId(priceId);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate a delay
-    setIsLoading(false);
-  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="pricing" className="bg-background">
-      <div className="mx-auto flex max-w-screen-xl flex-col gap-8 px-4 py-14 md:px-8">
-        <div className="mx-auto max-w-5xl text-center">
-          <div className="backdrop-filter-[12px] inline-flex h-7 items-center justify-between rounded-full border border-white/5 bg-white/10 px-3 text-xs text-white dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in opacity-0">
-            <TextShimmer className="inline-flex items-center justify-center">
-              <span>💰 Choose Your Plan</span>{" "}
-              <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-            </TextShimmer>
+    <section id="pricing" className="relative py-24 sm:py-32 overflow-hidden bg-[#0c0c0c]" ref={ref}>
+      {/* Background */}
+      <div className="absolute inset-0 neural-grid opacity-15" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6">
+            <span className="text-xs text-white/50 font-medium">💰 Choose Your Plan</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8">
-            Flexible Pricing for Every Team
-            <span className="text-[var(--color-one)]"> Size</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+            Flexible Pricing for Every{" "}
+            <span className="gradient-text">Team Size</span>
           </h2>
-
-          <p className="mt-6 text-xl leading-8 text-muted-foreground">
-            Choose an{" "}
-            <strong className="text-foreground">AI-powered DevOps automation plan</strong> that scales
-            with your team. From startups to enterprises, Trivx AI delivers
-            intelligent CI/CD pipelines, multi-cloud deployment, and self-healing infrastructure at every stage.
+          <p className="text-base sm:text-lg text-white/40 max-w-3xl mx-auto">
+            Choose an AI-powered DevOps automation plan that scales with your team.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex w-full items-center justify-center space-x-2 text-foreground">
+        {/* Toggle */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex items-center justify-center gap-3 mb-12"
+        >
+          <span className="text-sm text-white/50">Monthly</span>
           <Switch
             id="interval"
-            onCheckedChange={(checked) => {
-              setInterval(checked ? "year" : "month");
-            }}
+            onCheckedChange={(checked) => setInterval(checked ? "year" : "month")}
           />
-          <span>Annual</span>
-          <span className="inline-block whitespace-nowrap rounded-full bg-[var(--color-one)] px-2.5 py-1 text-[11px] font-semibold uppercase leading-5 tracking-wide text-white">
-            2 MONTHS FREE ✨
+          <span className="text-sm text-white/50">Annual</span>
+          <span className="px-2.5 py-1 rounded-full bg-[#f2613f]/20 text-[#f2613f] text-[10px] font-semibold uppercase tracking-wider">
+            Save 2 months
           </span>
-        </div>
+        </motion.div>
 
-        <div className="mx-auto grid w-full justify-center sm:grid-cols-2 lg:grid-cols-4 flex-col gap-4 relative">
+        {/* Pricing cards grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 relative">
           {/* Blur overlay with lock */}
-          <div className="absolute inset-0 z-10 backdrop-blur-md bg-background/80 rounded-2xl flex items-center justify-center">
-            <div className="flex flex-col items-center gap-4 text-center">
+          <div className="absolute inset-0 z-10 backdrop-blur-md bg-[#0c0c0c]/80 rounded-3xl flex items-center justify-center">
+            <div className="flex flex-col items-center gap-5 text-center">
               <div className="relative">
-                <div className="absolute inset-0 bg-primary blur-xl opacity-50"></div>
-                <Lock
-                  className="relative w-16 h-16 text-foreground"
-                  strokeWidth={1.5}
-                />
+                <div className="absolute inset-0 rounded-full bg-[#f2613f] blur-2xl opacity-30" />
+                <Lock className="relative w-14 h-14 text-white" strokeWidth={1.5} />
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-foreground">
-                  Pricing Coming Soon
-                </h3>
-                <p className="text-muted-foreground max-w-md">
-                  We&apos;re finalizing our pricing plans. Stay tuned for
-                  updates!
+                <h3 className="text-2xl font-bold text-white">Pricing Coming Soon</h3>
+                <p className="text-white/40 max-w-md text-sm">
+                  We&apos;re finalizing our pricing plans. Stay tuned for updates!
                 </p>
               </div>
             </div>
           </div>
 
           {demoPrices.map((price, idx) => (
-            <div
+            <motion.div
               key={price.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
               className={cn(
-                "relative flex max-w-[400px] flex-col gap-8 rounded-2xl border border-border p-4 text-foreground overflow-hidden bg-card",
-                {
-                  "border-2 border-[var(--color-one)]": price.isMostPopular,
-                }
+                "relative flex flex-col rounded-2xl overflow-hidden transition-all duration-400 group",
+                price.isMostPopular
+                  ? "border-2 border-[#f2613f] shadow-[0_0_40px_rgba(242,97,63,0.15)]"
+                  : "border border-white/8"
               )}
+              style={{
+                background: price.isMostPopular
+                  ? "linear-gradient(135deg, rgba(242, 97, 63, 0.05), rgba(17, 17, 17, 0.95))"
+                  : "rgba(17, 17, 17, 0.8)",
+              }}
+              whileHover={{
+                scale: 1.02,
+                y: -4,
+                transition: { duration: 0.3 },
+              }}
             >
-              <div className="flex items-center">
-                <div className="ml-4">
-                  <h2 className="text-base font-semibold leading-7">
-                    {price.name}
-                  </h2>
-                  <p className="h-12 text-sm leading-5 text-muted-foreground">
-                    {price.description}
-                  </p>
+              {/* Popular badge */}
+              {price.isMostPopular && (
+                <div className="absolute top-0 right-0 px-3 py-1 bg-[#f2613f] text-white text-[10px] font-bold uppercase tracking-wider rounded-bl-xl">
+                  Popular
+                </div>
+              )}
+
+              <div className="p-6 flex-1 flex flex-col">
+                {/* Plan name */}
+                <h3 className="text-lg font-bold text-white mb-1">{price.name}</h3>
+                <p className="text-xs text-white/40 mb-6 min-h-[32px]">{price.description}</p>
+
+                {/* Price */}
+                <motion.div
+                  key={`${price.id}-${interval}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-6"
+                >
+                  <span className="text-3xl font-bold text-white">
+                    ₹{interval === "year" ? toHumanPrice(price.yearlyPrice, 0) : toHumanPrice(price.monthlyPrice, 0)}
+                  </span>
+                  <span className="text-xs text-white/30 ml-1">/ {interval}</span>
+                </motion.div>
+
+                {/* CTA */}
+                <button
+                  onClick={() => window.open("https://app.trivx.in", "_blank")}
+                  className={cn(
+                    "w-full py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 mb-6",
+                    price.isMostPopular
+                      ? "glow-button text-white"
+                      : "bg-white/5 text-white/70 border border-white/10 hover:border-[#f2613f] hover:text-white"
+                  )}
+                >
+                  Get Started
+                </button>
+
+                {/* Features */}
+                <div className="border-t border-white/5 pt-5">
+                  <ul className="space-y-3">
+                    {price.features.map((feature, fi) => (
+                      <li key={fi} className="flex items-start gap-2.5">
+                        <CheckIcon className="h-4 w-4 shrink-0 mt-0.5 text-[#f2613f]" />
+                        <span className="text-xs text-white/50">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-
-              <motion.div
-                key={`${price.id}-${interval}`}
-                initial="initial"
-                animate="animate"
-                variants={{
-                  initial: {
-                    opacity: 0,
-                    y: 12,
-                  },
-                  animate: {
-                    opacity: 1,
-                    y: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.1 + idx * 0.05,
-                  ease: [0.21, 0.47, 0.32, 0.98],
-                }}
-                className="flex flex-row gap-1"
-              >
-                <span className="text-4xl font-bold text-foreground">
-                  ₹
-                  {interval === "year"
-                    ? toHumanPrice(price.yearlyPrice, 0)
-                    : toHumanPrice(price.monthlyPrice, 0)}
-                  <span className="text-xs"> / {interval}</span>
-                </span>
-              </motion.div>
-
-              <Button
-                className={cn(
-                  "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2"
-                )}
-                disabled={isLoading}
-                onClick={() => window.open("https://app.trivx.in", "_blank")}
-              >
-                <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white dark:bg-black opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96" />
-                {(!isLoading || (isLoading && id !== price.id)) && (
-                  <p>Get Started</p>
-                )}
-
-                {isLoading && id === price.id && <p>Setting up...</p>}
-                {isLoading && id === price.id && (
-                  <Loader className="mr-2 h-4 w-4 animate-spin" />
-                )}
-              </Button>
-
-              <hr className="m-0 h-px w-full border-none bg-gradient-to-r from-border/0 via-border to-border/0" />
-              {price.features && price.features.length > 0 && (
-                <ul className="flex flex-col gap-2 font-normal">
-                  {price.features.map((feature: string, idx: number) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-3 text-xs font-medium text-foreground"
-                    >
-                      <CheckIcon className="h-5 w-5 shrink-0 rounded-full bg-green-400 p-[2px] text-white dark:text-black" />
-                      <span className="flex">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
