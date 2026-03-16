@@ -46,7 +46,7 @@ export default async function MarketingLayout({
                 },
                 contactPoint: {
                   "@type": "ContactPoint",
-                  telephone: "+91-8130923346",
+                  telephone: "+91-7060603346",
                   contactType: "Customer Service",
                   email: "info@trivx.in",
                 },

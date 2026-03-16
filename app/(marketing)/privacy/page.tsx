@@ -177,7 +177,7 @@ export default function PrivacyPage() {
                   </p>
                   <div className="mt-4 p-4 rounded-lg border border-white/20 bg-white/5">
                     <p className="text-muted-foreground">Email: privacy@trivx.com</p>
-                    <p className="text-muted-foreground">Address: Noida, Uttar Pradesh, India</p>
+                    <p className="text-muted-foreground">Address: 5th Floor, Tower B Prestige Tech Park Marathahalli – Sarjapur Outer Ring Road Bengaluru, Karnataka 560103 India</p>
                     <p className="text-muted-foreground">Data Protection Officer: dpo@trivx.com</p>
                   </div>
                 </section>

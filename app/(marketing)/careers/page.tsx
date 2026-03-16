@@ -10,7 +10,7 @@ const openPositions = [
   {
     title: "Senior Full-Stack Engineer",
     department: "Engineering",
-    location: "Noida, Uttar Pradesh, India",
+    location: "Bengaluru, Karnataka, India",
     type: "Full-time",
     experience: "4+ years",
     description: "Build the next generation of AI-powered DevOps platform with React, Node.js, and cloud technologies."
@@ -18,7 +18,7 @@ const openPositions = [
   {
     title: "AI/ML Engineer",
     department: "Engineering",
-    location: "Noida, India / Remote",
+    location: "Bengaluru, Karnataka, India / Remote",
     type: "Full-time",
     experience: "3+ years",
     description: "Develop AI models for self-healing pipelines, natural language DevOps, and intelligent automation."
@@ -26,7 +26,7 @@ const openPositions = [
   {
     title: "DevOps Platform Engineer",
     department: "Engineering",
-    location: "Noida, Uttar Pradesh, India",
+    location: "Bengaluru, Karnataka, India",
     type: "Full-time",
     experience: "5+ years",
     description: "Design and implement multi-cloud infrastructure orchestration and deployment automation systems."

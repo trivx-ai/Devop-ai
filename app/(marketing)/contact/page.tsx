@@ -17,7 +17,7 @@ const contactMethods = [
     icon: <Phone className="h-6 w-6" />,
     title: "Call Us",
     description: "Speak directly with our experts",
-    contact: "+91-8130923346",
+    contact: "+91-7060603346",
     action: "Call Now"
   },
   {
@@ -31,7 +31,7 @@ const contactMethods = [
     icon: <MapPin className="h-6 w-6" />,
     title: "Visit Us",
     description: "Come see us in person",
-    contact: "Noida, Uttar Pradesh, India",
+    contact: "5th Floor, Tower B Prestige Tech Park Marathahalli – Sarjapur Outer Ring Road Bengaluru, Karnataka 560103 India",
     action: "Get Directions"
   }
 ];
@@ -257,7 +257,7 @@ export default function ContactPage() {
 
             <MapPin className="h-12 w-12 mx-auto mb-6 text-primary" />
             <h3 className="text-xl font-semibold mb-4 text-foreground">Trivx Headquarters</h3>
-            <p className="text-muted-foreground mb-2">Noida, Uttar Pradesh, India</p>
+            <p className="text-muted-foreground mb-2">5th Floor, Tower B Prestige Tech Park Marathahalli – Sarjapur Outer Ring Road Bengaluru, Karnataka 560103 India</p>
             <p className="text-sm text-muted-foreground mb-6">
               Office Hours: Monday - Friday, 9:00 AM - 6:00 PM IST
             </p>

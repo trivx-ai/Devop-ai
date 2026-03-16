@@ -49,7 +49,7 @@ export function generateOrganizationSchema() {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+91-8130923346',
+      telephone: '+91-7060603346',
       contactType: 'Customer Service',
       email: 'info@trivx.in',
     },

@@ -107,11 +107,15 @@ export function SiteFooter() {
                 </div>
                 <div className="flex items-center gap-3 hover:text-[var(--color-one)] transition-colors">
                   <Phone className="h-4 w-4" />
-                  <a href="tel:+918130923346">+91-8130923346</a>
+                  <a href="tel:+917060603346">+91-7060603346</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-4 w-4" />
-                  <span>Noida, Uttar Pradesh, India</span>
+                  <span>5th Floor, Tower B
+                    Prestige Tech Park
+                    Marathahalli – Sarjapur Outer Ring Road
+                    Bengaluru, Karnataka 560103
+                    India</span>
                 </div>
               </div>
             </div>
@@ -170,7 +174,7 @@ export function SiteFooter() {
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Trivx AI. All rights reserved.
-              <span className="ml-2">Built with ❤️ in Noida, India</span>
+              <span className="ml-2">Built with ❤️ in Bengaluru, India</span>
             </div>
 
             {/* Social Links */}
