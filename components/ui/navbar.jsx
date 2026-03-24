@@ -15,17 +15,27 @@ import {
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { toast } from "sonner";
 import WaitlistAuthPopup from "@/components/waitlist-auth-popup";
+import WaitlistSuccessPopup from "@/components/waitlist-success-popup";
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isJoined, setIsJoined] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isAuthRedirecting, setIsAuthRedirecting] = useState(false);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+  const [successUserName, setSuccessUserName] = useState(undefined);
   const { signIn } = useSignIn();
   const { isSignedIn } = useUser();
   const pendingAutoJoinRef = useRef(false);
   const router = useRouter();
   const pendingKey = "waitlist:pending:header";
+  const joinedKey = "waitlist:joined:header";
+
+  useEffect(() => {
+    const joined = window.localStorage.getItem(joinedKey) === "1";
+    setIsJoined(joined);
+  }, []);
 
   const navItems = [
     { name: "Home", link: "/" },
@@ -105,6 +115,8 @@ export default function SiteHeader() {
 
       if (response.status === 409) {
         toast.info(data.message ?? "This email is already on the waitlist.");
+        setIsJoined(true);
+        window.localStorage.setItem(joinedKey, "1");
         return;
       }
 
@@ -112,7 +124,10 @@ export default function SiteHeader() {
         throw new Error(data.message ?? "Unable to join waitlist.");
       }
 
-      toast.success(data.message ?? "You are now on the waitlist.");
+      setSuccessUserName(data.userName);
+      setIsJoined(true);
+      window.localStorage.setItem(joinedKey, "1");
+      setIsSuccessPopupOpen(true);
     } catch (error) {
       const message =
         error instanceof Error
@@ -180,8 +195,13 @@ export default function SiteHeader() {
   const renderDesktopWaitlistButton = () => {
     if (isSignedIn) {
       return (
-        <NavbarButton variant="primary" as="button" onClick={onJoinWaitlist}>
-          {isSubmitting ? "Joining..." : "Join Waitlist"}
+        <NavbarButton
+          variant="primary"
+          as="button"
+          onClick={onJoinWaitlist}
+          disabled={isSubmitting || isJoined}
+        >
+          {isSubmitting ? "Joining..." : isJoined ? "Joined" : "Join Waitlist"}
         </NavbarButton>
       );
     }
@@ -204,9 +224,10 @@ export default function SiteHeader() {
           variant="primary"
           as="button"
           onClick={onJoinWaitlist}
+          disabled={isSubmitting || isJoined}
           className="w-full justify-center py-3 text-base"
         >
-          {isSubmitting ? "Joining..." : "Join Waitlist"}
+          {isSubmitting ? "Joining..." : isJoined ? "Joined" : "Join Waitlist"}
         </NavbarButton>
       );
     }
@@ -305,6 +326,12 @@ export default function SiteHeader() {
           window.localStorage.removeItem(pendingKey);
         }}
         onContinue={onStartGoogleAuth}
+      />
+
+      <WaitlistSuccessPopup
+        open={isSuccessPopupOpen}
+        userName={successUserName}
+        onClose={() => setIsSuccessPopupOpen(false)}
       />
     </Navbar>
   );

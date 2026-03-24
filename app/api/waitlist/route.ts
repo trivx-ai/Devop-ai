@@ -68,13 +68,19 @@ export async function POST(request: Request) {
 
     if (!result.inserted) {
       return NextResponse.json(
-        { message: "This email is already on the waitlist." },
+        {
+          message: "This email is already on the waitlist.",
+          userName: (user.firstName ?? fullName) || undefined,
+        },
         { status: 409 }
       );
     }
 
     return NextResponse.json(
-      { message: "You have been added to the waitlist." },
+      {
+        message: "You have been added to the waitlist.",
+        userName: (user.firstName ?? fullName) || undefined,
+      },
       { status: 201 }
     );
   } catch (error) {

@@ -1,6 +1,7 @@
 "use client";
 
 import WaitlistAuthPopup from "@/components/waitlist-auth-popup";
+import WaitlistSuccessPopup from "@/components/waitlist-success-popup";
 import { Button } from "@/components/ui/button";
 import { useSignIn, useUser } from "@clerk/nextjs";
 import { ArrowRight } from "lucide-react";
@@ -21,10 +22,19 @@ export default function WaitlistTriggerButton({
   const { isSignedIn } = useUser();
   const { signIn } = useSignIn();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isJoined, setIsJoined] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isAuthRedirecting, setIsAuthRedirecting] = useState(false);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+  const [successUserName, setSuccessUserName] = useState<string | undefined>();
   const pendingAutoJoinRef = useRef(false);
   const pendingKey = `waitlist:pending:${source}`;
+  const joinedKey = `waitlist:joined:${source}`;
+
+  useEffect(() => {
+    const joined = window.localStorage.getItem(joinedKey) === "1";
+    setIsJoined(joined);
+  }, [joinedKey]);
 
   const onJoinWaitlist = async () => {
     if (isSubmitting) return;
@@ -40,10 +50,15 @@ export default function WaitlistTriggerButton({
         body: JSON.stringify({ source }),
       });
 
-      const data = (await response.json()) as { message?: string };
+      const data = (await response.json()) as {
+        message?: string;
+        userName?: string;
+      };
 
       if (response.status === 409) {
         toast.info(data.message ?? "This email is already on the waitlist.");
+        setIsJoined(true);
+        window.localStorage.setItem(joinedKey, "1");
         return;
       }
 
@@ -51,7 +66,10 @@ export default function WaitlistTriggerButton({
         throw new Error(data.message ?? "Unable to join waitlist.");
       }
 
-      toast.success(data.message ?? "You are now on the waitlist.");
+      setSuccessUserName(data.userName);
+      setIsJoined(true);
+      window.localStorage.setItem(joinedKey, "1");
+      setIsSuccessPopupOpen(true);
     } catch (error) {
       const message =
         error instanceof Error
@@ -115,6 +133,10 @@ export default function WaitlistTriggerButton({
       <Button
         type="button"
         onClick={() => {
+          if (isJoined) {
+            return;
+          }
+
           if (isSignedIn) {
             void onJoinWaitlist();
             return;
@@ -123,10 +145,10 @@ export default function WaitlistTriggerButton({
           window.localStorage.setItem(pendingKey, "1");
           setIsAuthPopupOpen(true);
         }}
-        disabled={isSubmitting}
+        disabled={isSubmitting || isJoined}
         className={className}
       >
-        {isSubmitting ? "Joining..." : label}
+        {isSubmitting ? "Joining..." : isJoined ? "Joined" : label}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
 
@@ -139,6 +161,12 @@ export default function WaitlistTriggerButton({
           window.localStorage.removeItem(pendingKey);
         }}
         onContinue={onStartGoogleAuth}
+      />
+
+      <WaitlistSuccessPopup
+        open={isSuccessPopupOpen}
+        userName={successUserName}
+        onClose={() => setIsSuccessPopupOpen(false)}
       />
     </>
   );

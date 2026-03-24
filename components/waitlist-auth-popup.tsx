@@ -55,6 +55,13 @@ export default function WaitlistAuthPopup({
           account details and keep you updated on launch access.
         </p>
 
+        {/* Required for Clerk Smart CAPTCHA in custom auth flows */}
+        <div
+          id="clerk-captcha"
+          className="relative mt-4 min-h-5 text-center"
+          aria-live="polite"
+        />
+
         <div className="relative mt-5 rounded-2xl border border-white/15 bg-black/30 p-4 text-sm text-white/80">
           <p>What happens next:</p>
           <ul className="mt-2 space-y-1.5 text-white/65">
