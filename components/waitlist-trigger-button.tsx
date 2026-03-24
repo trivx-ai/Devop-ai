@@ -73,11 +73,15 @@ export default function WaitlistTriggerButton({
     setIsAuthRedirecting(true);
 
     try {
-      await signIn.authenticateWithRedirect({
+      const result = await signIn.sso({
         strategy: "oauth_google",
-        redirectUrl: "/sso-callback",
-        redirectUrlComplete: window.location.href,
+        redirectUrl: window.location.href,
+        redirectCallbackUrl: "/sso-callback",
       });
+
+      if (result?.error) {
+        throw new Error(result.error.message || "Unable to start Google sign in.");
+      }
     } catch (error) {
       const message =
         error instanceof Error

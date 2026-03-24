@@ -133,9 +133,9 @@ export function FeaturesFlow({ className }: { className?: string }) {
             size="lg"
           >
             <Image
-              src={trivxLogo}
+              src="/trivx-white-logo.png"
               alt="Trivx"
-              className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12"
+              className="h-12 w-12 sm:h-8 sm:w-8 md:h-12 md:w-12"
               width={48}
               height={48}
             />
