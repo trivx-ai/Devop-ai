@@ -91,10 +91,13 @@ export default function WaitlistTriggerButton({
     setIsAuthRedirecting(true);
 
     try {
+      const callbackUrl = `${window.location.origin}/sso-callback`;
+      const returnUrl = window.location.href;
+
       const result = await signIn.sso({
         strategy: "oauth_google",
-        redirectUrl: window.location.href,
-        redirectCallbackUrl: "/sso-callback",
+        redirectUrl: callbackUrl,
+        redirectCallbackUrl: returnUrl,
       });
 
       if (result?.error) {
