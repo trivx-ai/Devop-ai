@@ -1,5 +1,6 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import TextShimmer from "@/components/magicui/text-shimmer";
+import WaitlistTriggerButton from "@/components/waitlist-trigger-button";
 import { Button } from "@/components/ui/button";
 import Particles from "@/components/magicui/particles";
 import { ArrowRightIcon, CodeIcon, RocketIcon } from "@radix-ui/react-icons";
@@ -114,7 +115,7 @@ export default function DocsPage() {
           </h1>
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Everything you need to master Trivx AI's autonomous DevOps platform.
+            Everything you need to master Trivx AI&apos;s autonomous DevOps platform.
             <br className="hidden md:block" /> From quick starts to AI-powered automation configurations.
           </p>
 
@@ -130,12 +131,13 @@ export default function DocsPage() {
             </div>
           </div>
 
-          <a href="https://app.trivx.in" target="_blank" rel="noopener noreferrer">
-            <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg text-primary-foreground opacity-0 ease-in-out [--animation-delay:800ms] bg-primary hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
-              <span>Get Started</span>
-              <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-            </Button>
-          </a>
+          <div className="translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:800ms] inline-flex">
+            <WaitlistTriggerButton
+              source="docs-page-cta"
+              label="Join Waitlist"
+              className="gap-1 rounded-lg text-primary-foreground bg-primary hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out"
+            />
+          </div>
         </section>
 
         {/* Featured Guides */}

@@ -4,12 +4,11 @@ import {
   LinkedInLogoIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import trivxLogo from "@/public/trivx.png";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import WaitlistForm from "@/components/waitlist-form";
 
 const footerNavs = [
   {
@@ -155,17 +154,12 @@ export function SiteFooter() {
               Get the latest AI-powered DevOps insights, automation tips, and
               platform updates delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 bg-card border-border text-foreground placeholder:text-muted-foreground"
-              />
-              <Button className="bg-primary text-primary-foreground border-none hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
-                Subscribe
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+            <WaitlistForm
+              source="footer-newsletter"
+              sectionId="waitlist"
+              className="max-w-md mx-auto justify-center items-center sm:justify-center"
+              buttonLabel="Join Waitlist"
+            />
           </div>
         </div>
 

@@ -2,7 +2,7 @@
 
 import { BorderBeam } from "@/components/magicui/border-beam";
 import TextShimmer from "@/components/magicui/text-shimmer";
-import { Button } from "@/components/ui/button";
+import WaitlistForm from "@/components/waitlist-form";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -34,12 +34,6 @@ export default function HeroSection() {
           complex DevOps into an intelligent, vibe-based experience.
         </span>
       </p>
-      <a href="https://app.trivx.in" target="_blank" rel="noopener noreferrer">
-        <Button className="translate-y-[-1rem] animate-fade-in gap-1 rounded-lg bg-primary text-primary-foreground opacity-0 ease-in-out [--animation-delay:600ms] hover:bg-white hover:text-[#f2613f] transition-all duration-300">
-          <span>Start Automating DevOps for Free</span>
-          <ArrowRightIcon className="ml-1 size-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-        </Button>
-      </a>
       <div
         ref={ref}
         className="relative mt-[8rem] animate-fade-up opacity-0 [--animation-delay:400ms] [perspective:2000px] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]"

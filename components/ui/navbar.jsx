@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useSignIn, useUser } from "@clerk/nextjs";
 import {
   Navbar,
   NavBody,
@@ -8,15 +9,23 @@ import {
   MobileNav,
   MobileNavHeader,
   MobileNavToggle,
-  MobileNavMenu,
   NavbarLogo,
   NavbarButton,
 } from "@/components/ui/resizable-navbar";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { toast } from "sonner";
+import WaitlistAuthPopup from "@/components/waitlist-auth-popup";
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
+  const [isAuthRedirecting, setIsAuthRedirecting] = useState(false);
+  const { signIn } = useSignIn();
+  const { isSignedIn } = useUser();
+  const pendingAutoJoinRef = useRef(false);
   const router = useRouter();
+  const pendingKey = "waitlist:pending:header";
 
   const navItems = [
     { name: "Home", link: "/" },
@@ -77,14 +86,137 @@ export default function SiteHeader() {
     }
   };
 
-  const handleLogin = () => {
+  const onJoinWaitlist = async () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
     setIsMobileMenuOpen(false);
-    window.open("https://app.trivx.in", "_blank");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ source: "header" }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 409) {
+        toast.info(data.message ?? "This email is already on the waitlist.");
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(data.message ?? "Unable to join waitlist.");
+      }
+
+      toast.success(data.message ?? "You are now on the waitlist.");
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to join waitlist right now. Please try again.";
+
+      toast.error(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleSignup = () => {
+  const handleSignedOutJoinWaitlist = () => {
     setIsMobileMenuOpen(false);
-    window.open("https://app.trivx.in", "_blank");
+    window.localStorage.setItem(pendingKey, "1");
+    setIsAuthPopupOpen(true);
+  };
+
+  const onStartGoogleAuth = async () => {
+    if (!signIn) {
+      toast.error("Authentication is still loading. Please try again.");
+      return;
+    }
+
+    setIsAuthRedirecting(true);
+
+    try {
+      await signIn.authenticateWithRedirect({
+        strategy: "oauth_google",
+        redirectUrl: "/sso-callback",
+        redirectUrlComplete: window.location.href,
+      });
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to start Google sign in. Please try again.";
+
+      toast.error(message);
+      setIsAuthRedirecting(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!isSignedIn || pendingAutoJoinRef.current) {
+      return;
+    }
+
+    const pendingJoin = window.localStorage.getItem(pendingKey);
+    if (!pendingJoin) {
+      return;
+    }
+
+    pendingAutoJoinRef.current = true;
+    void onJoinWaitlist().finally(() => {
+      window.localStorage.removeItem(pendingKey);
+      pendingAutoJoinRef.current = false;
+    });
+  }, [isSignedIn]);
+
+  const renderDesktopWaitlistButton = () => {
+    if (isSignedIn) {
+      return (
+        <NavbarButton variant="primary" as="button" onClick={onJoinWaitlist}>
+          {isSubmitting ? "Joining..." : "Join Waitlist"}
+        </NavbarButton>
+      );
+    }
+
+    return (
+      <NavbarButton
+        variant="primary"
+        as="button"
+        onClick={handleSignedOutJoinWaitlist}
+      >
+        Join Waitlist
+      </NavbarButton>
+    );
+  };
+
+  const renderMobileWaitlistButton = () => {
+    if (isSignedIn) {
+      return (
+        <NavbarButton
+          variant="primary"
+          as="button"
+          onClick={onJoinWaitlist}
+          className="w-full justify-center py-3 text-base"
+        >
+          {isSubmitting ? "Joining..." : "Join Waitlist"}
+        </NavbarButton>
+      );
+    }
+
+    return (
+      <NavbarButton
+        variant="primary"
+        as="button"
+        onClick={handleSignedOutJoinWaitlist}
+        className="w-full justify-center py-3 text-base"
+      >
+        Join Waitlist
+      </NavbarButton>
+    );
   };
 
   const closeMobileMenu = () => {
@@ -103,9 +235,7 @@ export default function SiteHeader() {
         <NavItems items={navItems} />
         <div className="flex items-center gap-3 lg:gap-4">
           <ThemeToggle />
-          <NavbarButton variant="primary" as="button" onClick={handleSignup}>
-            Get Started
-          </NavbarButton>
+          {renderDesktopWaitlistButton()}
         </div>
       </NavBody>
 
@@ -153,22 +283,7 @@ export default function SiteHeader() {
                       </span>
                       <ThemeToggle />
                     </div>
-                    <NavbarButton
-                      variant="secondary"
-                      as="button"
-                      onClick={handleLogin}
-                      className="w-full justify-center py-3 text-base"
-                    >
-                      Login
-                    </NavbarButton>
-                    <NavbarButton
-                      variant="primary"
-                      as="button"
-                      onClick={handleSignup}
-                      className="w-full justify-center py-3 text-base"
-                    >
-                      Get Started
-                    </NavbarButton>
+                    {renderMobileWaitlistButton()}
                   </div>
                 </div>
               </div>
@@ -176,6 +291,17 @@ export default function SiteHeader() {
           </>
         )}
       </MobileNav>
+
+      <WaitlistAuthPopup
+        open={isAuthPopupOpen}
+        loading={isAuthRedirecting}
+        onClose={() => {
+          if (isAuthRedirecting) return;
+          setIsAuthPopupOpen(false);
+          window.localStorage.removeItem(pendingKey);
+        }}
+        onContinue={onStartGoogleAuth}
+      />
     </Navbar>
   );
 }

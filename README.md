@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Waitlist Setup (Supabase Postgres)
+
+1. Create an environment file from `.env.example` and set `SUPABASE_DB_URL`.
+2. Run the SQL in `supabase/waitlist.sql` in the Supabase SQL Editor.
+3. Start the app and use the waitlist CTA to sign in with Clerk (Google auth), then join waitlist.
+
+The backend endpoint is `POST /api/waitlist` and stores emails in `waitlist_subscribers`.
+
+## Clerk Setup (App Router)
+
+- Clerk is integrated in keyless mode by default.
+- Middleware is configured in `proxy.ts` with `clerkMiddleware()`.
+- `ClerkProvider` is mounted in `app/layout.tsx`.
+- Waitlist API uses `auth()` from `@clerk/nextjs/server` and reads the signed-in user's email.

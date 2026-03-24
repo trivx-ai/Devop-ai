@@ -1,5 +1,6 @@
 import { BorderBeam } from "@/components/magicui/border-beam";
 import TextShimmer from "@/components/magicui/text-shimmer";
+import WaitlistTriggerButton from "@/components/waitlist-trigger-button";
 import { Button } from "@/components/ui/button";
 import Particles from "@/components/magicui/particles";
 import { ArrowRightIcon, CodeIcon, CopyIcon } from "@radix-ui/react-icons";
@@ -247,12 +248,11 @@ export default function APIPage() {
               <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
                 View Full Docs
               </Button>
-              <a href="https://app.trivx.in" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out">
-                  Get Started Free
-                  <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
+              <WaitlistTriggerButton
+                source="api-page-cta"
+                label="Join Waitlist"
+                className="bg-primary text-primary-foreground hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out"
+              />
             </div>
           </div>
         </section>

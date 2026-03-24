@@ -1,6 +1,7 @@
 "use client";
 
 import { Switch } from "@/components/ui/switch";
+import WaitlistTriggerButton from "@/components/waitlist-trigger-button";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { motion, useInView } from "framer-motion";
@@ -198,17 +199,16 @@ export default function PricingSection() {
                 </motion.div>
 
                 {/* CTA */}
-                <button
-                  onClick={() => window.open("https://app.trivx.in", "_blank")}
+                <WaitlistTriggerButton
+                  source={`pricing-${price.id}`}
+                  label="Join Waitlist"
                   className={cn(
                     "w-full py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 mb-6",
                     price.isMostPopular
                       ? "glow-button text-white"
                       : "bg-white/5 text-white/70 border border-white/10 hover:border-[#f2613f] hover:text-white"
                   )}
-                >
-                  Get Started
-                </button>
+                />
 
                 {/* Features */}
                 <div className="border-t border-white/5 pt-5">

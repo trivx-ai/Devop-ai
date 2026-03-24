@@ -1,12 +1,11 @@
 "use client";
 
 import Marquee from "@/components/magicui/marquee";
-import { buttonVariants } from "@/components/ui/button";
+import WaitlistForm from "@/components/waitlist-form";
 import { cn } from "@/lib/utils";
 import { motion, useAnimation, useInView } from "framer-motion";
 import {
   BarChart,
-  ChevronRight,
   Cloud,
   Container,
   GitBranch,
@@ -14,7 +13,6 @@ import {
   Server,
   Settings,
 } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 const tiles = [
@@ -180,25 +178,14 @@ export default function CallToActionSection() {
                   Ready to Transform Your DevOps?
                 </h1>
                 <p className="mt-2 text-gray-400 max-w-md">
-                  Join developers who automate deployments with AI. Start
-                  building with Trivx AI today — free trial, no credit card
-                  required.
+                  Join developers who automate deployments with AI. Get early
+                  access and launch updates directly in your inbox.
                 </p>
-                <Link
-                  href="https://app.trivx.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({
-                      size: "lg",
-                      variant: "outline",
-                    }),
-                    "group mt-4 rounded-[2rem] px-6 bg-primary text-primary-foreground border-none hover:bg-white hover:text-[#f2613f] transition-all duration-300 ease-in-out"
-                  )}
-                >
-                  Start Free Trial
-                  <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-                </Link>
+                <WaitlistForm
+                  source="cta-section"
+                  className="mt-4"
+                  buttonLabel="Join Waitlist"
+                />
               </div>
             </div>
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent via-black/50 to-black to-70%" />
