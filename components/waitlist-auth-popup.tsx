@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Sparkles, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type WaitlistAuthPopupProps = {
   open: boolean;
@@ -16,9 +18,15 @@ export default function WaitlistAuthPopup({
   onContinue,
   loading = false,
 }: WaitlistAuthPopupProps) {
-  if (!open) return null;
+  const [isMounted, setIsMounted] = useState(false);
 
-  return (
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!open || !isMounted) return null;
+
+  return createPortal(
     <div className="fixed inset-0 z-[140] flex items-center justify-center p-4">
       <button
         type="button"
@@ -91,6 +99,7 @@ export default function WaitlistAuthPopup({
           </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type WaitlistSuccessPopupProps = {
   open: boolean;
@@ -29,11 +31,17 @@ export default function WaitlistSuccessPopup({
   userName,
   onClose,
 }: WaitlistSuccessPopupProps) {
-  if (!open) return null;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!open || !isMounted) return null;
 
   const displayName = userName?.trim() || "there";
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
       <button
         type="button"
@@ -105,6 +113,7 @@ export default function WaitlistSuccessPopup({
           }
         }
       `}</style>
-    </div>
+    </div>,
+    document.body
   );
 }

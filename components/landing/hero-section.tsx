@@ -34,6 +34,15 @@ export default function HeroSection() {
           complex DevOps into an intelligent, vibe-based experience.
         </span>
       </p>
+
+      <div className="mx-auto mb-10 flex justify-center translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:500ms]">
+        <WaitlistForm
+          source="hero-section"
+          buttonLabel="Join Waitlist"
+          className="w-auto max-w-none"
+        />
+      </div>
+
       <div
         ref={ref}
         className="relative mt-[8rem] animate-fade-up opacity-0 [--animation-delay:400ms] [perspective:2000px] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]"
