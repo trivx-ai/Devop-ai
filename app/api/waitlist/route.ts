@@ -3,6 +3,8 @@ import { WaitlistDbError, upsertWaitlistEmail } from "@/lib/waitlist-db";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+export const runtime = "nodejs";
+
 const payloadSchema = z.object({
   source: z.string().trim().min(1).max(100).optional(),
 });
@@ -100,6 +102,10 @@ export async function POST(request: Request) {
     }
 
     const details = error instanceof Error ? error.message : "Unknown error";
+    const message =
+      details && details !== "Unknown error"
+        ? details
+        : "Failed to add you to the waitlist.";
 
     console.error("[waitlist] failed to add subscriber", {
       details,
@@ -107,7 +113,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "Failed to add you to the waitlist.",
+        message,
         details,
       },
       { status: 500 }

@@ -101,7 +101,7 @@ export const upsertWaitlistEmail = async ({
       ]
     );
   } catch (error) {
-    const dbError = error as { code?: string };
+    const dbError = error as { code?: string; message?: string };
 
     if (dbError.code === "42P01") {
       throw new WaitlistDbError(
@@ -112,6 +112,12 @@ export const upsertWaitlistEmail = async ({
     if (dbError.code === "42501") {
       throw new WaitlistDbError(
         "Database user lacks permission for waitlist writes. Grant INSERT on public.waitlist_subscribers."
+      );
+    }
+
+    if (dbError.code === "ENOTFOUND" || dbError.message?.includes("ENOTFOUND")) {
+      throw new WaitlistDbError(
+        "Cannot resolve the Supabase database host. Verify SUPABASE_DB_URL in production and paste the exact connection string from Supabase project settings."
       );
     }
 

@@ -5,7 +5,7 @@ import WaitlistSuccessPopup from "@/components/waitlist-success-popup";
 import { Button } from "@/components/ui/button";
 import { useSignIn, useUser } from "@clerk/nextjs";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 type WaitlistTriggerButtonProps = {
@@ -36,7 +36,7 @@ export default function WaitlistTriggerButton({
     setIsJoined(joined);
   }, [joinedKey]);
 
-  const onJoinWaitlist = async () => {
+  const onJoinWaitlist = useCallback(async () => {
     if (isSubmitting) return;
 
     setIsSubmitting(true);
@@ -50,11 +50,25 @@ export default function WaitlistTriggerButton({
         body: JSON.stringify({ source }),
       });
 
-      const data = (await response.json()) as {
+      let data: {
         message?: string;
         userName?: string;
         details?: string;
-      };
+      } = {};
+
+      const contentType = response.headers.get("content-type") ?? "";
+      if (contentType.includes("application/json")) {
+        data = (await response.json()) as {
+          message?: string;
+          userName?: string;
+          details?: string;
+        };
+      } else {
+        const rawText = await response.text();
+        data = {
+          details: rawText.slice(0, 240) || "Non-JSON response from /api/waitlist",
+        };
+      }
 
       if (response.status === 409) {
         toast.info(data.message ?? "This email is already on the waitlist.");
@@ -65,7 +79,7 @@ export default function WaitlistTriggerButton({
 
       if (!response.ok) {
         throw new Error(
-          data.message ?? data.details ?? "Unable to join waitlist."
+          data.details ?? data.message ?? "Unable to join waitlist."
         );
       }
 
@@ -83,7 +97,7 @@ export default function WaitlistTriggerButton({
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [isSubmitting, source, joinedKey]);
 
   const onStartGoogleAuth = async () => {
     if (!signIn) {
@@ -132,7 +146,7 @@ export default function WaitlistTriggerButton({
       window.localStorage.removeItem(pendingKey);
       pendingAutoJoinRef.current = false;
     });
-  }, [isSignedIn, pendingKey]);
+  }, [isSignedIn, pendingKey, onJoinWaitlist]);
 
   return (
     <>
