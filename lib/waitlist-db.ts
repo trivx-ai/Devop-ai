@@ -17,6 +17,13 @@ type WaitlistInsertInput = {
   clerkPayload?: unknown;
 };
 
+export class WaitlistDbError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "WaitlistDbError";
+  }
+}
+
 const getConnectionString = () => {
   return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL;
 };
@@ -29,7 +36,9 @@ const getPool = () => {
   const connectionString = getConnectionString();
 
   if (!connectionString) {
-    throw new Error("Missing SUPABASE_DB_URL or DATABASE_URL environment variable.");
+    throw new WaitlistDbError(
+      "Waitlist database is not configured. Set SUPABASE_DB_URL (or DATABASE_URL) in production environment variables."
+    );
   }
 
   if (!global.__waitlistPool) {
@@ -57,66 +66,57 @@ export const upsertWaitlistEmail = async ({
   const pool = getPool();
   const normalizedEmail = email.trim().toLowerCase();
 
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS waitlist_subscribers (
-      id BIGSERIAL PRIMARY KEY,
-      email TEXT NOT NULL UNIQUE,
-      clerk_user_id TEXT,
-      full_name TEXT,
-      first_name TEXT,
-      last_name TEXT,
-      username TEXT,
-      image_url TEXT,
-      phone_number TEXT,
-      clerk_payload JSONB,
-      source TEXT,
-      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-    )
-  `);
+  let result;
 
-  await pool.query(`
-    ALTER TABLE waitlist_subscribers
-    ADD COLUMN IF NOT EXISTS clerk_user_id TEXT,
-    ADD COLUMN IF NOT EXISTS full_name TEXT,
-    ADD COLUMN IF NOT EXISTS first_name TEXT,
-    ADD COLUMN IF NOT EXISTS last_name TEXT,
-    ADD COLUMN IF NOT EXISTS username TEXT,
-    ADD COLUMN IF NOT EXISTS image_url TEXT,
-    ADD COLUMN IF NOT EXISTS phone_number TEXT,
-    ADD COLUMN IF NOT EXISTS clerk_payload JSONB
-  `);
+  try {
+    result = await pool.query<{ id: string }>(
+      `
+        INSERT INTO public.waitlist_subscribers (
+          email,
+          clerk_user_id,
+          full_name,
+          first_name,
+          last_name,
+          username,
+          image_url,
+          phone_number,
+          clerk_payload,
+          source
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, $10)
+        ON CONFLICT (email) DO NOTHING
+        RETURNING id
+      `,
+      [
+        normalizedEmail,
+        clerkUserId ?? null,
+        fullName ?? null,
+        firstName ?? null,
+        lastName ?? null,
+        username ?? null,
+        imageUrl ?? null,
+        phoneNumber ?? null,
+        clerkPayload ? JSON.stringify(clerkPayload) : null,
+        source ?? null,
+      ]
+    );
+  } catch (error) {
+    const dbError = error as { code?: string };
 
-  const result = await pool.query<{ id: string }>(
-    `
-      INSERT INTO waitlist_subscribers (
-        email,
-        clerk_user_id,
-        full_name,
-        first_name,
-        last_name,
-        username,
-        image_url,
-        phone_number,
-        clerk_payload,
-        source
-      )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, $10)
-      ON CONFLICT (email) DO NOTHING
-      RETURNING id
-    `,
-    [
-      normalizedEmail,
-      clerkUserId ?? null,
-      fullName ?? null,
-      firstName ?? null,
-      lastName ?? null,
-      username ?? null,
-      imageUrl ?? null,
-      phoneNumber ?? null,
-      clerkPayload ? JSON.stringify(clerkPayload) : null,
-      source ?? null,
-    ]
-  );
+    if (dbError.code === "42P01") {
+      throw new WaitlistDbError(
+        "Waitlist table is missing. Run supabase/waitlist.sql in your production database."
+      );
+    }
+
+    if (dbError.code === "42501") {
+      throw new WaitlistDbError(
+        "Database user lacks permission for waitlist writes. Grant INSERT on public.waitlist_subscribers."
+      );
+    }
+
+    throw error;
+  }
 
   return {
     inserted: result.rowCount === 1,

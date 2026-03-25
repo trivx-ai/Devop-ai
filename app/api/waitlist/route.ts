@@ -1,5 +1,5 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { upsertWaitlistEmail } from "@/lib/waitlist-db";
+import { WaitlistDbError, upsertWaitlistEmail } from "@/lib/waitlist-db";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -90,7 +90,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ message }, { status: 400 });
     }
 
+    if (error instanceof WaitlistDbError) {
+      return NextResponse.json(
+        {
+          message: error.message,
+        },
+        { status: 500 }
+      );
+    }
+
     const details = error instanceof Error ? error.message : "Unknown error";
+
+    console.error("[waitlist] failed to add subscriber", {
+      details,
+    });
 
     return NextResponse.json(
       {

@@ -53,6 +53,7 @@ export default function WaitlistTriggerButton({
       const data = (await response.json()) as {
         message?: string;
         userName?: string;
+        details?: string;
       };
 
       if (response.status === 409) {
@@ -63,7 +64,9 @@ export default function WaitlistTriggerButton({
       }
 
       if (!response.ok) {
-        throw new Error(data.message ?? "Unable to join waitlist.");
+        throw new Error(
+          data.message ?? data.details ?? "Unable to join waitlist."
+        );
       }
 
       setSuccessUserName(data.userName);
