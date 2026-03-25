@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useSignIn, useUser } from "@clerk/nextjs";
 import {
@@ -19,6 +20,7 @@ import WaitlistSuccessPopup from "@/components/waitlist-success-popup";
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
@@ -47,6 +49,10 @@ export default function SiteHeader() {
 
   // Close mobile menu on escape key
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
         setIsMobileMenuOpen(false);
@@ -61,6 +67,32 @@ export default function SiteHeader() {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when switching to desktop width.
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -273,49 +305,51 @@ export default function SiteHeader() {
             onClick={toggleMobileMenu}
           />
         </MobileNavHeader>
+      </MobileNav>
 
-        {/* Custom Mobile Menu with backdrop handling */}
-        {isMobileMenuOpen && (
+      {/* Mobile menu rendered in a portal to avoid stacking/transform issues */}
+      {isMounted &&
+        isMobileMenuOpen &&
+        createPortal(
           <>
-            {/* Backdrop */}
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              className="fixed inset-0 z-[210] bg-black/70 backdrop-blur-md lg:hidden"
               onClick={closeMobileMenu}
             />
 
-            {/* Menu */}
-            <div className="absolute top-full left-0 right-0 bg-white/95 dark:bg-black/95 border-b border-border backdrop-blur-md shadow-lg z-50 animate-in slide-in-from-top-2 duration-200">
-              <div className="container mx-auto px-4 sm:px-6 py-6 space-y-6 max-h-[80vh] overflow-y-auto">
-                {/* Mobile Navigation Links */}
-                <div className="space-y-4">
-                  {navItems.map((item, idx) => (
-                    <button
-                      key={`mobile-link-${idx}`}
-                      onClick={() => handleNavigation(item.link)}
-                      className="block w-full text-left text-lg font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 py-3 px-4 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200"
-                    >
-                      {item.name}
-                    </button>
-                  ))}
-                </div>
+            <aside className="fixed left-0 top-0 z-[220] h-full w-[84vw] max-w-[22rem] overflow-hidden border-r border-white/10 bg-[#090909]/95 shadow-2xl backdrop-blur-xl animate-in slide-in-from-left-4 duration-200 lg:hidden">
+              <div className="flex h-full flex-col">
 
-                {/* Mobile Action Buttons */}
-                <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
+                <div className="flex-1 overflow-y-auto px-4 py-5 mt-12">
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between px-4 py-3">
-                      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                        Theme
-                      </span>
-                      <ThemeToggle />
+                    {navItems.map((item, idx) => (
+                      <button
+                        key={`mobile-link-${idx}`}
+                        onClick={() => handleNavigation(item.link)}
+                        className="block w-full rounded-lg px-4 py-3 text-left text-2xl font-semibold text-white/85 transition-all duration-200 hover:bg-white/10 hover:text-white"
+                      >
+                        {item.name}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 border-t border-white/10 pt-6">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between px-4 py-3">
+                        <span className="text-sm font-medium text-white/75">
+                          Theme
+                        </span>
+                        <ThemeToggle />
+                      </div>
+                      {renderMobileWaitlistButton()}
                     </div>
-                    {renderMobileWaitlistButton()}
                   </div>
                 </div>
               </div>
-            </div>
-          </>
+            </aside>
+          </>,
+          document.body
         )}
-      </MobileNav>
 
       <WaitlistAuthPopup
         open={isAuthPopupOpen}
