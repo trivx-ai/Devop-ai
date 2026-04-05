@@ -3,7 +3,7 @@
 import WaitlistAuthPopup from "@/components/waitlist-auth-popup";
 import WaitlistSuccessPopup from "@/components/waitlist-success-popup";
 import { Button } from "@/components/ui/button";
-import { useSignIn, useUser } from "@clerk/nextjs";
+import { useAuthSession } from "@/lib/use-auth-session";
 import { ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -19,8 +19,7 @@ export default function WaitlistTriggerButton({
   label = "Join Waitlist",
   className,
 }: WaitlistTriggerButtonProps) {
-  const { isSignedIn } = useUser();
-  const { signIn } = useSignIn();
+  const { isSignedIn, isLoading: isAuthLoading } = useAuthSession();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
@@ -99,36 +98,12 @@ export default function WaitlistTriggerButton({
     }
   }, [isSubmitting, source, joinedKey]);
 
-  const onStartGoogleAuth = async () => {
-    if (!signIn) {
-      toast.error("Authentication is still loading. Please try again.");
-      return;
-    }
-
+  const onStartGoogleAuth = () => {
     setIsAuthRedirecting(true);
 
-    try {
-      const callbackUrl = `${window.location.origin}/sso-callback`;
-      const returnUrl = window.location.href;
-
-      const result = await signIn.sso({
-        strategy: "oauth_google",
-        redirectUrl: callbackUrl,
-        redirectCallbackUrl: returnUrl,
-      });
-
-      if (result?.error) {
-        throw new Error(result.error.message || "Unable to start Google sign in.");
-      }
-    } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : "Unable to start Google sign in. Please try again.";
-
-      toast.error(message);
-      setIsAuthRedirecting(false);
-    }
+    const returnTo = window.location.href;
+    const authUrl = `/api/auth/google/start?returnTo=${encodeURIComponent(returnTo)}`;
+    window.location.assign(authUrl);
   };
 
   useEffect(() => {
@@ -157,6 +132,11 @@ export default function WaitlistTriggerButton({
             return;
           }
 
+          if (isAuthLoading) {
+            toast.info("Checking your sign-in session. Please wait a moment.");
+            return;
+          }
+
           if (isSignedIn) {
             void onJoinWaitlist();
             return;
@@ -165,10 +145,16 @@ export default function WaitlistTriggerButton({
           window.localStorage.setItem(pendingKey, "1");
           setIsAuthPopupOpen(true);
         }}
-        disabled={isSubmitting || isJoined}
+        disabled={isSubmitting || isJoined || isAuthLoading}
         className={className}
       >
-        {isSubmitting ? "Joining..." : isJoined ? "Joined" : label}
+        {isSubmitting
+          ? "Joining..."
+          : isJoined
+            ? "Joined"
+            : isAuthLoading
+              ? "Checking..."
+              : label}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
 

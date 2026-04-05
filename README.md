@@ -38,14 +38,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Waitlist Setup (Supabase Postgres)
 
 1. Create an environment file from `.env.example` and set `SUPABASE_DB_URL`.
-2. Run the SQL in `supabase/waitlist.sql` in the Supabase SQL Editor.
-3. Start the app and use the waitlist CTA to sign in with Clerk (Google auth), then join waitlist.
+2. Configure Google OAuth credentials and callback URI in Google Cloud Console.
+3. Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `AUTH_SESSION_SECRET`.
+4. Optionally set `GOOGLE_OAUTH_REDIRECT_URI` if your callback URI differs from `/api/auth/google/callback`.
+5. Run the SQL in `supabase/waitlist.sql` in the Supabase SQL Editor.
+6. Start the app and use the waitlist CTA to sign in with raw Google OAuth, then join the waitlist.
 
 The backend endpoint is `POST /api/waitlist` and stores emails in `waitlist_subscribers`.
 
-## Clerk Setup (App Router)
+Auth endpoints:
 
-- Clerk is integrated in keyless mode by default.
-- Middleware is configured in `proxy.ts` with `clerkMiddleware()`.
-- `ClerkProvider` is mounted in `app/layout.tsx`.
-- Waitlist API uses `auth()` from `@clerk/nextjs/server` and reads the signed-in user's email.
+- `GET /api/auth/google/start` starts OAuth with state + PKCE.
+- `GET /api/auth/google/callback` completes OAuth and sets the signed session cookie.
+- `GET /api/auth/session` returns current auth session for client UI checks.
+- `POST /api/auth/logout` clears the session cookie.

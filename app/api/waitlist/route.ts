@@ -1,4 +1,4 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { getSessionFromRequest } from "@/lib/auth-session";
 import { WaitlistDbError, upsertWaitlistEmail } from "@/lib/waitlist-db";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -11,8 +11,8 @@ const payloadSchema = z.object({
 
 export async function POST(request: Request) {
   try {
-    const { userId } = await auth();
-    if (!userId) {
+    const session = getSessionFromRequest(request);
+    if (!session) {
       return NextResponse.json(
         { message: "Please sign in with Google to join the waitlist." },
         { status: 401 }
@@ -21,58 +21,45 @@ export async function POST(request: Request) {
 
     const body = await request.json().catch(() => ({}));
     const payload = payloadSchema.parse(body);
-    const user = await currentUser();
-    const email =
-      user?.primaryEmailAddress?.emailAddress ??
-      user?.emailAddresses?.[0]?.emailAddress;
+    const email = session.email?.trim().toLowerCase();
 
-    if (!user || !email) {
+    if (!email) {
       return NextResponse.json(
-        { message: "No email address found in your Clerk account." },
+        { message: "No email address found in your Google account." },
         { status: 400 }
       );
     }
 
-    const fullName = [user.firstName, user.lastName]
-      .filter(Boolean)
-      .join(" ")
-      .trim();
+    const fullName = session.name?.trim() ?? "";
 
-    const clerkPayload = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      username: user.username,
-      imageUrl: user.imageUrl,
-      primaryEmail: email,
-      emailAddresses: user.emailAddresses.map((item) => item.emailAddress),
-      phoneNumbers: user.phoneNumbers.map((item) => item.phoneNumber),
-      createdAt: user.createdAt,
-      lastSignInAt: user.lastSignInAt,
-      externalAccounts: user.externalAccounts.map((item) => ({
-        provider: item.provider,
-        externalId: item.externalId,
-      })),
+    const googlePayload = {
+      provider: "google",
+      sub: session.sub,
+      email,
+      name: session.name,
+      givenName: session.givenName,
+      familyName: session.familyName,
+      picture: session.picture,
     };
+
+    const userName = session.givenName ?? (fullName || undefined);
 
     const result = await upsertWaitlistEmail({
       email,
       source: payload.source,
-      clerkUserId: user.id,
+      googleUserId: session.sub,
       fullName: fullName || undefined,
-      firstName: user.firstName ?? undefined,
-      lastName: user.lastName ?? undefined,
-      username: user.username ?? undefined,
-      imageUrl: user.imageUrl ?? undefined,
-      phoneNumber: user.phoneNumbers[0]?.phoneNumber,
-      clerkPayload,
+      firstName: session.givenName ?? undefined,
+      lastName: session.familyName ?? undefined,
+      imageUrl: session.picture ?? undefined,
+      googlePayload,
     });
 
     if (!result.inserted) {
       return NextResponse.json(
         {
           message: "This email is already on the waitlist.",
-          userName: (user.firstName ?? fullName) || undefined,
+          userName,
         },
         { status: 409 }
       );
@@ -81,7 +68,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message: "You have been added to the waitlist.",
-        userName: (user.firstName ?? fullName) || undefined,
+        userName,
       },
       { status: 201 }
     );

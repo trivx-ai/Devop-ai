@@ -7,14 +7,14 @@ declare global {
 type WaitlistInsertInput = {
   email: string;
   source?: string;
-  clerkUserId?: string;
+  googleUserId?: string;
   fullName?: string;
   firstName?: string;
   lastName?: string;
   username?: string;
   imageUrl?: string;
   phoneNumber?: string;
-  clerkPayload?: unknown;
+  googlePayload?: unknown;
 };
 
 export class WaitlistDbError extends Error {
@@ -54,14 +54,14 @@ const getPool = () => {
 export const upsertWaitlistEmail = async ({
   email,
   source,
-  clerkUserId,
+  googleUserId,
   fullName,
   firstName,
   lastName,
   username,
   imageUrl,
   phoneNumber,
-  clerkPayload,
+  googlePayload,
 }: WaitlistInsertInput) => {
   const pool = getPool();
   const normalizedEmail = email.trim().toLowerCase();
@@ -73,14 +73,14 @@ export const upsertWaitlistEmail = async ({
       `
         INSERT INTO public.waitlist_subscribers (
           email,
-          clerk_user_id,
+          google_user_id,
           full_name,
           first_name,
           last_name,
           username,
           image_url,
           phone_number,
-          clerk_payload,
+          google_payload,
           source
         )
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, $10)
@@ -89,14 +89,14 @@ export const upsertWaitlistEmail = async ({
       `,
       [
         normalizedEmail,
-        clerkUserId ?? null,
+        googleUserId ?? null,
         fullName ?? null,
         firstName ?? null,
         lastName ?? null,
         username ?? null,
         imageUrl ?? null,
         phoneNumber ?? null,
-        clerkPayload ? JSON.stringify(clerkPayload) : null,
+        googlePayload ? JSON.stringify(googlePayload) : null,
         source ?? null,
       ]
     );
@@ -112,6 +112,12 @@ export const upsertWaitlistEmail = async ({
     if (dbError.code === "42501") {
       throw new WaitlistDbError(
         "Database user lacks permission for waitlist writes. Grant INSERT on public.waitlist_subscribers."
+      );
+    }
+
+    if (dbError.code === "42703") {
+      throw new WaitlistDbError(
+        "Waitlist table schema is outdated. Re-run supabase/waitlist.sql to add Google OAuth columns."
       );
     }
 

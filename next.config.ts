@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* SEO & Performance Optimizations */
 
+  experimental: {
+    devtoolSegmentExplorer: false,
+  },
+
   // Enable React strict mode for better development experience
   reactStrictMode: true,
 

@@ -1,4 +1,3 @@
-import { AuthenticateWithRedirectCallback } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function SSOCallbackPage() {
@@ -10,26 +9,32 @@ export default function SSOCallbackPage() {
         <section className="w-full rounded-3xl border border-white/15 bg-white/5 p-8 shadow-[0_24px_100px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-10">
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/30 px-4 py-2 text-sm text-white/80">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[#f2613f]" />
-            Secure Google sign-in in progress
+            Google OAuth callback page
           </div>
 
           <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Finishing your sign-in
+            Continue Google sign-in
           </h1>
           <p className="mt-3 text-base leading-relaxed text-white/75 sm:text-lg">
-            We are verifying your account and sending you back to where you left off.
-            This usually takes a few seconds.
+            This legacy callback route is no longer used directly. Continue to
+            start Google OAuth and return to the homepage.
           </p>
 
           <div className="mt-8 flex items-center gap-3 rounded-2xl border border-white/15 bg-black/35 p-4 text-sm text-white/80 sm:text-base">
             <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/25 border-t-[#f2613f]" />
-            Do not close this tab while we complete authentication.
+            You can safely proceed using the button below.
           </div>
 
           <p className="mt-6 text-sm text-white/60">
-            If this takes longer than 20 seconds, you can safely try again.
+            If sign-in was interrupted, restart authentication.
           </p>
-          <div className="mt-3">
+          <div className="mt-3 flex flex-wrap gap-3">
+            <Link
+              href="/api/auth/google/start?returnTo=/"
+              className="inline-flex items-center rounded-xl border border-[#f2613f]/40 bg-[#f2613f]/15 px-4 py-2 text-sm text-[#ffd8cd] transition-colors hover:bg-[#f2613f]/30"
+            >
+              Continue with Google
+            </Link>
             <Link
               href="/"
               className="inline-flex items-center rounded-xl border border-white/20 px-4 py-2 text-sm text-white/85 transition-colors hover:bg-white/10 hover:text-white"
@@ -39,8 +44,6 @@ export default function SSOCallbackPage() {
           </div>
         </section>
       </div>
-
-      <AuthenticateWithRedirectCallback />
     </main>
   );
 }

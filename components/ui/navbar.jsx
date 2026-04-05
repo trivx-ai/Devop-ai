@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
-import { useSignIn, useUser } from "@clerk/nextjs";
+import { useAuthSession } from "@/lib/use-auth-session";
 import {
   Navbar,
   NavBody,
@@ -27,8 +27,7 @@ export default function SiteHeader() {
   const [isAuthRedirecting, setIsAuthRedirecting] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [successUserName, setSuccessUserName] = useState(undefined);
-  const { signIn } = useSignIn();
-  const { isSignedIn } = useUser();
+  const { isSignedIn, isLoading: isAuthLoading } = useAuthSession();
   const pendingAutoJoinRef = useRef(false);
   const router = useRouter();
   const pendingKey = "waitlist:pending:header";
@@ -173,38 +172,22 @@ export default function SiteHeader() {
   };
 
   const handleSignedOutJoinWaitlist = () => {
+    if (isAuthLoading) {
+      toast.info("Checking your sign-in session. Please wait a moment.");
+      return;
+    }
+
     setIsMobileMenuOpen(false);
     window.localStorage.setItem(pendingKey, "1");
     setIsAuthPopupOpen(true);
   };
 
-  const onStartGoogleAuth = async () => {
-    if (!signIn) {
-      toast.error("Authentication is still loading. Please try again.");
-      return;
-    }
-
+  const onStartGoogleAuth = () => {
     setIsAuthRedirecting(true);
 
-    try {
-      const result = await signIn.sso({
-        strategy: "oauth_google",
-        redirectUrl: window.location.href,
-        redirectCallbackUrl: "/sso-callback",
-      });
-
-      if (result?.error) {
-        throw new Error(result.error.message || "Unable to start Google sign in.");
-      }
-    } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : "Unable to start Google sign in. Please try again.";
-
-      toast.error(message);
-      setIsAuthRedirecting(false);
-    }
+    const returnTo = window.location.href;
+    const authUrl = `/api/auth/google/start?returnTo=${encodeURIComponent(returnTo)}`;
+    window.location.assign(authUrl);
   };
 
   useEffect(() => {
@@ -225,6 +208,14 @@ export default function SiteHeader() {
   }, [isSignedIn]);
 
   const renderDesktopWaitlistButton = () => {
+    if (isAuthLoading) {
+      return (
+        <NavbarButton variant="primary" as="button" disabled>
+          Checking...
+        </NavbarButton>
+      );
+    }
+
     if (isSignedIn) {
       return (
         <NavbarButton
@@ -250,6 +241,19 @@ export default function SiteHeader() {
   };
 
   const renderMobileWaitlistButton = () => {
+    if (isAuthLoading) {
+      return (
+        <NavbarButton
+          variant="primary"
+          as="button"
+          disabled
+          className="w-full justify-center py-3 text-base"
+        >
+          Checking...
+        </NavbarButton>
+      );
+    }
+
     if (isSignedIn) {
       return (
         <NavbarButton

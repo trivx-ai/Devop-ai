@@ -1,39 +1,11 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import Script from "next/script";
 import "./globals.css";
-
-function decodeFrontendApiFromPublishableKey(publishableKey?: string): string | undefined {
-  if (!publishableKey) return undefined;
-
-  const encodedPart = publishableKey.split("_").pop();
-  if (!encodedPart) return undefined;
-
-  try {
-    const normalized = encodedPart.replace(/-/g, "+").replace(/_/g, "/");
-    const paddingLength = (4 - (normalized.length % 4)) % 4;
-    const padded = `${normalized}${"=".repeat(paddingLength)}`;
-    const decoded =
-      typeof atob === "function"
-        ? atob(padded)
-        : Buffer.from(padded, "base64").toString("utf8");
-
-    return decoded.replace(/\$/g, "").trim();
-  } catch {
-    return undefined;
-  }
-}
-
-function sanitizeClerkUrl(url?: string): string | undefined {
-  if (!url) return undefined;
-  if (url.includes("clerk.trivx.in")) return undefined;
-  return url;
-}
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://trivx.in"),
@@ -117,26 +89,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  const frontendApi = decodeFrontendApiFromPublishableKey(publishableKey);
-  const defaultProxyUrl = frontendApi ? `https://${frontendApi}` : undefined;
-
-  const envProxyUrl = sanitizeClerkUrl(process.env.NEXT_PUBLIC_CLERK_PROXY_URL);
-  const envJsUrl = sanitizeClerkUrl(process.env.NEXT_PUBLIC_CLERK_JS_URL);
-  const envUiUrl = sanitizeClerkUrl(process.env.NEXT_PUBLIC_CLERK_UI_URL);
-
-  const clerkScriptConfig = {
-    publishableKey,
-    proxyUrl: envProxyUrl || defaultProxyUrl,
-    domain: frontendApi,
-    __internal_clerkJSUrl:
-      envJsUrl ||
-      "https://cdn.jsdelivr.net/npm/@clerk/clerk-js@6/dist/clerk.browser.js",
-    __internal_clerkUIUrl:
-      envUiUrl ||
-      "https://cdn.jsdelivr.net/npm/@clerk/ui@1/dist/ui.browser.js",
-  };
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -160,16 +112,14 @@ export default function RootLayout({
           GeistMono.variable
         )}
       >
-        <ClerkProvider {...clerkScriptConfig}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </ClerkProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
