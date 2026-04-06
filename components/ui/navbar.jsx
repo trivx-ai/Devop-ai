@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuthSession } from "@/lib/use-auth-session";
 import {
   Navbar,
@@ -30,6 +30,7 @@ export default function SiteHeader() {
   const { isSignedIn, isLoading: isAuthLoading } = useAuthSession();
   const pendingAutoJoinRef = useRef(false);
   const router = useRouter();
+  const pathname = usePathname();
   const pendingKey = "waitlist:pending:header";
   const joinedKey = "waitlist:joined:header";
 
@@ -111,6 +112,11 @@ export default function SiteHeader() {
     setIsMobileMenuOpen(false);
 
     if (path.startsWith("#")) {
+      if (pathname !== "/") {
+        router.push(`/${path}`);
+        return;
+      }
+
       // Handle anchor links with smooth scrolling
       const element = document.querySelector(path);
       if (element) {
@@ -247,7 +253,7 @@ export default function SiteHeader() {
           variant="primary"
           as="button"
           disabled
-          className="w-full justify-center py-3 text-base"
+          className="w-full justify-center rounded-xl p-4 text-base font-semibold"
         >
           Checking...
         </NavbarButton>
@@ -261,7 +267,7 @@ export default function SiteHeader() {
           as="button"
           onClick={onJoinWaitlist}
           disabled={isSubmitting || isJoined}
-          className="w-full justify-center py-3 text-base"
+          className="w-full justify-center rounded-xl p-4 text-base font-semibold"
         >
           {isSubmitting ? "Joining..." : isJoined ? "Joined" : "Join Waitlist"}
         </NavbarButton>
@@ -273,7 +279,7 @@ export default function SiteHeader() {
         variant="primary"
         as="button"
         onClick={handleSignedOutJoinWaitlist}
-        className="w-full justify-center py-3 text-base"
+        className="w-full justify-center rounded-xl py-4 text-base font-semibold"
       >
         Join Waitlist
       </NavbarButton>
@@ -295,19 +301,21 @@ export default function SiteHeader() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-3 lg:gap-4">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           {renderDesktopWaitlistButton()}
         </div>
       </NavBody>
 
       {/* Mobile Navigation */}
-      <MobileNav>
-        <MobileNavHeader>
+      <MobileNav className={isMobileMenuOpen ? "hidden" : ""}>
+        <MobileNavHeader className="rounded-2xl border border-white/10 bg-[#101010]/95 px-3 py-2 shadow-[0_10px_24px_rgba(0,0,0,0.3)]">
           <NavbarLogo />
-          <MobileNavToggle
-            isOpen={isMobileMenuOpen}
-            onClick={toggleMobileMenu}
-          />
+          <div className="rounded-xl border border-white/10 bg-[#171717] p-2 text-white">
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={toggleMobileMenu}
+            />
+          </div>
         </MobileNavHeader>
       </MobileNav>
 
@@ -317,38 +325,48 @@ export default function SiteHeader() {
         createPortal(
           <>
             <div
-              className="fixed inset-0 z-[210] bg-black/70 backdrop-blur-md lg:hidden"
+              className="fixed inset-0 z-[990] bg-black/80 lg:hidden"
               onClick={closeMobileMenu}
             />
 
-            <aside className="fixed left-0 top-0 z-[220] h-full w-[84vw] max-w-[22rem] overflow-hidden border-r border-white/10 bg-[#090909]/95 shadow-2xl backdrop-blur-xl animate-in slide-in-from-left-4 duration-200 lg:hidden">
-              <div className="flex h-full flex-col">
+            <aside className="fixed inset-0 z-[1000] flex flex-col bg-[#0c0c0c] lg:hidden">
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                <NavbarLogo />
+                <div className="rounded-xl border border-white/10 bg-[#171717] p-2 text-white">
+                  <MobileNavToggle isOpen={true} onClick={closeMobileMenu} />
+                </div>
+              </div>
 
-                <div className="flex-1 overflow-y-auto px-4 py-5 mt-12">
-                  <div className="space-y-3">
-                    {navItems.map((item, idx) => (
+              <nav className="flex-1 overflow-y-auto px-4 py-4">
+                <div className="space-y-4">
+                  {navItems.map((item, idx) => {
+                    const isActiveRoute = item.link === "/"
+                      ? pathname === "/"
+                      : !item.link.startsWith("#") && pathname === item.link;
+
+                    return (
                       <button
                         key={`mobile-link-${idx}`}
                         onClick={() => handleNavigation(item.link)}
-                        className="block w-full rounded-lg px-4 py-3 text-left text-2xl font-semibold text-white/85 transition-all duration-200 hover:bg-white/10 hover:text-white"
+                        className={`group flex w-full items-center justify-between rounded-xl border px-4 py-4 text-left text-lg font-semibold transition-colors duration-200 ${isActiveRoute
+                            ? "border-[var(--color-one)]/45 bg-[rgba(242,97,63,0.12)] text-white"
+                            : "border-white/10 bg-[#121212] text-white/85 hover:bg-[#171717] hover:text-white"
+                          }`}
                       >
-                        {item.name}
+                        <span>{item.name}</span>
                       </button>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 border-t border-white/10 pt-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between px-4 py-3">
-                        <span className="text-sm font-medium text-white/75">
-                          Theme
-                        </span>
-                        <ThemeToggle />
-                      </div>
-                      {renderMobileWaitlistButton()}
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
+              </nav>
+
+              <div className="border-t border-white/10 bg-[#0f0f0f] p-8">
+                {/* <div className="mb-3 flex items-center justify-between rounded-xl border border-white/10 bg-[#151515] px-4 py-3">
+                  <span className="text-sm font-medium text-white/70">Theme</span>
+                  <ThemeToggle />
+                </div> */}
+
+                {renderMobileWaitlistButton()}
               </div>
             </aside>
           </>,
