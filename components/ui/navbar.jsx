@@ -279,7 +279,7 @@ export default function SiteHeader() {
         variant="primary"
         as="button"
         onClick={handleSignedOutJoinWaitlist}
-        className="w-full justify-center rounded-xl py-4 text-base font-semibold"
+        className="w-full justify-center rounded-xl p-4 text-base font-semibold"
       >
         Join Waitlist
       </NavbarButton>
